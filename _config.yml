@@ -35,7 +35,7 @@ plainwhite:
   date_format: "%b %-d, %Y"
 
   disqus_shortname: cescript
-  analytics_id: '31519600'
+  analytics_id: UA-31519600-1
 
   social_links:
     github:  cescript
