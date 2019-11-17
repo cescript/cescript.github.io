@@ -77,7 +77,8 @@ Peki herhangi bir $A$ matrisi için, bu şartı yerine getiren $\vec{x}$ vektör
 
 **<span style="color: red;">NOT: </span>Burada; $\vec{x_1}$, $A$ matrisinin bir özvektörü ise $\alpha \vec{x_1}$ de $(\ref{1})$ eşitliğini sağlayacağından, $\alpha \vec{x_1}$'in de $A$' nın bir öz vektörü olduğuna dikkat edilmelidir.**
 
-Örnek bir $A=\left[\begin{array}{rr}0&&1\\-2&&-3\end{array}\right]$ matrisini ele alarak özdeğer ve özvektör bulma işlemini tekrar açıklayalım. $A$ matrisinin karakteristik denklemi: $$\det(A-\lambda I) =\begin{vmatrix}0-\lambda&&1\\-2&&-3-\lambda\end{vmatrix}=0$$ şeklinde yazılır. Özdeğerleri bulmak için determinant ifadesi polinom şeklinde yazılarak elde edilen $\lambda^2+3\lambda+2 = 0$ ikinci dereceden denklem çözülürse; özdeğerler $\lambda_1=-1$, $\lambda_2=-2$ olarak bulunur. Bu özdeğerlerden ilki ($\lambda_1$)' nin $(\ref{1})$ de yerine yazılması ile; 
+Örnek bir $$A=\left[ \begin{smallmatrix}0 & 1\\-2 & -3\end{smallmatrix} \right]$$ matrisini ele alarak özdeğer ve özvektör bulma işlemini tekrar açıklayalım. $A$ matrisinin karakteristik denklemi: $$\det(A-\lambda I) =\bigl \lvert \begin{smallmatrix}0-\lambda&&1\\-2&&-3-\lambda\end{smallmatrix} \bigl \lvert=0$$ şeklinde yazılır. Özdeğerleri bulmak için determinant ifadesi polinom şeklinde yazılarak elde edilen $\lambda^2+3\lambda+2 = 0$ ikinci dereceden denklem çözülürse; özdeğerler $\lambda_1=-1$, $\lambda_2=-2$ olarak bulunur. Bu özdeğerlerden ilki ($\lambda_1$)' nin $(\ref{1})$ de yerine yazılması ile; 
+
 $$
 \left[\begin{array}{rr}
 0- (-1)&&1\\
@@ -86,7 +87,9 @@ $$
 \vec{x}
 = \vec{0}
 $$
-bulunur. İfadenin çözümü sonucunda da $\vec{x_1}=\alpha\left[\begin{array}{r}1\\-1\end{array}\right]$ bulunur. $\lambda_2$ nin $(\ref{1})$ de yerine yazılması ile de; 
+
+bulunur. İfadenin çözümü sonucunda da $$\vec{x_1}=\alpha\left[ \begin{smallmatrix} 1\\-1 \end{smallmatrix} \right ]$$ bulunur. $\lambda_2$ nin $(\ref{1})$ de yerine yazılması ile de; 
+
 $$
 \left[\begin{array}{rr}
 0- (-2)&&1\\
@@ -95,13 +98,14 @@ $$
 \vec{x}
 = \vec{0}
 $$
-eşitliği elde edilir. Eşitliğin çözülmesi sonucunda da $\vec{x_2}=\alpha\left[\begin{array}{r}1\\-2\end{array}\right]$ bulunur.
+
+eşitliği elde edilir. Eşitliğin çözülmesi sonucunda da $$\vec{x_2}=\alpha\left[\begin{smallmatrix}1\\-2\end{smallmatrix}\right]$$ bulunur.
 
 <hr align="center" color="yellow" size="2" width="100%" /><span style="color: yellow;">DİKKAT: </span>
 
-Matlab, Octave gibi matris işleme kütüphanelerinde özdeğer ve özvektörlerin hesaplanması için `eig` fonksiyonu bulunmaktadır. Çözümünü elimizle yaptığımız $A=\left[\begin{array}{rr}0&&1\\-2&&-3\end{array}\right]$ matrisinin özdeğer ve özvektörler bu programlar aracılığı ile bulunmak istenirse komut satırına 
+Matlab, Octave gibi matris işleme kütüphanelerinde özdeğer ve özvektörlerin hesaplanması için `eig` fonksiyonu bulunmaktadır. Çözümünü elimizle yaptığımız $$A=\left[\begin{smallmatrix}0&1\\-2&-3\end{smallmatrix}\right]$$ matrisinin özdeğer ve özvektörler bu programlar aracılığı ile bulunmak istenirse komut satırına 
 
-`[v,lambda]=eig([0 1;-2 -3])` komutu yazılmalıdır. Ancak bu işlem sonucunda programın $\vec{v_1}=\left[\begin{array}{r}0.70711\\-0.70711\end{array}\right]$ ve $\vec{v_2}=\left[\begin{array}{r}-0.44721\\-0.89443\end{array}\right]$ şeklinde hesaplandığını görürüz.
+`[v,lambda]=eig([0 1;-2 -3])` komutu yazılmalıdır. Ancak bu işlem sonucunda programın $$\vec{v_1}=\left[\begin{smallmatrix}0.70711\\-0.70711\end{smallmatrix}\right]$$ ve $$\vec{v_2}=\left[\begin{smallmatrix}-0.44721\\-0.89443\end{smallmatrix}\right]$$ şeklinde hesaplandığını görürüz.
 ```matlab
 v =
 
@@ -159,7 +163,7 @@ $$
 
 $$\theta_t = \tan^{-1}(\frac{2A^{t}_{ij}}{A^{t}_{jj}-A^{t}_{ii}})/2$$ seçilmesi durumunda $A^{t+1}_{ij} = 0$ olacağından, $A$ matrisinin köşegen dışı bir elemanı $0$ yapılmış olunur. Bu işlem tüm köşegen dışı elemanlar için tekrarlanarak $A$ matrisi köşegenleştirilebilir.
 
-**<span style="color: red;">NOT: </span> __Her dönüşüm işlemi sonrasında $A^{t+1}_{ij}$ elemanı sıfır yapılırken, daha önceki iterasyonlarda sıfır yapılan bir elemanın değeri değişebilir. Ancak her sweep ($\frac{N(N-1)}{2}$ iterasyon) sonucu köşegendışı elemanların her zaman küçüldüğü kanıtlanmıştır.**
+**<span style="color: red;">NOT: </span> Her dönüşüm işlemi sonrasında $A^{t+1}_{ij}$ elemanı sıfır yapılırken, daha önceki iterasyonlarda sıfır yapılan bir elemanın değeri değişebilir. Ancak her sweep ($\frac{N(N-1)}{2}$ iterasyon) sonucu köşegendışı elemanların her zaman küçüldüğü kanıtlanmıştır.**
 
 ### Kovaryans - Özdeğer & Özvektör İlişkisi
 Özdeğer ve özvektör analizi, büyük verilerin görselleştirilmesinde ve boyut indirgeme işlemlerinde sıklıkla kullanılan yöntemlerdendir. Büyük bir veri setinin kovaryans matrisinin özdeğer ve özvektör analizi yapıldığında, özvektörler verinin en yüksek değişintiyi gösterdiği düzlemi, özdeğerler ise bu düzlemdeki değişinti miktarını göstermektedir. Bu işlem liteartürde **Temel Bileşen Analizi (Principal Component Analysis)** olarak bilinir. 
@@ -212,6 +216,10 @@ eşitliği elde edilir. Eşitliğin çözülmesi sonucunda da $\vec{x_2}=\alpha\
 
 Bu vektörler aşağıdaki resimde sırasıyla mavi ve yeşil olarak gösterilmiştir.
 
+| Rastgele Dağılımlı Veri  |  Verinin Özdeğer ve Özvektörleri |
+:-------------------------:|:-------------------------:
+![Rastgele Dağılımlı Veri][data_distribution] | ![Verinin Özdeğer ve Özvektörleri][eigen_vectors]
+
 Görselden de görüleceği üzere, rastgele dağılımlı bir verinin kovaryans matrisinin özvektörleri, verinin en yüksek saçılımı (varyasyonu) gösterdiği eksenleri vermektedir. Özdeğerler ise verinin bu eksenler üzerinde ne kadar saçıldığının ölçüsünü belirtmektedir. Bu gözleme ait ispatlar ve pratik kullanımına ait örnekler **Temel Bileşen Analizi (Principal Component Analysis)** yazımızda incelenecektir.
 
 **Referanslar**
@@ -221,3 +229,6 @@ Görselden de görüleceği üzere, rastgele dağılımlı bir verinin kovaryans
 
 * [Geometric interpretation of covariance matrix](http://www.visiondummy.com/2014/04/geometric-interpretation-covariance-matrix)
 
+[RESOURCES]: # (List of the resources used by the blog post)
+[data_distribution]: /assets/post_resources/eigen_values/data_distribution_vivid.svg
+[eigen_vectors]: /assets/post_resources/eigen_values/eigen_vectors.svg
