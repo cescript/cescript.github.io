@@ -89,23 +89,23 @@ $$Q^\pi (s, a) = \mathbb{E_1}^\pi + \sum_{k=0}^{\infty} \gamma^k \mathbb{E_2}^\p
 
 Şimdi bu sadeleştirmeyi kullanarak denklemi iki parçada çözmeye çalışalım.
 
-$\mathbb{E_1}^\pi$ ifadesini hesaplamak için $s_t$ durumunda $a_t$ ile gidebileceğimiz tüm $s^\prime_t$ durumları için bir olasılığa ihtiyacımız vardır. Bu olasılık tabloda $T(s_t, a_t, s^\prime_t)$ ismi ile verilen olasılıktır. Bu olasılığı kullanarak olası tüm $s^\prime_t$' ler için beklenen ödül aşağıdaki şekilde bulunur.
+$\mathbb{E_1}^\pi$ ifadesini hesaplamak için $s_t=s$ durumunda $a_t=a$ ile gidebileceğimiz tüm $s^\prime_t=s^\prime$ durumları için bir olasılığa ihtiyacımız vardır. Bu olasılık tabloda $T(s, a, s^\prime)$ ismi ile verilen olasılıktır. Bu olasılığı kullanarak olası tüm $s^\prime_t$' ler için beklenen ödül aşağıdaki şekilde bulunur.
 
-$$\mathbb{E_1}^\pi = \sum_{s^\prime_t} P(s^\prime_t \lvert s_t, a_t) r(s_t, a_t, s^\prime_t)$$ 
+$$\mathbb{E_1}^\pi = \sum_{s^\prime} P(s^\prime \lvert s, a) r(s, a, s^\prime)$$ 
 
-$\mathbb{E_2}^\pi$ değerini bulmak istediğimizde ise bir noktaya dikkat edilmesi gerekir. İlk durumda $s_t=s$ durumunda olduğumuzu ve $a_t = a$ hareketini yaptığımız verilmişti. Ancak bir sonraki adımda hangi $s^\prime_t$ durumunda olduğumuzu ve hangi $a^\prime_t$ kararını aldığımız belirli değildir. Bu yüzden ikinci kısımda olası tüm $s^\prime_t$ durumlarında, olası tüm $a^\prime_t$ hareketlerini yaptığımızda elde edeceğimiz ödülü hesaplamamız gereklidir. Yukarıda da yazdığımız gibi herhangi bir $s_t$ durumunda $a_t$ hareketini yaptığımızda $s^\prime_t$ durumunda olma olasılığımız $P(s^\prime_t \lvert s_t, a_t)$ dir. Bu durumda $a^\prime_t$ kararını alma olasılığımızda tablo incelenerek $\pi(s^\prime_t,a^\prime_t)$ olduğu görülür. Bu iki olasılığın çarpımı $s_t,a_t,s^\prime_t,a^\prime_t$ durum-hareket serisinin oluşması olasılığını verir. Bu olasılık beklenen değer işlecinde yerine yazılırsa;
+$\mathbb{E_2}^\pi$ değerini bulmak istediğimizde ise bir noktaya dikkat edilmesi gerekir. İlk durumda $s_t=s$ durumunda olduğumuzu ve $a_t = a$ hareketini yaptığımız verilmişti. Ancak bir sonraki adımda hangi $s^\prime_t=s^\prime$ durumunda olduğumuzu ve hangi $a^\prime_t=a^\prime$ kararını aldığımız belirli değildir. Bu yüzden ikinci kısımda olası tüm $s^\prime$ durumlarında, olası tüm $a^\prime$ hareketlerini yaptığımızda elde edeceğimiz ödülü hesaplamamız gereklidir. Yukarıda da yazdığımız gibi herhangi bir $s$ durumunda $a$ hareketini yaptığımızda $s^\prime$ durumunda olma olasılığımız $P(s^\prime \lvert s, a)$ dir. Bu durumda $a^\prime$ kararını alma olasılığımızda tablo incelenerek $\pi(s^\prime,a^\prime)$ olduğu görülür. Bu iki olasılığın çarpımı $s,a,s^\prime,a^\prime$ durum-hareket serisinin oluşması olasılığını verir. Bu olasılık beklenen değer işlecinde yerine yazılırsa;
 
-$$\mathbb{E_2}^\pi = \gamma \sum_{s^{\prime}_t} P(s^{\prime}_t \lvert s_t, a_t) \sum_{a^\prime_t}\pi(s^\prime_t,a^\prime_t) r(s^\prime_t, a^\prime_t, s^{\prime\prime}_t)$$
+$$\mathbb{E_2}^\pi = \gamma \sum_{s^{\prime}} P(s^{\prime} \lvert s, a) \sum_{a^\prime}\pi(s^\prime,a^\prime) r(s^\prime, a^\prime, s^{\prime\prime})$$
 
 eşitliği elde edilir. Bu bilgiler birleştirilerek $Q^\pi (s, a)$ ifadesi tekrar yazılırsa;
 
-$$Q^\pi (s,a) = \sum_{s^\prime_t} P(s^\prime_t \lvert s_t, a_t) \left ( r(s_t, a_t, s^\prime_t) + \gamma \sum_{a^\prime_t}\pi(s^\prime_t,a^\prime_t) \sum_{k=0}^{\infty} \gamma^k r(s^\prime_t, a^\prime_t, s^{\prime\prime}_t) \right )$$
+$$Q^\pi (s,a) = \sum_{s^\prime} P(s^\prime \lvert s, a) \left ( r(s, a, s^\prime) + \gamma \sum_{a^\prime}\pi(s^\prime,a^\prime) \sum_{k=0}^{\infty} \gamma^k r(s^\prime, a^\prime, s^{\prime\prime}) \right )$$
 
 elde edilir.
 
 Burada $\gamma^k$ ile çarpım durumunda bulunan toplam ile Denklem \ref{qualityExp} incelendiğinde bu ifadenin $Q^\pi (s^\prime, a^\prime)$ olduğu görülür. Yukarıdaki denkleme bu son değişken dönüşümü de uygulanırsa aşağıdaki önemli formül elde edilir.
 
-$$Q^\pi (s,a) = \sum_{s^\prime_t} T(s_t, a_t, s^\prime_t) \left ( r(s_t, a_t, s^\prime_t) + \gamma \sum_{a^\prime_t}\pi(s^\prime_t,a^\prime_t) Q^\pi (s^\prime, a^\prime) \right ) \label{bellmanQuality} \tag{5}$$
+$$Q^\pi (s,a) = \sum_{s^\prime} T(s, a, s^\prime) \left ( r(s, a, s^\prime) + \gamma \sum_{a^\prime}\pi(s^\prime,a^\prime) Q^\pi (s^\prime, a^\prime) \right ) \label{bellmanQuality} \tag{5}$$
 
 Denklem \ref{bellmanQuality} ile verilen denklem Bellman Eşitliği olarak bilinir ve pekiştirmeli öğrenme yöntemlerinin temelini oluşturmaktadır. 
 
@@ -119,7 +119,7 @@ kuralına göre tercihler yapılarak elde edilecektir. Bu aç gözlü kural fonk
 
 Bu durumda Denklem \ref{bellmanQuality} de yer alan olası tüm $a^\prime \in A$ toplama işleminin sadece $a_t=\arg\max_{a} Q^\pi (s,a)$ için yapılması yeterli olacaktır. Bu çıkarım sonucu Denklem \ref{bellmanQuality} de yerine yazılırsa;
 
-$$Q^{\pi^\ast} (s,a) = \sum_{s^\prime_t} T(s, a, s^\prime) \left ( r(s_t, a_t, s^\prime_t) + \gamma \max_{a^\prime} Q^{\pi^\ast} (s^\prime, a^\prime) \right ) \label{bellmanOptimality} \tag{6}$$
+$$Q^{\pi^\ast} (s,a) = \sum_{s^\prime} T(s, a, s^\prime) \left ( r(s, a, s^\prime) + \gamma \max_{a^\prime} Q^{\pi^\ast} (s^\prime, a^\prime) \right ) \label{bellmanOptimality} \tag{6}$$
 
 literatürde *Bellman en iyi çözüm eşitliği* olarak bilinen denklem elde edilir. Bu denklemin çözümü ile elde edilen $Q^{\pi^\ast} (s,a)$, her durumda en büyük $Q$ değerli kararı seçen bir ajan için en ideal göstergeyi üretecektir.
 
