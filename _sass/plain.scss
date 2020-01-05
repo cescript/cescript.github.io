@@ -186,6 +186,16 @@ main {
 		display: inline-block;
 	}
 
+	img[alt*="half"] {
+		max-width:45%;
+		max-height:45%;
+		margin-bottom: 1em; 
+		margin-right: 1em;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.excerpts {
 		display: flex;
   		flex-direction: row;

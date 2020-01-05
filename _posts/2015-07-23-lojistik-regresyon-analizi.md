@@ -97,12 +97,25 @@ olacaktır $$E(x,y|w) = \sum_{n=1}^N \log\left ({1+e^{-yw^\intercal x}}\right )
 Burada $E$ fonksiyonu için kapalı biçim bir çözüm bulunmadığından en
 küçükleme iteratif olarak yapılmalıdır. Bu yazımda $E$ fonksiyonu en
 küçüklemek için en kolay yöntemlerden biri olan gradyan iniş yöntemini
-tercih ettim. $$w_k^{(t+1)}=w_k^{(t)}-\gamma \frac{\partial
-E}{\partial w}$$Bu yöntem $w_k=0$ ilk değerinden başlayarak iteratif
-olarak fonksiyonu en küçükleyecek ağırlıkları bulmaya çalışan bir
-yöntemdir. Burada $\frac{\partial}{\partial w}$ yönteme adını veren
-gradyan operatörüdür. En küçüklemeye çalıştığımız fonksiyon için
-gradyan $$\frac{\partial E}{\partial w} = -\sum_{n=1}^N yx\log\left ({1+e^{-yw^T x}}\right)$$ şeklindedir. Yöntem her iterasyonda bir önceki ağırlıklara $\gamma$ gibi küçük bir ağırlıkla çarparak gradyan değerini eklemektedir.  
+tercih ettim. 
+
+### Gradyan İniş Yöntemi
+
+Bu yöntem herhangi bir fonksiyonun yerel en küçük noktasının o fonksiyonun o noktadaki gradyanı tersi yönüne hareket edilerek bulunacağı fikrine dayanmaktadır. Bu fikri bir görsel üzerinde gösterdiğimizde çok daha anlaşılır olacaktır. 
+
+![Gradyan İniş Yöntemi][gradient_descent]
+
+Yukarıda verilen grafikte bir $P(x,w)$ fonksiyonu gösterilmiştir. Bu fonksiyon quadratik bir fonksiyon olduğu için en küçük değeri;
+
+$$\frac{\partial P}{\partial w} = 0$$
+
+eşitliğini sağlayan $w$ değerinde alacaktır. Bu değer grafikten de görüldüğü üzere $w=w_b$ değeridir. Peki $w=w_a$ gibi rastgele bir $w$ değerinden başlayarak $w=w_b$ değerini bulabilir miyiz? Grafikten de görüldüğü üzere, $w=w_a$ olduğunda $P(x,w_a)$ noktasının gradyanı $\nabla_w P(x,w_a)$ yönü negatif değerli olmaktadır. Bu durumda gradyanın tersi yönünde ilerlenmesi durumunda $a=w_b$ değerine yaklaşılacaktır. Bu kurala göre adımlar attığımızda, her adımda fonksiyonun tepe noktasından en küçük noktasına inişe geçeceğimizden bu yöntem Gradyan İniş Yöntemi olarak adlandırılmaktadır. Matematiksel olarak gradyan iniş yöntemi;
+
+$$w_k^{(t+1)}=w_k^{(t)}-\alpha \nabla_w P(x,w)$$
+
+$w_k=0$ ilk değerinden başlayarak iteratif olarak fonksiyonu en küçükleyecek ağırlıkları bulmaya çalışan bir yöntemdir. Burada $\alpha$ gradyan inişinin hızının ayarlanması için kullanılan sabit bir terimdir. Özellikle iterasyonun başlarında en küçük noktaya hızlı varmak için büyük bir $\alpha$ değeri seçilirken, iterasyonun ilerleyen adımlarında $w=w_b$ kritik noktasını geçmemek için kısılır. $\nabla_w P(x,w)$ ise gradyan operatörüdür.
+
+En küçüklemeye çalıştığımız fonksiyon için gradyan $$\nabla_w E = -\sum_{n=1}^N yx\log\left ({1+e^{-yw^T x}}\right)$$ şeklindedir. Yöntem her iterasyonda bir önceki ağırlıklara $\gamma$ gibi küçük bir ağırlıkla çarparak gradyan değerini eklemektedir.  
 
 Bu kadar matematikten sonra kodlama kısmına geçebiliriz. Lojistik regresyon eğitimi için yazılan kod aşağıda verilmiştir.  
 
@@ -181,3 +194,4 @@ Diğer yazılarımdan farklı olarak bu yazı için örnek kısmını bir sonrak
 
 [RESOURCES]: # (List of the resources used by the blog post)
 [logistic]: /assets/post_resources/logistic_regression/logistic.png
+[gradient_descent]: /assets/post_resources/logistic_regression/gradient_descent.svg
