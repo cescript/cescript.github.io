@@ -51,7 +51,7 @@ $$
 
 Yukarıda verilen denklemde $A$ bahçenin alanını, $x$ ve $y$ dikdörtgenin kenar uzunluklarını göstermektedir. $2x+2y=100$ kısıtı ise oluşturulacak dikdörtgenin çevresinin uzunluğunu göstermektedir. Lagrange çarpanları kullanılarak Denklem \ref{sampleEQ2} ile verilen ifade aşağıdaki şekilde yazılır.
 
-$$\text{maximize} \quad L(x,y,\lambda) = xy + \lambda (2x+2y-100) \label{sampleEQ2Lagrange} \tag{4}$$
+$$\text{maximize} \quad L(x,y,\lambda) = xy - \lambda (2x+2y-100) \label{sampleEQ2Lagrange} \tag{4}$$
 
 Burada $\lambda$ Lagrange çarpanı olarak bilinir ve Denklem \ref{sampleEQ2}' de verilen kısıtlı optimizasyon probleminin, Denklem \ref{sampleEQ2Lagrange} ile verilen kısıtsız optimizasyon yöntemine dönüştürülmesinde kullanılır. Bu problemin çözülmesi için $L$ fonksiyonunun $x$,$y$ ve $\lambda$ değişkenlerine göre türevi alınıp sıfıra eşitlenirse;
 
@@ -68,7 +68,7 @@ bulunur. Burada ilk denklemin çözümünden $y = 2\lambda$, ikinci denklemin ç
 
 Bu örnek üzerinden Lagrange teoremini genelleştirmek istersek, $f(x,y)$ şeklinde verilen fonksiyonun $g(x,y)=c$ kısıtı altında en küçük veya en büyük değeri bulunmak istenirse aşağıdaki Lagrange denkleminin en küçük veya en büyük noktalarının bulunması gerekmektedir.
 
-$$L(x,y,\lambda) = f(x,y) + \lambda (g(x,y)-c) \label{genericLagrange} \tag{6}$$
+$$L(x,y,\lambda) = f(x,y) - \lambda (g(x,y)-c) \label{genericLagrange} \tag{6}$$
 
 Bu genel ifadenin çözümü için de $L$ fonksiyonunun türevi alınıp sıfıra eşitlenirse, $\nabla L=0$, aşağıdaki denklem takımları elde edilir.
 
@@ -81,7 +81,9 @@ g(x,y) & = c
 \label{genericLagrangePartials} \tag{7}
 $$
 
-Elde edilen üç denklem takımı, birbirinden bağımsız ise, bilinmeyen üç ($x,y,\lambda)$ değişkenin çözülmesi için yeterlidir. Burada belirtilen bağımsızlık ifadesi Lagrange yöntemlerinin kullanılıp kullanılamayacağını belirleyen en önemli koşuldur.
+Elde edilen üç denklem takımı, birbirinden bağımsız ise, bilinmeyen üç ($x,y,\lambda)$ değişkenin çözülmesi için yeterlidir. Burada belirtilen bağımsızlık ifadesi Lagrange yöntemlerinin kullanılıp kullanılamayacağını belirleyen en önemli koşuldur. 
+
+**<span style="color: yellow;">Not:</span> $\lambda$ değişkeninin önünde bulunan işaretin $+$ veya $-$ olması sadece $\lambda$ değişkeninin tanımını değiştireceğinden sonucu etkilemeyecektir. Yazının devamında yazı içeriisnde tutarlı olması adına aradaki işaret $-$ seçilmiştir.**
 
 Şimdi başka örnek problemler ile yöntemin farklı kısıtlar ile nasıl kullanıldığına bir bakalım.
 
@@ -103,24 +105,24 @@ Burada $D$, çember üzerinde seçilen bir $x,y$ noktasının, $P(1,0.5)$ noktas
 
 İfadenin çözümü için $\lambda$ Lagrange çarpanı kullanılarak problem tekrar yazılırsa;
 
-$$L(x,y,\lambda) = x^2-2x+y^2-y+1.25 + \lambda \left( x^2+y^2-5 \right )$$
+$$L(x,y,\lambda) = x^2-2x+y^2-y+1.25 - \lambda \left( x^2+y^2-5 \right )$$
 
 denklemi elde edilir. Gerekli türev işlemleri yapıldığı takdirde aşağıdaki denklem takımı elde edilir.
 
 $$
 \begin{array}{lll}
-\frac{\partial L(x,y,\lambda)}{\partial x} & = 2x -2 + 2\lambda x & = 0\\ 
-\frac{\partial L(x,y,\lambda)}{\partial y} & = 2y -1 + 2\lambda y & = 0\\ 
+\frac{\partial L(x,y,\lambda)}{\partial x} & = 2x -2 - 2\lambda x & = 0\\ 
+\frac{\partial L(x,y,\lambda)}{\partial y} & = 2y -1 - 2\lambda y & = 0\\ 
 \frac{\partial L(x,y,\lambda)}{\partial \lambda} & = x^2+y^2-5 & = 0
 \end{array}
 \label{example0LagrangePartials} \tag{9}
 $$
 
-Denklem \ref{example0LagrangePartials} da verilen ilk denklemden $x=\frac{1}{1+\lambda}$, ikinci denklemden ise $y=\frac{0.5}{1+\lambda}$ elde edilir. Bu bulgular üçüncü denklemde yerine yazılırsa;
+Denklem \ref{example0LagrangePartials} da verilen ilk denklemden $x=\frac{1}{1-\lambda}$, ikinci denklemden ise $y=\frac{0.5}{1-\lambda}$ elde edilir. Bu bulgular üçüncü denklemde yerine yazılırsa;
 
-$$\frac{1}{(1+\lambda)^2}+\frac{0.25}{(1+\lambda)^2} = 5$$ 
+$$\frac{1}{(1-\lambda)^2}+\frac{0.25}{(1-\lambda)^2} = 5$$ 
 
-denklemi elde edilir. Bu denklemin çözümü ile de $\lambda_1=-0.5$ ve $\lambda_2=-1.5$ sonuçları bulunur. Bulunan $\lambda$ değerleri kullanılarak aranan noktalar $P_1(2,1)$ ve $P_2=(-2, -1)$ şeklinde hesaplanır. 
+denklemi elde edilir. Bu denklemin çözümü ile de $\lambda_1=0.5$ ve $\lambda_2=1.5$ sonuçları bulunur. Bulunan $\lambda$ değerleri kullanılarak aranan noktalar $P_1(2,1)$ ve $P_2=(-2, -1)$ şeklinde hesaplanır. 
 
 Bulunan noktaların $P(1,0.5)$ noktasına olan uzaklıkları; $D_1=\lVert{P-P_1}\lVert=1.11$ birim, $D_2=\lVert{P-P_2}\lVert=3.35$ birim hesaplanır. 
 
