@@ -213,5 +213,5 @@ atabilirsiniz.
 
 [RESOURCES]: # (List of the resources used by the blog post)
 [graph]: /assets/post_resources/dynamic_programming/graf.png
-[graph_shortest_distance]: /assets/post_resources/dynamic_programming/graf_kisa_yol.png
+[graph_shortest_path]: /assets/post_resources/dynamic_programming/graf_kisa_yol.png
 [integral_image_sample2]: /assets/post_resources/dynamic_programming/istanbul_bogazi.png

@@ -41,7 +41,7 @@ Yazının devamında kullanacağımız matematiksel ifadeleri anlamak için yuka
 
 ![Pekiştirmeli Öğrenme Örnek][markov_example]
 
-Yukarıda verilen grafta $A$,$B$ ve $C$ olmak üzere üç farklı durum vardır. $s_0=A$ durumu başlangıç durumudur. Belirli bir hareket serisinden sonra ajan $s_t=C$ durumuna ulaştığında döngü bitmiş olur. Bu aşamada kolaylık olması açaısından ajanın yapmasına izin verilen hareket kümesi ($A=\{i\}$) ile sınırlandırılmıştır. Bu durumda ajan her zaman $a_t=i$ hareketini uygulayacak ve ileri gitmeyi tercih edecektir. Bu nedenle herhangi bir $s_t$ durumunda $a_t=i$ olma olasılığı $\pi([A;B],i) = P(a_t=i \lvert s_t=[A;B]) = 1$ dir.
+Yukarıda verilen grafta $A$,$B$ ve $C$ olmak üzere üç farklı durum vardır. $s_0=A$ durumu başlangıç durumudur. Belirli bir hareket serisinden sonra ajan $s_t=C$ durumuna ulaştığında döngü bitmiş olur. Bu aşamada kolaylık olması açaısından ajanın yapmasına izin verilen hareket kümesi ($A=\\{i\\}$) ile sınırlandırılmıştır. Bu durumda ajan her zaman $a_t=i$ hareketini uygulayacak ve ileri gitmeyi tercih edecektir. Bu nedenle herhangi bir $s_t$ durumunda $a_t=i$ olma olasılığı $\pi([A;B],i) = P(a_t=i \lvert s_t=[A;B]) = 1$ dir.
 
 Ancak ajanın aldığı her karar kesin olarak gerçekleşmeyebilir. Bu örnekte ajan $s_t=A$ durumunda $a_t=i$ kararı aldığında, $s^\prime_t=B$ olma olasılığı $T(A,i,B) = P(s^\prime_t=B\lvert s_t=A,a_t=i)=0.8$, $T(A,i,A)=P(s^\prime_t=A\lvert s_t=A,a_t=i)=0.2$ verilmiştir. 
 
