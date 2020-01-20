@@ -20,7 +20,7 @@ $$D(a,v)=30v - a^2 \label{sampleEQ1} \tag{1}$$
 
 Denklem \ref{sampleEQ1} ile verilen eşitlik kullanılarak $a=1.2$ ton bir aracın $v=0.6$ verimlilik ile $D=16.56$ kilometre yol alabileceğini hesaplayabiliriz. Aracın ağırlığı $a=1.8$ ton olması durumunda da mesafe $D=14.76$ kilometreye düşecektir. 
 
-Şimdi Denklem \ref{sampleEQ1}' in verildiği bir çalışmada aracın alabileceği en uzun mesafe soruluyor olsun. Denkleme bakıldığında aracın ağarlığının $a=0$ seçilmesi durumunda mesafenin $D(v)=30v$ olduğu görülür. Bu durumda verimlilikte sonsuza çıkarılırsa $D=\infty$ kilometre bulunur. Yani aracımızı sıfır ağırlıklı ve sonsuz verimlilikte yaparsak, bir litre benzin ile aracımızın $D=\infty$ kilometre mesafe yol alabileceğini hesaplarız. 
+Şimdi Denklem \ref{sampleEQ1}' in verildiği bir çalışmada aracın alabileceği en uzun mesafe soruluyor olsun. Denkleme bakıldığında aracın ağırlığının $a=0$ seçilmesi durumunda mesafenin $D(v)=30v$ olduğu görülür. Bu durumda verimlilikte sonsuza çıkarılırsa $D=\infty$ kilometre bulunur. Yani aracımızı sıfır ağırlıklı ve sonsuz verimlilikte yaparsak, bir litre benzin ile aracımızın $D=\infty$ kilometre mesafe yol alabileceğini hesaplarız. 
 
 Bu sonuç verilen matematiksel olarak doğru olsa da, mühendislik anlamında gereksiz ve saçma bir çözümdür. Çünkü enerjinin korunumu yasası gereği verimlilik $v \leq 1$ olmak zorundadır. Benzer şekilde aracı oluşturan bileşenler düşünüldüğünde ağırlığının $a \ge 0$ olması gerektiği de barizdir. Matematiksel olarak Denklem \ref{sampleEQ1}' in anlamlı bir şekilde çözülebilmesi için $v \leq 1$ ve $a \gt 0$ koşullarının denkleme kısıt (constraint) olarak eklenmesi gerekmektedir. Bu durumda Denklem \ref{sampleEQ1} ifadesinin en büyükleme probleminin aşağıdaki şekilde yazılması gerekmektedir.
 
@@ -83,7 +83,7 @@ $$
 
 Elde edilen üç denklem takımı, birbirinden bağımsız ise, bilinmeyen üç ($x,y,\lambda)$ değişkenin çözülmesi için yeterlidir. Burada belirtilen bağımsızlık ifadesi Lagrange yöntemlerinin kullanılıp kullanılamayacağını belirleyen en önemli koşuldur. 
 
-**<span style="color: yellow;">Not:</span> $\lambda$ değişkeninin önünde bulunan işaretin $+$ veya $-$ olması sadece $\lambda$ değişkeninin tanımını değiştireceğinden sonucu etkilemeyecektir. Yazının devamında yazı içeriisnde tutarlı olması adına aradaki işaret $-$ seçilmiştir.**
+**<span style="color: yellow;">Not:</span> $\lambda$ değişkeninin önünde bulunan işaretin $+$ veya $-$ olması sadece $\lambda$ değişkeninin tanımını değiştireceğinden sonucu etkilemeyecektir. Yazının devamında yazı içerisinde tutarlı olması adına aradaki işaret $-$ seçilmiştir.**
 
 Şimdi başka örnek problemler ile yöntemin farklı kısıtlar ile nasıl kullanıldığına bir bakalım.
 
