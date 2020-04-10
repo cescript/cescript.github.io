@@ -5,7 +5,9 @@ source "https://rubygems.org"
 #
 #     bundle exec jekyll serve
 # set the version
-gem 'jekyll', '3.7.4'
+# gem 'jekyll', '3.7.4'
+
+gem "json"
 
 # add seo tag
 gem "jekyll-seo-tag", "2.1.0"
