@@ -236,6 +236,11 @@ main {
 		tr:nth-child(even) {
 			background-color: #f2f2f2;
 		}
+		// align image vertically inside the cell
+		td img {
+			display: block;
+			margin:0 auto;
+		}
 	}
 }
 
