@@ -10,94 +10,53 @@ modified_time: '2015-09-16T12:13:38.433+03:00'
 thumbnail:  /assets/post_resources/logistic_regression/thumbnail.png
 ---
 
-Regresyon (bağlanım) analizi, bilinen değişkenler baz alınarak
-bilinmeyen değişkenlerin modellenmesi / tahmin edilmesi işlemidir.
-İfadenin daha anlaşılır olması için örnek verecek olursak; doktorlar
-uyguladıkları tetkikleri (tansiyon, şeker, demir miktarı, vs.) baz
-alarak bir hastalığın olup olmayacağına karar verebilirler veya emlakçı
-bir evin fiyatını oda sayısı, konumu, alanı gibi bilgileri baz alarak
-tahmin edebilir.  Bu işlemin insanlar tarafından yapılabilirliği,
-bilinen değişkenlerin artması (baz noktaları) ile ters orantılıdır.
-Doktor örneğine geri dönecek olursak,  karmaşık bir hastalığın tespiti
-için yapılan analizlerin sayısı arttıkça, doktorun bu sonuçları
-değerlendirme süresi de artacaktır.  
+Regresyon (bağlanım) analizi, bilinen değişkenler baz alınarak bilinmeyen değişkenlerin modellenmesi / tahmin edilmesi işlemidir.
+İfadenin daha anlaşılır olması için örnek verecek olursak; doktorlar uyguladıkları tetkikleri (tansiyon, şeker, demir miktarı, vs.) baz alarak bir hastalığın olup olmayacağına karar verebilirler veya emlakçı bir evin fiyatını oda sayısı, konumu, alanı gibi bilgileri baz alarak tahmin edebilir.  Bu işlemin insanlar tarafından yapılabilirliği, bilinen değişkenlerin artması (baz noktaları) ile ters orantılıdır. Doktor örneğine geri dönecek olursak,  karmaşık bir hastalığın tespiti için yapılan analizlerin sayısı arttıkça, doktorun bu sonuçları değerlendirme süresi de artacaktır.  
 
 <!--more-->
   
-Bu yazımızın konusu olan Lojistik Regresyon, bu modellemenin
-bilgisayarlar ortamında otomatik yapılmasını sağlayan bir yöntemdir.
-Yöntem baz noktalarını bildiğinde, bilinmeyen bir olay hakkında
-çıkarımda bulunduğundan aslında bir makine öğrenmesi / yapay zeka
-örneğidir. Yöntemin detaylarına girmeden önce temel kavramları anlamaya
-çalışalım.  
+Bu yazımızın konusu olan Lojistik Regresyon, bu modellemenin bilgisayarlar ortamında otomatik yapılmasını sağlayan bir yöntemdir.
+Yöntem baz noktalarını bildiğinde, bilinmeyen bir olay hakkında çıkarımda bulunduğundan aslında bir makine öğrenmesi / yapay zeka
+örneğidir. Yöntemin detaylarına girmeden önce temel kavramları anlamaya çalışalım.  
   
-Makine öğrenmesi yöntemlerinin çoğunun çalışması için bir eğiticiye
-ihtiyaç vardır. Buradaki eğitici, elimizde bulunan baz noktalarına karşı
-düşen gerçek değeri bize sağlayan kişidir. Elimizde bu değerlerden ne
-kadar çok varsa, makine öğrenmesi o kadar başarılı olacaktır. $N$ elde
-bulunan veri sayısını, $x_n$ $n$. veriye ait baz değerlerini ($m$ tane)
-ve $y_n \in{\{-1,+1\}}$ bu veriye karşı düşen gerçek değeri
-(etiketi) (hasta:1, sağlam:-1; pahalı:1, ucuz:-1) göstermek üzere,
-doğrusal öğrenme problemi şu şekilde modellenir: $$s=w^T x =
-w^1x^1+w^2x^2+...+w^mx^m$$Burada $w^T$ her bir baz noktasına karşı düşen
-ağırlıkları içeren ağırlık vektörü, $s$ ise tahmin edilen değerdir.
-Öğrenme ise eğitici tarafından sağlanan etiketler ($y_n$) ile tahmin
-edilen etiketler ($s_n$) arasındaki uzaklığı en aza indirecek
-ağırlıkları ($w$)  bulma işlemidir.  
+Makine öğrenmesi yöntemlerinin çoğunun çalışması için bir eğiticiye ihtiyaç vardır. Buradaki eğitici, elimizde bulunan baz noktalarına karşı düşen gerçek değeri bize sağlayan kişidir. Elimizde bu değerlerden ne kadar çok varsa, makine öğrenmesi o kadar başarılı olacaktır. $N$ elde bulunan veri sayısını, $x_n$ $n$. veriye ait baz değerlerini ($m$ tane) ve $y_n \in \\{-1,+1\\}$ bu veriye karşı düşen gerçek değeri (etiketi) (hasta:1, sağlam:-1; pahalı:1, ucuz:-1) göstermek üzere, doğrusal öğrenme problemi şu şekilde modellenir: 
+
+$$s=w^T x = w^1x^1+w^2x^2+...+w^mx^m$$
+
+Burada $w^T$ her bir baz noktasına karşı düşen ağırlıkları içeren ağırlık vektörü, $s$ ise tahmin edilen değerdir. Öğrenme ise eğitici tarafından sağlanan etiketler ($y_n$) ile tahmin edilen etiketler ($s_n$) arasındaki uzaklığı en aza indirecek
+ağırlıkları ($w$)  bulma işlemidir.
   
-Bu tip bir modellemedeki temel sorun, tahmin edilen değerin bir
-sınırının olmaması ve büyük ağırlık değerleri için tahmin edilen
-etiketin hızla artmasıdır. Lojistik regresyon bu problemi çözmek için
-önerilen ve günümüzde de sıklıkla kullanılan bir öğrenme yöntemidir.
-Yöntem tahmin edilen etiket değerini bir lojistik fonksiyonundan
- ($\theta(s)$) geçirerek çıkışın sınırlı olmasını garanti altına alır.
-Regresyona adını veren lojistik (logit) fonksiyonu şu şekilde
-tanımlıdır: $$\theta(s) = \frac{1}{1+e^{-s}}.$$ Bu fonksiyonun farklı
-$s$ değerleri için değerleri, doğrusal fonksiyon (yeşil) ile
-karşılaştırmalı olarak grafikte gösterilmiştir.  
+Bu tip bir modellemedeki temel sorun, tahmin edilen değerin bir sınırının olmaması ve büyük ağırlık değerleri için tahmin edilen etiketin hızla artmasıdır. Lojistik regresyon bu problemi çözmek için önerilen ve günümüzde de sıklıkla kullanılan bir öğrenme yöntemidir. Yöntem tahmin edilen etiket değerini bir lojistik fonksiyonundan  ($\theta(s)$) geçirerek çıkışın sınırlı olmasını garanti altına alır. Regresyona adını veren lojistik (logit) fonksiyonu şu şekilde tanımlıdır: $$\theta(s) = \frac{1}{1+e^{-s}}.$$ Bu fonksiyonun farklı $s$ değerleri için değerleri, doğrusal fonksiyon (yeşil) ile karşılaştırmalı olarak grafikte gösterilmiştir.  
   
 ![Lojistik Fonksiyonu][logistic]
   
-Böyle bir tanımalama sonrası çıkışın $\left[0,1\right]$ aralığında olması
-sağlanır ve çıkışa olasılık yaklaşımı yapılabilir. Örneğin doktor
-probleminde algoritmanın çıkışı 0.8 ise gelen hastaya %80 olasılıkla
-hasta (1), %20 olasılıkla sağlam (-1) teşhisi konulabilir. Bu söylemi
-matematiksel olarak ifade etmek istersek $$P(y=1 | x) = \theta(s) =
-\frac{1}{1+e^{-w^T x}}, P(y=-1 | x) = 1-\theta(s) =
-\frac{1}{1+e^{w^T x}}$$ yazabiliriz (İkinci eşitlik olasılıkların
-toplamı bir olduğu bilgisi kullanılarak yazıldı). Lojistik fonksiyonunun tanımı
-gereği $\theta(s)=1-\theta(-s)$ olduğundan yukarıdaki
-eşitlikler tek bir ifadede birleştirilerek $$P(y|x) = \frac{1}{1+e^{-yw^\intercal
-x}}$$elde edilir. Burada $y=\pm1$  değerinin lojistik fonksiyonun
-içerisine girdiğini ve ifadenin $y=1$ için $P(y=1 | x)$, $y=-1$ için $P(y=-1 | x)$
-eşitliklerine eşit olduğuna dikkat edilmelidir.
+Böyle bir tanımalama sonrası çıkışın $\left[0,1\right]$ aralığında olması sağlanır ve çıkışa olasılık yaklaşımı yapılabilir. Örneğin doktor probleminde algoritmanın çıkışı 0.8 ise gelen hastaya %80 olasılıkla hasta (1), %20 olasılıkla sağlam (-1) teşhisi konulabilir. Bu söylemi matematiksel olarak ifade etmek istersek 
 
-Dikkat edilecek en önemli  nokta ise
-aradığımız ağırlıkların $P(y_n|x_n)$ olasılığını mümkün
-olduğunca bire (kesin olay) yaklaştırması gerektiğidir. Bulunacak
-ağırlık değerlerinin elimizdeki tüm eğitim verileri $n=1,2,\dots,N$
-için bu olasılığı bire yaklaştırmasını istediğimizden $$L(x,y|w) = \Pi_{n=1}^N P(y|x) =
-\Pi_{n=1}^N \frac{1}{1+e^{-yw^T x}}$$ tanımı
-yaparak olabilirlik göstergesi $L(x,y|w)$ tek bir fonksiyonu en
-büyüklemeye çalışabiliriz. Burada $P(y_n|x_n)$' lerin bire
-yaklaması ile $L(x,y|w)$ nin arttığına dikkat edilmelidir. Burada
-olabilirlik fonksiyonunu doğrudan kullanmak yerine logaritmasını
-kullanmak işlem kolaylığı sağladığından ve logaritmanın monoton artan
-bir fonksiyon olmasından dolayı $L(x,y|w)$' yi en büyüklemek ile $log(
-L(x,y|w) )$' i en büyüklemek arasında bir fark olmadığından logaritmik
-olabilirlik fonksiyonu kullanılmıştır.  
+$$P(y=1 \lvert x) = \theta(s) = \frac{1}{1+e^{-w^T x}}, P(y=-1 \lvert x) = 1-\theta(s) = \frac{1}{1+e^{w^T x}}$$ 
+
+yazabiliriz (İkinci eşitlik olasılıkların toplamı bir olduğu bilgisi kullanılarak yazıldı). Lojistik fonksiyonunun tanımı gereği $\theta(s)=1-\theta(-s)$ olduğundan yukarıdaki eşitlikler tek bir ifadede birleştirilerek 
+
+$$P(y\lvert x) = \frac{1}{1+e^{-y w^\intercal x}}$$
+
+elde edilir. Burada $y=\pm 1$  değerinin lojistik fonksiyonun içerisine girdiğini ve ifadenin $y=1$ için $P(y=1 \lvert x)$, $y=-1$ için $P(y=-1 \lvert x)$ eşitliklerine eşit olduğuna dikkat edilmelidir.
+
+Dikkat edilecek en önemli  nokta ise aradığımız ağırlıkların $P(y_n \lvert x_n)$ olasılığını mümkün olduğunca bire (kesin olay) yaklaştırması gerektiğidir. Bulunacak ağırlık değerlerinin elimizdeki tüm eğitim verileri $n=1,2,\dots,N$ için bu olasılığı bire yaklaştırmasını istediğimizden 
+
+$$L(x,y \lvert w) = \Pi_{n=1}^N P(y \lvert x) = \Pi_{n=1}^N \frac{1}{1+e^{-yw^T x}}$$
+
+tanımı yaparak olabilirlik göstergesi $L(x,y \lvert w)$ tek bir fonksiyonu en büyüklemeye çalışabiliriz. Burada $P(y_n \lvert x_n)$' lerin bire
+yaklaması ile $L(x,y \lvert w)$ nin arttığına dikkat edilmelidir. Burada olabilirlik fonksiyonunu doğrudan kullanmak yerine logaritmasını
+kullanmak işlem kolaylığı sağladığından ve logaritmanın monoton artan bir fonksiyon olmasından dolayı $L(x,y \lvert w)$' yi en büyüklemek ile $log(L(x,y \lvert w) )$' i en büyüklemek arasında bir fark olmadığından logaritmik olabilirlik fonksiyonu kullanılmıştır.  
   
-Logaritma işlemi sonrası çarpma sembolü toplama sembolüne dönüşeceğinden
-yeni olabilirlik fonksiyonu $$L(x,y|w) = \sum_{n=1}^N \log\left
-({1}/{1+e^{-yw^\intercal x}}\right )$$ olacaktır. Yapılacak son bir
-değişiklik ise logaritma içerisindeki bölüm ifadesini kaldırarak,
-fonksiyonu en büyüklemek yerine, yeni fonksiyonu $E(x,y|w)$ en küçüklemeye çalışmak
-olacaktır $$E(x,y|w) = \sum_{n=1}^N \log\left ({1+e^{-yw^\intercal x}}\right )$$
+Logaritma işlemi sonrası çarpma sembolü toplama sembolüne dönüşeceğinden yeni olabilirlik fonksiyonu 
 
-Burada $E$ fonksiyonu için kapalı biçim bir çözüm bulunmadığından en
-küçükleme iteratif olarak yapılmalıdır. Bu yazımda $E$ fonksiyonu en
-küçüklemek için en kolay yöntemlerden biri olan gradyan iniş yöntemini
-tercih ettim. 
+$$L(x,y \lvert w) = \sum_{n=1}^N \log\left ({1}/{1+e^{-yw^\intercal x}}\right )$$
+
+olacaktır. Yapılacak son bir değişiklik ise logaritma içerisindeki bölüm ifadesini kaldırarak, fonksiyonu en büyüklemek yerine, yeni fonksiyonu $E(x,y \lvert w)$ en küçüklemeye çalışmak olacaktır.
+
+$$E(x,y \lvert w) = \sum_{n=1}^N \log\left ({1+e^{-yw^\intercal x}}\right )$$
+
+Burada $E$ fonksiyonu için kapalı biçim bir çözüm bulunmadığından en küçükleme iteratif olarak yapılmalıdır. Bu yazımda $E$ fonksiyonu en küçüklemek için en kolay yöntemlerden biri olan gradyan iniş yöntemini tercih ettim. 
 
 ### Gradyan İniş Yöntemi
 
@@ -157,7 +116,7 @@ void logistic_regresyon(double *data, int *label, double *weights,int Nsample,in
 }
 ```
   
-Umulanın aksine yazının en kolay bölümü kodlama kısmı sanırım. Yukarıda anlatımını yaptığımız tüm işlemler ağırlıkların bulunmasını sağlayacak gradyan iniş yöntemi için bir ifade bulmaktı. Bu ifade türetildikten sonra kod içerisinde her bir örnek için gradyan hesabı yapılmış ve gradyan iniş yöntemi gereği ağırlıklar bu gradyan kullanarak güncellenmiştir. Yöntem iteratif bir yöntem olduğundan iterasyonun durması için ağırlık değişiminin epsil=0.001 gibi küçük bir değerin altında olması veya iterasyon sayısının 1000 iterasyondan az olması koşulları eklenmiştir.
+Umulanın aksine yazının en kolay bölümü kodlama kısmı sanırım. Yukarıda anlatımını yaptığımız tüm işlemler ağırlıkların bulunmasını sağlayacak gradyan iniş yöntemi için bir ifade bulmaktı. Bu ifade türetildikten sonra kod içerisinde her bir örnek için gradyan hesabı yapılmış ve gradyan iniş yöntemi gereği ağırlıklar bu gradyan kullanarak güncellenmiştir. Yöntem iteratif bir yöntem olduğundan iterasyonun durması için ağırlık değişiminin `epsil=0.001` gibi küçük bir değerin altında olması veya iterasyon sayısının 1000 iterasyondan az olması koşulları eklenmiştir.
 
 Ağırlıkların bulunmasının ardından verinin sınıflandırılması içinse aşağıdaki kod yazılmıştır.
 

@@ -20,7 +20,7 @@ Kaynak konumlandırma başlık itibariyle hepimize uzak bir konu gibi görünse 
 
 Verilen problemde amacımız bilinen baz istasyonu konumları ($P_a$,$P_b$ ve $P_c$) ve kestirilen uzaklıkları ($d_a$, $d_b$ ve $d_c$) kullanarak kullanıcının konumunu ($P_x$) bulmaktır. Bu problem özelinde; baz istasyonu konumlarının $P_a=(3,9)$, $P_b=(1,1)$, $P_c=(9,2)$ olduğunu ve kestirilen uzaklıkların $d_a=6$, $d_b=4$, $d_c=5$ şeklinde hesaplandığını varsayalım.
 
-Verilen problem ilk bakışta üçgen eşitlikleri veya analitik yöntemler ile çözülebilir gibi görünse de, problemde bilinen $d$ mesafelerinin belirli bir hata ile kestirildiği unutulmamalıdır. Bu nedenle $P_x$ konumunda $d$ mesafesinin kestiriminden kaynaklanan bir hata olması muhtemeldir. Problemi optimizasyon problemi olarak yazarken amacımzı bu hatayı en küçükleyen $\hat{X}$ kestirimini bulmak olacaktır.
+Verilen problem ilk bakışta üçgen eşitlikleri veya analitik yöntemler ile çözülebilir gibi görünse de, problemde bilinen $d$ mesafelerinin belirli bir hata ile kestirildiği unutulmamalıdır. Bu nedenle $P_x$ konumunda $d$ mesafesinin kestiriminden kaynaklanan bir hata olması muhtemeldir. Problemi optimizasyon problemi olarak yazarken amacımzı bu hatayı en küçükleyen $\hat{P_x}$ kestirimini bulmak olacaktır.
 
 Problem tanımı gereği, $\lVert P_a-P_x \lVert \approx d_a$, $\lVert P_b-P_x \lVert \approx d_b$ ve $\lVert P_c-P_x \lVert \approx d_c$ yazılabilir. Bu durumda herhangi bir $P$ konumu için oluşacak ortalama karesel hata şu şekilde ifade edilebilir.
 
@@ -28,9 +28,9 @@ $$
 f(P) = \frac{1}{2} \sum_{i \in S} (\lVert P-P_i \lVert - d_i)^2 \label{cost_function} \tag{1}
 $$
 
-Verilen denklemde $S=\{ a,b,c\}$ problemde verilen bilinen noktaları göstermektedir. Denklem \ref{cost_function} ile verilen hata fonksiyonu incelendiğinde, fonksiyonun en küçük değerini $P=P_x$ olduğunda aldığı görülür. $P=P_x$ seçilmesi durumunda oluşan hata $d$ konum kestirim hatalarının karesel toplamının yarısı kadar olacaktır.
+Verilen denklemde $S=\\{ a,b,c \\}$ problemde verilen bilinen noktaları göstermektedir. Denklem \ref{cost_function} ile verilen hata fonksiyonu incelendiğinde, fonksiyonun en küçük değerini $P=P_x$ olduğunda aldığı görülür. $P=P_x$ seçilmesi durumunda oluşan hata $d$ konum kestirim hatalarının karesel toplamının yarısı kadar olacaktır.
 
-Problemin çözümü için $C(P)$ fonksiyonu en küçükleyen $\hat{P_x} = \arg \min_{P} f(P)$ noktasının bulunması gerekmektedir. Bu değer [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon-optimization-using-gradient-methods %}) ve [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi-lagrange-multipliers %}) yazılarımızda değindiğimiz üzere $C$ fonksiyonun gradyanını sıfıra eşitleyerek bulunur. Gradyan hesaplamasında kolaylık sağlaması açısından işlemlere başlamadan $g_i(P) = \lVert P-P_i \lVert$ tanımlamasını yapalım. Bu tanım kullanılarak $\nabla f$ aşağıdaki şekilde yazılabilir.
+Problemin çözümü için $f(P)$ fonksiyonu en küçükleyen $\hat{P_x} = \arg \min_{P} f(P)$ noktasının bulunması gerekmektedir. Bu değer [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon-optimization-using-gradient-methods %}) ve [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi-lagrange-multipliers %}) yazılarımızda değindiğimiz üzere $C$ fonksiyonun gradyanını sıfıra eşitleyerek bulunur. Gradyan hesaplamasında kolaylık sağlaması açısından işlemlere başlamadan $g_i(P) = \lVert P-P_i \lVert$ tanımlamasını yapalım. Bu tanım kullanılarak $\nabla f$ aşağıdaki şekilde yazılabilir.
 
 $$
 \begin{aligned}
