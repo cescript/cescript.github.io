@@ -1,12 +1,11 @@
 ---
 layout: post
-title: Viola-Jones Yöntemi ile Nesne Tespiti (Object Detection)
-date: '2019-02-22T22:48:00.000+03:00'
+title: Viola-Jones Yöntemi ile Nesne Tespiti
+slug: viola-jones-object-detection-algorithm
 author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
 - Nesne Tespiti
-modified_time: '2019-07-14T23:06:47.017+03:00'
 thumbnail: /assets/post_resources/object_detection/thumbnail.png
 ---
 
@@ -23,7 +22,7 @@ Viola-Jones algoritması bir pencere içerisinde (tipik pencere boyutu 24x24) ye
 ### Öznitelik Çıkarımı
 Görselleri verilen haar dalgacıklarda siyah pikseller negatif değerleri, beyaz pikseller ise pozitif değerleri göstermek için kullanılmıştır. Evrişim mantığına oldukça benzer şekilde; öznitelikler imge üzerinde gezdirilmekte ve beyaz bölge altında kalan piksellerin toplamı beyaz bölgenin katsayısı ile çarpılmakta, siyah bölge altında kalan piksellerin toplamı ile siyah bölgenin katsayısı çarpılmakta ve ardından bu sayılar toplanmaktadır. $N$ görüntüdeki piksel sayısı, $k$ öznitelikteki toplanacak piksel sayısı olmak üzere bu işlemin karmaşıklığı $O(Nk)$ dır.
 
-Bu işlemin her pikselde yüzlerce öznitelik için yapılması düşünüldüğünde işlemin oldukça uzun sürmesi beklenmektedir. Ancak Viola-Jones tarafından önerilen [tümlev imge](http://www.cescript.com/2019/02/tumlev-imge-integral-image.html) (integral image) yaklaşımı özniteliklerin hesaplanması karmaşıklığını $k$ öznitelik boyutundan arındırarak, $O(N)$ seviyesine indirmektedir.
+Bu işlemin her pikselde yüzlerce öznitelik için yapılması düşünüldüğünde işlemin oldukça uzun sürmesi beklenmektedir. Ancak Viola-Jones tarafından önerilen [tümlev imge]({% post_url 2019-02-17-tumlev-imge %}) (integral image) yaklaşımı özniteliklerin hesaplanması karmaşıklığını $k$ öznitelik boyutundan arındırarak, $O(N)$ seviyesine indirmektedir.
 
 ### Adaboost ile Öğrenme
 Adaboost yöntemi ile öğrenme aşamasında ise şu adımlar izlenmektedir: İlk olarak ağırlık vektörü $w$ her bir  imgeye eşit ağırlık verilerek ve seçilen sınıflandırıcılar kümesi $h$  boş küme ile ilklenir. Ardından her adımda, özniteliklerin her biri yüz  ve yüz olmayan binlerce imgeye (eğitim setine) uygulanır ve imgelerinin  bu filtrelere verdiği yanıtlar kaydedilir. Her bir öznitelik için bu  yanıtlar kullanılarak eğitim setini en küçük hata ile ayıran bir eşik  değeri bulunur ve en küçük hatayı üreten öznitelik seçilir. Seçilen bu  öznitelik h kümesine eklenir. Son aşamada belirlenen sınıflandırıcının  çıktıları kullanılarak doğru sınıflandırılan örneklerin ağırlığı  azaltılır, yanlış sınıflandırılan örneklerin ağırlığı artırılır.  Ardından yeni ağırlıklar ile yeni bir öznitelik belirleme işlemine  geçilir. Bu işlem belirli sayıda ($T$ tane) sınıflandırıcı belirlenene  kadar devam edilir.

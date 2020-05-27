@@ -1,12 +1,11 @@
 ---
 layout: post
 title: Lojistik Regresyon Analizi
-date: '2015-07-23T20:31:00.000+03:00'
+slug: logistic-regression
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
 - Veri Analizi
-modified_time: '2015-09-16T12:13:38.433+03:00'
 thumbnail:  /assets/post_resources/logistic_regression/thumbnail.png
 ---
 

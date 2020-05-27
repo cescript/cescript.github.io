@@ -1,6 +1,7 @@
 ---
 layout: post
 title: K-means Kümeleme Algoritması
+slug: kmeans-clustering
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi

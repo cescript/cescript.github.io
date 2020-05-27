@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Kaynak Konumlandırma (Source Localization)
+title: Kaynak Konumlandırma
+slug: source-localization
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
@@ -8,7 +9,7 @@ categories:
 - Veri Analizi
 thumbnail: /assets/post_resources/source_localization/thumbnail.png
 ---
-Kaynak konumlandırma (Source Localization), konumu bilinmeyen bir kaynağın, konumu bilinen refarans noktalarından alınan ölçümler sonucunda konumuna dair bir kestirimde bulunulması işlemidir. Biyomedikal görüntülemede beyne yerleştirilen elektrotlardan alınan sinyallerin şiddeti kullanılarak beyinde sinyali yayan bölgenin tespit edilmesi, akustik uygulamalarında mikrofon dizileri tarafından alınan sesin şiddetine bağlı olarak ses kaynağının tespiti gibi pek çok farklı uygulama alanına sahiptir. Bu yazımızda basit bir kaynak konumlandırma probleminin önceki yazılarımızda incelediğimiz [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon-optimization-using-gradient-methods %}) ile nasıl çözülebileceğini inceleyeceğiz.
+Kaynak konumlandırma (Source Localization), konumu bilinmeyen bir kaynağın, konumu bilinen refarans noktalarından alınan ölçümler sonucunda konumuna dair bir kestirimde bulunulması işlemidir. Biyomedikal görüntülemede beyne yerleştirilen elektrotlardan alınan sinyallerin şiddeti kullanılarak beyinde sinyali yayan bölgenin tespit edilmesi, akustik uygulamalarında mikrofon dizileri tarafından alınan sesin şiddetine bağlı olarak ses kaynağının tespiti gibi pek çok farklı uygulama alanına sahiptir. Bu yazımızda basit bir kaynak konumlandırma probleminin önceki yazılarımızda incelediğimiz [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) ile nasıl çözülebileceğini inceleyeceğiz.
 
 <!--more-->
 
@@ -30,7 +31,7 @@ $$
 
 Verilen denklemde $S=\\{ a,b,c \\}$ problemde verilen bilinen noktaları göstermektedir. Denklem \ref{cost_function} ile verilen hata fonksiyonu incelendiğinde, fonksiyonun en küçük değerini $P=P_x$ olduğunda aldığı görülür. $P=P_x$ seçilmesi durumunda oluşan hata $d$ konum kestirim hatalarının karesel toplamının yarısı kadar olacaktır.
 
-Problemin çözümü için $f(P)$ fonksiyonu en küçükleyen $\hat{P_x} = \arg \min_{P} f(P)$ noktasının bulunması gerekmektedir. Bu değer [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon-optimization-using-gradient-methods %}) ve [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi-lagrange-multipliers %}) yazılarımızda değindiğimiz üzere $C$ fonksiyonun gradyanını sıfıra eşitleyerek bulunur. Gradyan hesaplamasında kolaylık sağlaması açısından işlemlere başlamadan $g_i(P) = \lVert P-P_i \lVert$ tanımlamasını yapalım. Bu tanım kullanılarak $\nabla f$ aşağıdaki şekilde yazılabilir.
+Problemin çözümü için $f(P)$ fonksiyonu en küçükleyen $\hat{P_x} = \arg \min_{P} f(P)$ noktasının bulunması gerekmektedir. Bu değer [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) ve [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %}) yazılarımızda değindiğimiz üzere $C$ fonksiyonun gradyanını sıfıra eşitleyerek bulunur. Gradyan hesaplamasında kolaylık sağlaması açısından işlemlere başlamadan $g_i(P) = \lVert P-P_i \lVert$ tanımlamasını yapalım. Bu tanım kullanılarak $\nabla f$ aşağıdaki şekilde yazılabilir.
 
 $$
 \begin{aligned}
@@ -66,7 +67,7 @@ $$
 \label{gradientf} \tag{4}
 $$
 
-bulunur. Burada $m$ verilen nokta sayısını ($m=3$) göstermektedir. Bulunan $\nabla f(P)$ ifadesi kullanılarak, $\eta_k=\frac{1}{m}$ seçilen [En Dik İniş Yöntemi]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon-optimization-using-gradient-methods %}) ile çözüm aşağıdaki şekilde hesaplanır.
+bulunur. Burada $m$ verilen nokta sayısını ($m=3$) göstermektedir. Bulunan $\nabla f(P)$ ifadesi kullanılarak, $\eta_k=\frac{1}{m}$ seçilen [En Dik İniş Yöntemi]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) ile çözüm aşağıdaki şekilde hesaplanır.
 
 $$
 \begin{aligned}

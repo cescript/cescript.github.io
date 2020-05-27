@@ -1,12 +1,11 @@
 ---
 layout: post
-title: Özdeğer ve Özvektörler (Eigenvalues and Eigenvectors)
-date: '2019-03-26T23:41:00.000+03:00'
+title: Özdeğer ve Özvektörler
+slug: eigenvalues-and-eigenvectors
 author: Bahri ABACI
 categories:
 - Lineer Cebir
 - Nümerik Yöntemler
-modified_time: '2019-07-14T23:07:47.135+03:00'
 thumbnail: /assets/post_resources/eigen_values/thumbnail.png
 ---
 

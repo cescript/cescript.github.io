@@ -1,12 +1,11 @@
 ---
 layout: post
 title: C++ ile Determinant ve Matris Tersi
-date: '2014-01-26T21:16:00.001+02:00'
+slug: determinant-and-matrix-inverse
 author: Bahri ABACI
 categories:
 - Lineer Cebir
 - Nümerik Yöntemler
-modified_time: '2019-03-03T15:32:55.230+03:00'
 thumbnail: /assets/post_resources/determinant/thumbnail.png
 ---
 
@@ -59,7 +58,11 @@ Determinantın fiziksel anlamını öğrendikten sonra şimdi de $0$ olması dur
   
 ![Sayı Doğrusu][sayi]
 
-Yukarıda görüldüğü üzere sayı doğrusu üzerinde yer alan $e_1=(1,0)$ şeklindeki birim vektörümüz çarpma işlemi;sonucunda; $e_1=(4,0)$ vektörüne dönüşmüştür. Tek eksen üzerinde yapılan bu matris işleminin cebir temelli;çarpmadan bir farkı yoktur ve vektör uzunluğu dört kat artmıştır (Burada determinantın $4$ olduğuna dikkat edin). Şimdi amacımız sağ tarafta verilen $2$ birim genişlik ve $1$ birim yüksekliğe sahip alan için benzer bir sabit bulmak olsun. $e_1=(2,0)$ ve $e_1=(0,1)$ vektörlerini; $e_1=(3,0)$ ve $e_2=(0,2)$ vektörlerine dönüştüren $T$ matrisi $$T=\begin{bmatrix}1.5 && 0 \\ 0 && 2\end{bmatrix}$$ şekildedir. Tek boyutlu düzlemde uzunluk olan ölçümüzü iki boyutlu düzlemde alan olarak değiştirirsek; $T$ matrisinin determinantının ($\det(T)=2\times 1.5- 0 \times 0 =3$) girdi dikdörtgeninin alanını ($2\times 1=2$) **üç** kat artırarak çıktı dikdörgeninin alanına ($3\times 2=6$) yükselttiğini görürüz. Aynı geometrik yaklaşımı izleyerek $3\times 3$ bir $T$ matrisinin de girdi matrisinin hacmini $\det(T)$ kadar katladığını söyleyebiliriz.  
+Yukarıda görüldüğü üzere sayı doğrusu üzerinde yer alan $e_1=(1,0)$ şeklindeki birim vektörümüz çarpma işlemi;sonucunda; $e_1=(4,0)$ vektörüne dönüşmüştür. Tek eksen üzerinde yapılan bu matris işleminin cebir temelli;çarpmadan bir farkı yoktur ve vektör uzunluğu dört kat artmıştır (Burada determinantın $4$ olduğuna dikkat edin). Şimdi amacımız sağ tarafta verilen $2$ birim genişlik ve $1$ birim yüksekliğe sahip alan için benzer bir sabit bulmak olsun. $e_1=(2,0)$ ve $e_1=(0,1)$ vektörlerini; $e_1=(3,0)$ ve $e_2=(0,2)$ vektörlerine dönüştüren $T$ matrisi 
+
+$$T=\begin{bmatrix}1.5 && 0 \\ 0 && 2\end{bmatrix}$$
+
+şekildedir. Tek boyutlu düzlemde uzunluk olan ölçümüzü iki boyutlu düzlemde alan olarak değiştirirsek; $T$ matrisinin determinantının ($\det(T)=2\times 1.5- 0 \times 0 =3$) girdi dikdörtgeninin alanını ($2\times 1=2$) **üç** kat artırarak çıktı dikdörgeninin alanına ($3\times 2=6$) yükselttiğini görürüz. Aynı geometrik yaklaşımı izleyerek $3\times 3$ bir $T$ matrisinin de girdi matrisinin hacmini $\det(T)$ kadar katladığını söyleyebiliriz.  
   
 
 ### Matris Tersi:
@@ -89,7 +92,11 @@ y'
 \end{bmatrix}  
 $$  
 
-Amacımız x' ve y' değerlerini kullanarak $x$ ve $y$ değerlerini bulmak olduğundan; $x=\frac{2}{3}x'$ ve $y=\frac{1}{2}y'$ denklem çiftini elde edebiliriz. Bu denklem çiftlerini $T^{-1}$ matrisini oluşturmak için matris şeklinde yazarsak; $$T^{-1}=\begin{bmatrix}\frac{2}{3} && 0 \\0 && \frac{1}{2}\end{bmatrix}$$olarak elde edilir. Dikkat edilmesi gereken ve şaşırtıcı olmayan bir nokta $TT^{-1}=I$ çarpımıdır. Bir boyutta $4\times \frac{1}{4} = 1$ olan bu çarpım iki boyutta $\begin{bmatrix}1 && 0\\0 && 1\end{bmatrix}$ şeklinde birim matrise eşit olmaktadır. Diğer bir önemli husus ise, sürekli karşımıza çıkan determinantın sıfır olması durumunda matris tersinin olmaması durumudur. Şu ana kadarki anlatımlarımı dikkatli bir şekilde okuduysanız bu durumun ne kadar açık bir durum olduğunu anlamışsınızdır. Eğer dönüşüm yapmak için kullandığımız $T$ matrisinin determinantı $0$ ise, dönüşüm sonrası oluşan şeklin (uzunluğu,alanı,hacmi,...) sıfır olacağından, gidilen bu düzlemden geri dönmek mümkün değildir çünkü sıfır ile hangi sayıyı çarparsak çarpalım $0$ dan farklı bir sayı elde etmek mümkün değildir.  
+Amacımız x' ve y' değerlerini kullanarak $x$ ve $y$ değerlerini bulmak olduğundan; $x=\frac{2}{3}x'$ ve $y=\frac{1}{2}y'$ denklem çiftini elde edebiliriz. Bu denklem çiftlerini $T^{-1}$ matrisini oluşturmak için matris şeklinde yazarsak; 
+
+$T^{-1}=\begin{bmatrix}\frac{2}{3} && 0 \\0 && \frac{1}{2}\end{bmatrix}$$
+
+olarak elde edilir. Dikkat edilmesi gereken ve şaşırtıcı olmayan bir nokta $TT^{-1}=I$ çarpımıdır. Bir boyutta $4\times \frac{1}{4} = 1$ olan bu çarpım iki boyutta $\begin{bmatrix}1 && 0\\0 && 1\end{bmatrix}$ şeklinde birim matrise eşit olmaktadır. Diğer bir önemli husus ise, sürekli karşımıza çıkan determinantın sıfır olması durumunda matris tersinin olmaması durumudur. Şu ana kadarki anlatımlarımı dikkatli bir şekilde okuduysanız bu durumun ne kadar açık bir durum olduğunu anlamışsınızdır. Eğer dönüşüm yapmak için kullandığımız $T$ matrisinin determinantı $0$ ise, dönüşüm sonrası oluşan şeklin (uzunluğu,alanı,hacmi,...) sıfır olacağından, gidilen bu düzlemden geri dönmek mümkün değildir çünkü sıfır ile hangi sayıyı çarparsak çarpalım $0$ dan farklı bir sayı elde etmek mümkün değildir.  
   
 
 ### Programlama:

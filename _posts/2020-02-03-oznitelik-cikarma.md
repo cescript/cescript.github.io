@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Öznitelik Çıkarma (Feature Extraction)
+title: Öznitelik Çıkarma
+slug: feature-extraction
 author: Bahri ABACI
 categories:
 - Görüntü İşleme
@@ -8,7 +9,7 @@ categories:
 thumbnail: /assets/post_resources/feature_extraction/thumbnail.png
 ---
 
-Bilgisayarlı görü uygulamaları yaygın olarak iki temel aşamadan oluşmaktadır. Bunlardan ilki olan Öznitelik Çıkarımı (Feature Extraction) aşamasında verilen girdi imgesinden; parlaklık, zıtlık, dönme gibi kamera ve ışık koşullarından bağımsız olarak girdi imgesini betimleyen tanımlayıcıların (özniteliklerin) çıkarılması hedeflenmektedir. İkinci aşama olan Makine Öğrenmesi (Machine Learning) aşamasında ise girdi imgesinden elde edilen öznitelikler kullanılarak verinin sınıflandırılması hedeflenmektedir. Blogda paylaştığımız [K-Means]({% post_url 2015-08-28-k-means-kumeleme-algoritmasi %}), [Temel Bileşen Analizi]({% post_url 2019-09-01-temel-bilesen-analizi-principal %}), [Lojistik Regresyon Analizi]({% post_url 2015-07-23-lojistik-regresyon-analizi %}) ve [Karar Ağaçları]({% post_url 2015-11-01-karar-agaclari-decision-trees %}) gibi eski yazılarımızda Makine Öğrenmesi aşaması ile ilgili pek çok yöntemi incelemiştik. Bu yazımızda ise IMLAB görüntü işleme kütüphanesi içerisinde yer alan ve Öznitelik Çıkarımı için kullanılan yöntemleri inceleyeceğiz.
+Bilgisayarlı görü uygulamaları yaygın olarak iki temel aşamadan oluşmaktadır. Bunlardan ilki olan Öznitelik Çıkarımı (Feature Extraction) aşamasında verilen girdi imgesinden; parlaklık, zıtlık, dönme gibi kamera ve ışık koşullarından bağımsız olarak girdi imgesini betimleyen tanımlayıcıların (özniteliklerin) çıkarılması hedeflenmektedir. İkinci aşama olan Makine Öğrenmesi (Machine Learning) aşamasında ise girdi imgesinden elde edilen öznitelikler kullanılarak verinin sınıflandırılması hedeflenmektedir. Blogda paylaştığımız [K-Means]({% post_url 2015-08-28-k-means-kumeleme-algoritmasi %}), [Temel Bileşen Analizi]({% post_url 2019-09-01-temel-bilesen-analizi %}), [Lojistik Regresyon Analizi]({% post_url 2015-07-23-lojistik-regresyon-analizi %}) ve [Karar Ağaçları]({% post_url 2015-11-01-karar-agaclari %}) gibi eski yazılarımızda Makine Öğrenmesi aşaması ile ilgili pek çok yöntemi incelemiştik. Bu yazımızda ise IMLAB görüntü işleme kütüphanesi içerisinde yer alan ve Öznitelik Çıkarımı için kullanılan yöntemleri inceleyeceğiz.
 
 <!--more-->
 

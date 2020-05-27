@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Gradyan Yöntemleri ile Optimizasyon (Optimization Using Gradient Methods)
+title: Gradyan Yöntemleri ile Optimizasyon
+slug: optimization-using-gradient-methods
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi

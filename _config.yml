@@ -47,6 +47,10 @@ show_excerpts: true
 excerpt_separator: "<!--more-->"
 sitemap: true # set to true to generate sitemap.xml content
 
+# set the url style
+permalink: /:year/:month/:day/:title/
+
+# set the plugins
 plugins:
   - jekyll-seo-tag
 

@@ -1,14 +1,13 @@
 ---
 layout: post
 title: Sudoku Çözücü Uygulaması
-date: '2013-12-02T00:48:00.001+02:00'
+slug: sudoku-solver
 author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
 - Lineer Cebir
 - Nümerik Yöntemler
 - Makine Öğrenmesi
-modified_time: '2015-09-16T12:17:32.966+03:00'
 thumbnail:  /assets/post_resources/sudoku_solver/thumbnail.png
 ---
 Sudoku $9$ adet $3\times 3$ kareden oluşan ve $3\times 3$ her kare içerisinde birde dokuza kadar olan sayıların bir kez kullanılması ve her satir ve sütunda tüm rakamların bulunması gibi iki kurala dayalı bir oyun. Bu yazımda IMLAB görüntü işleme kütüphanesinde yer alan temel fonksiyonları kullanarak, girdi olarak verilen bir fotoğraf üzerinden sudoku karesini tespit edip, bulmacanın çözümünü ekrana yazabilen bir uygulama yazmaya çalışacağız. Yazımızda IMLAB kütüphanesi aracılığı ile doğrudan kullanacağımız yöntemler [Bağlantılı Bileşen Etiketleme]({% post_url 2012-09-26-baglantili-bilesen-etiketleme %}), [Perspektif Dönüşümü]({% post_url 2013-12-08-perspektif-donusumu %}) ve [Rakam Tanıma]({% post_url 2015-07-30-otomatik-rakam-tanima %}) için ilgili bağlantıları kullanarak detayları öğrenebilirsiniz.

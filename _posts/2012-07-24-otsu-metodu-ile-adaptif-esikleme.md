@@ -1,12 +1,11 @@
 ---
 layout: post
 title: Otsu Metodu ile Adaptif Eşikleme
-date: '2012-07-24T19:26:00.000+03:00'
+slug: otsu-thresholding
 author: Bahri ABACI
 categories:
 - Görüntü İşleme
 - Hızlı Algoritmalar
-modified_time: '2017-02-05T13:33:47.116+03:00'
 thumbnail: /assets/post_resources/otsu_thresholding/thumbnail.png
 ---
 

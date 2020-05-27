@@ -1,12 +1,11 @@
 ---
 layout: post
 title: Bağlantılı Bileşen Etiketleme
-date: '2012-09-26T21:18:00.003+03:00'
+slug: connected-component-labeling
 author: Bahri ABACI
 categories:
 - Görüntü İşleme
 - Hızlı Algoritmalar
-modified_time: '2017-04-06T11:44:40.019+03:00'
 thumbnail: /assets/post_resources/connected_component_labeling/thumbnail.png
 ---
 

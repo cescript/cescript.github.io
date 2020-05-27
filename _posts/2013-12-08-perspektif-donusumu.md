@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Perspektif Dönüşümü
+slug: perspective-transform
 author: Bahri ABACI
 categories:
 - Lineer Cebir

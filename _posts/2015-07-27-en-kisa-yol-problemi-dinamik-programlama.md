@@ -1,12 +1,11 @@
 ---
 layout: post
 title: En Kısa Yol Problemi (Dinamik Programlama)
-date: '2015-07-27T22:41:00.004+03:00'
+slug: dynamic-programming
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
 - Hızlı Algoritmalar
-modified_time: '2015-09-16T12:12:53.170+03:00'
 thumbnail: /assets/post_resources/dynamic_programming/thumbnail.png
 ---
 
@@ -33,7 +32,7 @@ gelebilecek en basit çözümüyle  çözmeye çalışalım.
 Sanırım problemin akla gelen ilk çözümü olası tüm yolların denenmesi ve
 en düşük enerjili yolun seçilmesidir. Bu yöntem doğruluk açısından
 hiçbir tehlike içermese de algoritmanın çalışma süresi oldukça yavaş
-olacaktır. [İçerik tabanlı imge ölçekleme](http://www.cescript.com/2015/07/icerik-tabanli-imge-olcekleme.html)
+olacaktır. [İçerik tabanlı imge ölçekleme]({% post_url 2015-07-14-icerik-tabanli-imge-olcekleme %})
 yazısında karşımıza çıkan problemi ele alalım. Örneğimizde bir enerji
 matrisinin ilk satırından başlayıp her satırdan bir kez geçerek son
 satırında son bulan, en az enerjili yolu arıyoruz.  

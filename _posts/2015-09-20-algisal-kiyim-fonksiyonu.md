@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Algısal Kıyım Fonksiyonu (Perceptual Hashing)
+title: Algısal Kıyım Fonksiyonu
+slug: perceptual-hashing
 author: Bahri ABACI
 categories:
 - Veri Analizi

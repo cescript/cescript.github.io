@@ -1,11 +1,10 @@
 ---
 layout: post
 title: IMLAB Görüntü İşleme Kütüphanesi
-date: '2018-12-03T19:41:00.000+03:00'
+slug: imlab
 author: Bahri ABACI
 categories:
 - Görüntü İşleme
-modified_time: '2019-07-14T23:08:49.580+03:00'
 thumbnail: /assets/post_resources/imlab_library/thumbnail.png
 ---
 

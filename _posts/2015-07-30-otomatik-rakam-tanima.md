@@ -1,12 +1,11 @@
 ---
 layout: post
 title: Otomatik Rakam Tanıma
-date: '2015-07-30T16:14:00.000+03:00'
+slug: digit-recognition
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
 - Görüntü İşleme Uygulamaları
-modified_time: '2015-09-16T12:12:25.541+03:00'
 thumbnail: /assets/post_resources/digit_recognition/thumbnail.png
 ---
 
@@ -28,7 +27,7 @@ ve çözülmüşe yakın bir alt dalıdır. Yazımızda kullanacağımız makine
 öğrenmesi yöntemi bir önceki yazıda girişini yaptığımız lojistik
 regresyon analizi olacak. Bir önceki yazıyı okumamış olanlar devam
 etmeden önce bu
-[bağlantıya](http://www.cescript.com/2015/07/lojistik-regresyon-analizi.html)
+[bağlantıya]({% post_url 2015-07-23-lojistik-regresyon-analizi %})
 tıklayarak analiz hakkında detaylı bilgiye sahip olabilirler.
 
   

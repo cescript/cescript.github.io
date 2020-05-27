@@ -1,84 +1,47 @@
 ---
 layout: post
 title: İçerik Tabanlı İmge Ölçekleme
-date: '2015-07-14T21:03:00.000+03:00'
+slug: seam-carving
 author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
 - Veri Analizi
-modified_time: '2015-09-16T12:14:27.014+03:00'
 thumbnail: /assets/post_resources/content_based_image_scaling/thumbnail.png
 ---
 
-Ölçekleme (görüntü boyu değiştirme) verilen bir imgenin boyutunun
-istenilen boyutlara, doğrusal veya doğrusal olmayan yollarla ,yeniden
-ayarlanması işlemidir. Kısa bir zaman öncesine kadar ölçekleme işlemini
-kıymetli kılacak bir gereksinim ortaya çıkmamış ve çok standart bir
-yöntem olan [örnekleme yöntemi](http://www.cescript.com/2013/12/perspektif-donusumu.html) ile
-alınan sonuçlar yeterli görülmüştür. Ancak, görüntüleme cihazlarının
-(telefon, monitör, vs.) ve ortamlarının  (facebook, instagram, vs.)
-çeşitlenmesi ile düzgün olmayan örnekleme yöntemlerine ihtiyaç
-duyulmuştur. Bu olayın sıklıkla karşımıza çıkan örneklerinden biri
-instagram' ın kare imge şablonudur. Bu şablon nedeniyle imgeler boyutu
-ne olursa olsun kare biçimine getirilmesi gerekmektedir. 
+Ölçekleme (görüntü boyu değiştirme) verilen bir imgenin boyutunun istenilen boyutlara, doğrusal veya doğrusal olmayan yollarla ,yeniden ayarlanması işlemidir. Kısa bir zaman öncesine kadar ölçekleme işlemini kıymetli kılacak bir gereksinim ortaya çıkmamış ve çok standart bir yöntem olan [örnekleme yöntemi]({% post_url 2013-12-08-perspektif-donusumu %}) ile alınan sonuçlar yeterli görülmüştür. Ancak, görüntüleme cihazlarının (telefon, monitör, vs.) ve ortamlarının  (facebook, instagram, vs.) çeşitlenmesi ile düzgün olmayan örnekleme yöntemlerine ihtiyaç duyulmuştur. Bu olayın sıklıkla karşımıza çıkan örneklerinden biri instagram' ın kare imge şablonudur. Bu şablon nedeniyle imgeler boyutu ne olursa olsun kare biçimine getirilmesi gerekmektedir. 
 
 <!--more-->
   
-İmgeyi doğrusal örnekleme yöntemi ile ölçeklendirme görüntüdeki
-cisimlerin en-boy oranını değiştirirken, imgeyi kesme ise imgede
-kalmaması istenen bazı detayların silinmesine neden olmaktadır.  
+İmgeyi doğrusal örnekleme yöntemi ile ölçeklendirme görüntüdeki cisimlerin en-boy oranını değiştirirken, imgeyi kesme ise imgede kalmaması istenen bazı detayların silinmesine neden olmaktadır.  
   
+İçerik tabanlı imge ölçekleme (Content Aware Image Resizing) imgenin ölçeklenmesi sırasında içeriğindeki bileşenleri önemlerine göre koruyarak veya silerek yapılan ölçekleme işlemdir. Bu ölçekleme doğrusal/düzgün olmadığından imge içerisinde gereksiz görülen nesneler silinerek imge boyunun azaltılması sağlanacaktır. Bu çalışmada gerçeklemesini yapacağımız yöntem ise 2007 yılında Siggraph konferansında tanıtılan Seam Carving yöntemi. Bu yöntem iteratif biçimde çalışarak, ilkin ölçeklenecek imgenin enerji haritasını bulmakta, ardından her satırda en düşük enerjili piksel değerini silmektedir. Böylece imge herbir iterasyonda bir sütun eksilmekte ve iterasyonun $N$ kez tekrarlanması ile imge boyu $N$ piksel kadar küçülmektedir. 
 
-İçerik tabanlı imge ölçekleme (Content Aware Image Resizing) imgenin
-ölçeklenmesi sırasında içeriğindeki bileşenleri önemlerine göre
-koruyarak veya silerek yapılan ölçekleme işlemdir. Bu ölçekleme
-doğrusal/düzgün olmadığından imge içerisinde gereksiz görülen nesneler
-silinerek imge boyunun azaltılması sağlanacaktır. Bu çalışmada
-gerçeklemesini yapacağımız yöntem ise 2007 yılında Siggraph
-konferansında tanıtılan Seam Carving yöntemi. Bu yöntem iteratif biçimde
-çalışarak, ilkin ölçeklenecek imgenin enerji haritasını bulmakta,
-ardından her satırda en düşük enerjili piksel değerini silmektedir.
-Böylece imge herbir iterasyonda bir sütun eksilmekte ve iterasyonun N
-kez tekrarlanması ile imge boyu N kadar küçülmektedir. 
-
-  
-
-Yöntemin kodlamasına geçmeden önce, hızlıca sonuca bakarak yöntemin daha
-anlaşılır olmasını sağlayabiliriz. Aşağıdaki resimde orjinali 281x1000
-(satır x sütun) olan Canberra balon festivali fotoğraflarını instagramda
-paylaşmak istediğimizi varsayalım.  
+Yöntemin kodlamasına geçmeden önce, hızlıca sonuca bakarak yöntemin daha anlaşılır olmasını sağlayabiliriz. Aşağıdaki resimde orjinali 281x1000 (satır x sütun) olan Canberra balon festivali fotoğraflarını instagramda paylaşmak istediğimizi varsayalım.  
   
 ![İmge Ölçekleme Örnek Görüntü][rsz_test2]
   
-İmge kare olmadığından fotoğrafı paylaşmak için olası çözüm resmi
-281x281' luk bir şablona kırpmak olacaktır. Fotoğraf düzenleme ile arası
-iyi olanlar ise resmi 281x1000 pikselden 281x281 piksele kırpmayı da
-deneyebilirler. Bu yazımızda öğreneceğimiz Seam Carving kullanılmak
-istenirse de yöntem resim üzerinde 719 kez çalıştırılarak 281 x 281
-(1000-719) piksellik kare bir resim elde edilebilir. Yapılan üç farklı
-düzenleme için elde edilen sonuçlar aşağıda verilmiştir.  
+İmge kare olmadığından fotoğrafı paylaşmak için olası çözüm resmi 281x281' luk bir şablona kırpmak olacaktır. Fotoğraf düzenleme ile arası iyi olanlar ise resmi 281x1000 pikselden 281x281 piksele kırpmayı da deneyebilirler. Bu yazımızda öğreneceğimiz Seam Carving kullanılmak istenirse de yöntem resim üzerinde 719 kez çalıştırılarak 281 x 281 (1000-719) piksellik kare bir resim elde edilebilir. Yapılan üç farklı düzenleme için elde edilen sonuçlar aşağıda verilmiştir.
   
 ![İmge Ölçekleme Örnek Çıktılar][balloon_seam]
 
-Görüntülerden de anlaşılacağı gibi doğrusal ölçekleme (ortada), imge
-içerisindeki nesnelerin en-boy oranlarını değiştirdiğinden göze hoş
-gelmeyen bir sonuç üretmekte. Görüntüyü kırpmak (solda) ile doğrusal
-olmayan ölçeklemeden (sağda) geçirmek arasında ise ilk bakışta çok büyük
-bir fark görülmemekte. Ancak resmi detaylı inceleyecek olursak, doğrusal
-olmayan ölçeklemede sağ tarafta bulunan küçük balonların, bina
-girişinin, sağda bulunan ağaçların, vs. korunduğunu görülecektir. Peki
-gelelim bunu nasıl yaptığımıza.  
+Görüntülerden de anlaşılacağı gibi doğrusal ölçekleme (ortada), imge içerisindeki nesnelerin en-boy oranlarını değiştirdiğinden göze hoş gelmeyen bir sonuç üretmekte. Görüntüyü kırpmak (solda) ile doğrusal olmayan ölçeklemeden (sağda) geçirmek arasında ise ilk bakışta çok büyük bir fark görülmemekte. Ancak resmi detaylı inceleyecek olursak, doğrusal olmayan ölçeklemede sağ tarafta bulunan küçük balonların, bina girişinin, sağda bulunan ağaçların, vs. korunduğunu görülecektir. Peki gelelim bunu nasıl yaptığımıza.  
   
 ## Seam Carving
   
-Yazının başında da belirttiğim gibi amacımız ilk olarak imge içerisinde
-enerjisi (belirginliği, önemi) en yüksek olan nesneleri belirlemek.
-Ardından her satır için, en düşük enerjili yolun geçtiği pikselin
-silinmesi.  
+Yazının başında da belirttiğim gibi amacımız ilk olarak imge içerisinde enerjisi (belirginliği, önemi) en yüksek olan nesneleri belirlemek. Ardından her satır için, en düşük enerjili yolun geçtiği pikselin silinmesi.  
   
 ### Enerji Matrisinin Belirlemesi
 
-Bildiride enerji belirlenmesi için farklı yöntemler önerilse de biz bu yazıda en basit enerji çıkarma işlemini, Sobel filtrelemeyi kullanacağız. Sobel süzgeci imge kenarlarını yakalamada yaygın kullanılan bir tür gradyan filtresidir. Filtreleme önceki yazılarımızda değindiğimiz [konvolüsyon (evrişim) işleminin](http://www.cescript.com/2012/07/c-ile-konvolusyon-islemi.html) $$h = \left[\begin{smallmatrix} 1 & 2 & 1 \\ 0 & 0 & 0 \\ -1 & -2 & -1 \end{smallmatrix} \right]$$ çekirdek matrisi ile imgeye uygulanması ile gerçeklenir. Bu uygulama sonucunda görüntünün x yönündeki gradyanı ($G_{xdir}$) (değişintisi) bulunmuş olur. Aynı işlemi $$h = \left[ \begin{smallmatrix}1 & 0 & -1 \\ 2 & 0 & -2 \\ 1 & 0 &-1 \end{smallmatrix}\right]$$ çekirdek matrisi ile yaparsak ise görüntünün y yönündeki gradyanı ($G_{ydir}$) bulunmuş olur. Yazımızda kullanılan enerji matrisi görüntünün x ve y yönündeki değişintilerinin toplamının ($G_xG_y$) gri seviye kodlanması ile hesaplanmıştır.  
+Bildiride enerji belirlenmesi için farklı yöntemler önerilse de biz bu yazıda en basit enerji çıkarma işlemini, Sobel filtrelemeyi kullanacağız. Sobel süzgeci imge kenarlarını yakalamada yaygın kullanılan bir tür gradyan filtresidir. Filtreleme önceki yazılarımızda değindiğimiz [konvolüsyon (evrişim) işleminin](http://www.cescript.com/2012/07/c-ile-konvolusyon-islemi.html) 
+
+$$h = \left[\begin{smallmatrix} 1 & 2 & 1 \\ 0 & 0 & 0 \\ -1 & -2 & -1 \end{smallmatrix} \right]$$
+
+çekirdek matrisi ile imgeye uygulanması ile gerçeklenir. Bu uygulama sonucunda görüntünün x yönündeki gradyanı ($G_{xdir}$) (değişintisi) bulunmuş olur. Aynı işlemi 
+
+$$h = \left[ \begin{smallmatrix}1 & 0 & -1 \\ 2 & 0 & -2 \\ 1 & 0 &-1 \end{smallmatrix}\right]$$
+
+çekirdek matrisi ile yaparsak ise görüntünün y yönündeki gradyanı ($G_{ydir}$) bulunmuş olur. Yazımızda kullanılan enerji matrisi görüntünün x ve y yönündeki değişintilerinin toplamının ($G_xG_y$) gri seviye kodlanması ile hesaplanmıştır.  
   
 ```c
 double Gx[9] = {1, 2, 1, 0, 0, 0, -1, -2, -1};
@@ -98,41 +61,15 @@ Yukarıdaki kodun sonuçlarına adım adım bakacak olursak.
   
 ### En Düşük Enerjili Yol 
 
-Yukarıdaki enerji haritası yardımıyla farklı teknikler kullanılarak
-boyut indirgemesi yapılabilir. Bunlardan biri her satırdan, o satırın en
-düşük enerjili piksel değerini silmektir. Anacak böyle bir silme işlemi
-her satırda farklı sütunlardan pikseller sileceğinden görüntüde
-kaymalara/bozulmalara neden olacaktır. Kaymaları engellemek için
-kullanılacak bir diğer yöntem ise her seferinde en düşük enerjili sütunu
-kaldırmaktır. Bu durumda ise imge içerisinde bazı önemli nesnelerin
-silinebilmesi söz konusudur. Bildiride önerilen ve yukarıdaki
-olumsuzlukları gideren yöntem en düşük enerjili yolu silmeyi
-önermektedir. Enerjili yolu (seam), görüntünün tepesinden başlayıp
-tabanında son bulan ve her satırdan tek bir kez geçen eğrilere verilen
-isimdir. Amacımız imge boyunu azaltırken oluşacak bilgi kaybını en aza
-indirmek olduğundan,  olası tüm yollar içerisinden en düşük enerjili
-yolun bulunarak silinmesi gerekmektedir.  
+Yukarıdaki enerji haritası yardımıyla farklı teknikler kullanılarak boyut indirgemesi yapılabilir. Bunlardan biri her satırdan, o satırın en düşük enerjili piksel değerini silmektir. Anacak böyle bir silme işlemi her satırda farklı sütunlardan pikseller sileceğinden görüntüde kaymalara/bozulmalara neden olacaktır. Kaymaları engellemek için kullanılacak bir diğer yöntem ise her seferinde en düşük enerjili sütunu kaldırmaktır. Bu durumda ise imge içerisinde bazı önemli nesnelerin silinebilmesi söz konusudur. Bildiride önerilen ve yukarıdaki olumsuzlukları gideren yöntem en düşük enerjili yolu silmeyi önermektedir. Enerjili yolu (seam), görüntünün tepesinden başlayıp tabanında son bulan ve her satırdan tek bir kez geçen eğrilere verilen isimdir. Amacımız imge boyunu azaltırken oluşacak bilgi kaybını en aza indirmek olduğundan,  olası tüm yollar içerisinden en düşük enerjili yolun bulunarak silinmesi gerekmektedir.  
   
-Ancak arama uzayımız imgenin genişliği ile doğrusal, yüksekliği ile
-üstel büyüdüğünden, olası tüm yolların bulunup en düşük enerjili eğrinin
-seçilmesi verimli olmamaktadır. Amacımız, bu yollar içerisinden en düşük
-enerjili olanı bulmak olduğundan, dinamik programlamayı kullanarak
-görüntü boyu ile doğrusal  karmaşıklıkta problemi çözebiliriz. Algoritma
-uzun ve karmaşık olduğundan detayları bir sonraki yazıya bırakıyorum.
-Şimdilik bulunan bu yolun path dizisinde saklandığını ve bu dizinin y'
-inci elemanı, eğrinin x koordinatını  (x = path\[y\]) içerdiğini
-bilmemiz yeterli.  
+Ancak arama uzayımız imgenin genişliği ile doğrusal, yüksekliği ile üstel büyüdüğünden, olası tüm yolların bulunup en düşük enerjili eğrinin seçilmesi verimli olmamaktadır. Amacımız, bu yollar içerisinden en düşük enerjili olanı bulmak olduğundan, dinamik programlamayı kullanarak görüntü boyu ile doğrusal  karmaşıklıkta problemi çözebiliriz. Algoritma uzun ve karmaşık olduğundan detayları bir sonraki yazıya bırakıyorum. Şimdilik bulunan bu yolun path dizisinde saklandığını ve bu dizinin y' ninci elemanı, eğrinin x koordinatını  (x = path\[y\]) içerdiğini bilmemiz yeterli.  
   
-Aşağıda Canberra fotoğrafı üzerindeki en düşük enerjili 100 eğri/yol
-gösterilmiştir. Eğriler silinecek piksel değerlerini gösterdiğinden
-dikkatli bakılırsa 100 piksel silinse dahi resmin önemli figürleri olan
-balon, bina gibi noktalarda kayda değer bir eksilme olmayacaktır.  
+Aşağıda Canberra fotoğrafı üzerindeki en düşük enerjili 100 eğri/yol gösterilmiştir. Eğriler silinecek piksel değerlerini gösterdiğinden dikkatli bakılırsa 100 piksel silinse dahi resmin önemli figürleri olan balon, bina gibi noktalarda kayda değer bir eksilme olmayacaktır.
   
 ![Kapadokya Balon Görüntüsü Kare][seam_carving_balloon]
   
-En düşük enerjili yolun belirlenmesinin ardından resimde bu yolun
-geçtiği tüm piksel değerleri silinecek (kaldırılacaktır). Böylelikle
-resim bir piksel küçülmüş olacaktır.  
+En düşük enerjili yolun belirlenmesinin ardından resimde bu yolun geçtiği tüm piksel değerleri silinecek (kaldırılacaktır). Böylelikle resim bir piksel küçülmüş olacaktır.
   
 ```c
 BMP YoluKaldir(BMP I,int *path) {
@@ -165,16 +102,9 @@ return im;
 } 
 ```
   
-Görüldüğü üzere kod o kadar da karmaşık değil. İlk olarak verilen
-imgenin genişliğinin bir azı genişlikte bir imge yaratıyoruz. Ardından
-her satır için, silinecek olan piksele kadar tüm pikselleri yeni imgeye
-kopyalıyoruz. **path\[j\]**: j. satır için silinecek olan sütunu
-gösterdiğinden bu değeri atlayarak kopyalama işlemine devam ediyoruz.  
+Görüldüğü üzere kod o kadar da karmaşık değil. İlk olarak verilen imgenin genişliğinin bir azı genişlikte bir imge yaratıyoruz. Ardından her satır için, silinecek olan piksele kadar tüm pikselleri yeni imgeye kopyalıyoruz. **path[j]**: j. satır için silinecek olan sütunu gösterdiğinden bu değeri atlayarak kopyalama işlemine devam ediyoruz.  
   
-İmgenin istenilen boya gelmesi için enerji hesaplama, en düşük enerjili
-yol bulma ve silme işlemlerini iteratif olarak istenilen kadar
-tekrarlıyoruz. (Kod içerisinde mavi ile renklendirilen kısımlar bir
-sonraki yazıya bıraktığımız en düşük enerjili yolu bulma kısmı.)  
+İmgenin istenilen boya gelmesi için enerji hesaplama, en düşük enerjili yol bulma ve silme işlemlerini iteratif olarak istenilen kadar tekrarlıyoruz. (Kod içerisinde mavi ile renklendirilen kısımlar bir sonraki yazıya bıraktığımız en düşük enerjili yolu bulma kısmı.)  
   
 ```c
 while (k < K) 
@@ -200,17 +130,11 @@ while (k < K)
 } 
 ```
   
-Yazımızı örneklerle bitirme safhasına geldik sanırım. Test için farklı
-boyutlarda bulunan geniş açılı resimleri seam carving ve düzgün
-örnekleme ile kare haline getirmeye çalıştım.  
+Yazımızı örneklerle bitirme safhasına geldik sanırım. Test için farklı boyutlarda bulunan geniş açılı resimleri seam carving ve düzgün örnekleme ile kare haline getirmeye çalıştım.
   
 ![İmge Ölçekleme Örnek][samples]
   
-Yazıdan da fark edebileceğiniz bir gerçek, seam carving tüm fotoğraflar
-için iyi sonuç üretmeyeceğidir. Hangi tip fotoğrafların seam carving,
-hangi tip fotoğrafların ise kırpma işlemine ihtiyacı olduğunu düşünme
-kısmını size bırakayım. Zaten sonuçlara dikkatli bakarsanız doğru kararı
-verip vermediğinizi anlayacaksınızdır.
+Yazıdan da fark edebileceğiniz bir gerçek, seam carving tüm fotoğraflar için iyi sonuç üretmeyeceğidir. Hangi tip fotoğrafların seam carving, hangi tip fotoğrafların ise kırpma işlemine ihtiyacı olduğunu düşünme kısmını size bırakayım. Zaten sonuçlara dikkatli bakarsanız doğru kararı verip vermediğinizi anlayacaksınızdır.
 
 **Referanslar**
 * Avidan, Shai, and Ariel Shamir. "Seam carving for content-aware image resizing." ACM Transactions on graphics (TOG). Vol. 26. No. 3. ACM, 2007.

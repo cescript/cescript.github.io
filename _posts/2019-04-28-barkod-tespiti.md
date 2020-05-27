@@ -1,11 +1,10 @@
 ---
 layout: post
-title: Barkod Tespiti (Barcode Detection)
-date: '2019-04-28T23:41:00.001+03:00'
+title: Barkod Tespiti
+slug: barcode-detection
 author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
-modified_time: '2019-07-14T23:06:30.883+03:00'
 thumbnail: /assets/post_resources/barcode_detection/thumbnail.png
 ---
 
@@ -17,7 +16,7 @@ Bu yazımızda kullanacağımız tespit yöntemi ile aralarında Code 128, EAN13
 
 Bir boyutlu barkodların üzerinde bulunduğu nesneden ayırt edici en önemli özelliği üzerinde barındırdığı düz çizgilerdir. Bu çizgiler bir kenar tespiti algoritması ile vurgulandığı takdirde, barkod içeren bölgelerin yüksek miktarda dikey kenar bulundurduğu görülmektedir. Tespit edilen barkodların her zaman yatay olmayacağı da hesaba katılarak, dikey kenarların vurgulandığı imgeden, yatay kenarların vurgulandığı imge çıkarılarak, barkod karakteristik özelliğine sahip bölgelerin vurgulanması sağlanır.
 
-$I(x,y)$ bir boyutlu barkod içeren bir imge, $(\nabla_x, \nabla_y)$ sırasıyla $x$ ve $y$ yönünde gradyan operatörünü göstermek üzere; barkod olması muhtemel bölgeler $I_e(x,y)$ şu şekilde hesaplanır: $$I_e(x,y) = \max(0, \min(255, \nabla_x I(x,y)- \nabla_y I(x,y)))$$ Bu işlem sonucunda elde edilen değerler oldukça gürültülü olduğundan, barkodların uzamsal domendeki ilişkisi de göz önüne alınarak basit bir [box blur süzgeci](http://www.cescript.com/2019/02/tumlev-imge-integral-image.html) ile $I_e(x,y)$ gürültüden arındırılarak $I_m(x,y)$ imgesi elde edilir. $I$ girdi görüntüsünden $I_m$ enerji haritasının elde edilmesinde kullanılan kod bloğu aşağıda verilmiştir.
+$I(x,y)$ bir boyutlu barkod içeren bir imge, $(\nabla_x, \nabla_y)$ sırasıyla $x$ ve $y$ yönünde gradyan operatörünü göstermek üzere; barkod olması muhtemel bölgeler $I_e(x,y)$ şu şekilde hesaplanır: $$I_e(x,y) = \max(0, \min(255, \nabla_x I(x,y)- \nabla_y I(x,y)))$$ Bu işlem sonucunda elde edilen değerler oldukça gürültülü olduğundan, barkodların uzamsal domendeki ilişkisi de göz önüne alınarak basit bir [box blur süzgeci]({% post_url 2019-02-17-tumlev-imge %}) ile $I_e(x,y)$ gürültüden arındırılarak $I_m(x,y)$ imgesi elde edilir. $I$ girdi görüntüsünden $I_m$ enerji haritasının elde edilmesinde kullanılan kod bloğu aşağıda verilmiştir.
 
 ```c
 // compute energy map
@@ -54,7 +53,7 @@ return_t energy(matrix_t *in, matrix_t *out)
     matrix_free(&edges);
 }
 ```
-Enerji haritasının bulunmasından sonraki adımda ise süzgeçlenen imgeler [Otsu](http://www.cescript.com/2012/07/otsu-metodu-ile-adaptif-esikleme.html) yöntemi ile bulunan eşik değeri kullanılarak siyah beyaza dönüştürülerek [bağlantılı bileşen etiketleme](http://www.cescript.com/2012/09/baglantili-bilesen-etiketleme.html) için hazırlanır. Bu işlemler sonucunda elde edilen örnek imgeler aşağıda verilmiştir.
+Enerji haritasının bulunmasından sonraki adımda ise süzgeçlenen imgeler [Otsu]({% post_url 2012-07-24-otsu-metodu-ile-adaptif-esikleme %}) yöntemi ile bulunan eşik değeri kullanılarak siyah beyaza dönüştürülerek [bağlantılı bileşen etiketleme]({% post_url 2012-09-26-baglantili-bilesen-etiketleme %}) için hazırlanır. Bu işlemler sonucunda elde edilen örnek imgeler aşağıda verilmiştir.
 
 ![barcode tespiti adımları][steps]
 

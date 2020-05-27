@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Pekiştirmeli Öğrenme (Reinforcement Learning)
+title: Pekiştirmeli Öğrenme
+slug: reinforcement-learning
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
@@ -9,7 +10,7 @@ categories:
 thumbnail: /assets/post_resources/reinforcement_learning_q_learning/thumbnailr.png
 ---
 
-Makine öğrenmesi algoritmaları genel olarak üç ana başlık altında toplanır. Bu başlıklardan ilki Eğiticisiz Öğrenme (Unsupervised Learning); bu blogta da değindiğimiz [K-Means]({% post_url 2015-08-28-k-means-kumeleme-algoritmasi %}), [Temel Bileşen Analizi]({% post_url 2019-09-01-temel-bilesen-analizi-principal %}) gibi yöntemleri kapsamaktadır. Bu yöntemlerde öğrenilen bilginin etiket bilgisi kullanılmadan verinin kendi içerisindeki benzerliği veya dağılımı kullanılarak veri sınıflara ayrılmaya çalışılır. İkinci ana başlık Eğiticili Öğrenme (Supervised Learning) ise [Karar Ağaçları]({% post_url 2015-11-01-karar-agaclari-decision-trees %}), [Lojistik Regresyon Analizi]({% post_url 2015-07-23-lojistik-regresyon-analizi %}) ve Destek Vektör Makineleri gibi yöntemleri kapsamaktadır. Bu yöntemlerin hepsi öğrenilecek verinin etiket bilgisine de ihtiyaç duyduklarından, bir eğitici/gözetici tarafından her verinin işaretlenmesi gerekmektedir. Bugün ele alacağımız Pekiştirmeli Öğrenme (Reinforcement Learning) ise üçüncü ana başlığı oluşturmaktadır.
+Makine öğrenmesi algoritmaları genel olarak üç ana başlık altında toplanır. Bu başlıklardan ilki Eğiticisiz Öğrenme (Unsupervised Learning); bu blogta da değindiğimiz [K-Means]({% post_url 2015-08-28-k-means-kumeleme-algoritmasi %}), [Temel Bileşen Analizi]({% post_url 2019-09-01-temel-bilesen-analizi %}) gibi yöntemleri kapsamaktadır. Bu yöntemlerde öğrenilen bilginin etiket bilgisi kullanılmadan verinin kendi içerisindeki benzerliği veya dağılımı kullanılarak veri sınıflara ayrılmaya çalışılır. İkinci ana başlık Eğiticili Öğrenme (Supervised Learning) ise [Karar Ağaçları]({% post_url 2015-11-01-karar-agaclari %}), [Lojistik Regresyon Analizi]({% post_url 2015-07-23-lojistik-regresyon-analizi %}) ve Destek Vektör Makineleri gibi yöntemleri kapsamaktadır. Bu yöntemlerin hepsi öğrenilecek verinin etiket bilgisine de ihtiyaç duyduklarından, bir eğitici/gözetici tarafından her verinin işaretlenmesi gerekmektedir. Bugün ele alacağımız Pekiştirmeli Öğrenme (Reinforcement Learning) ise üçüncü ana başlığı oluşturmaktadır.
 
 <!--more-->
 Girişte bahsettiğimiz ilk iki başlığın aksine Pekiştirmeli Öğrenme ne öğrenilecek veriye ne de verinin etiket bilgisine ihtiyaç duymakatdır. Eğiticisiz Öğrenme (Unsupervised Learning) ve Eğiticili Öğrenme (Supervised Learning) yöntemlerinden farklı olarak bu yöntem canlıların öğrenme yöntemine oldukça benzemektedir. Örnek olarak; yırtıcıların bulunduğu bir ortamda saklanmak hayatta kalmamızı veya yara almamamızı sağlarken, avlanmaya çalışmak ciddi kayıplara sebep olabilir. Ancak yırtıcının olmadığı bir ortamda saklanmak ve avlanmamak, elde edilebilecek bir besinin kaybedilmesine neden olacağından, kötü bir karar olacaktır. Hangi durumda (state) hangi kararın (action) doğru olduğu kimse tarafından etiketlenmese/öğretilmese dahi, yaşanılan ortamın ödülleri veya cezaları ile dolaylı olarak öğrenilebilir.
@@ -109,7 +110,7 @@ $$Q^\pi (s,a) = \sum_{s^\prime} T(s, a, s^\prime) \left ( r(s, a, s^\prime) + \g
 
 Denklem \ref{bellmanQuality} ile verilen denklem Bellman Eşitliği olarak bilinir ve pekiştirmeli öğrenme yöntemlerinin temelini oluşturmaktadır. 
 
-[Bir sonraki yazımızda]({% post_url 2020-01-05-q-ogrenme-q-learning %}) öğreneceğimiz Q öğrenme algoritması, özel bir karar verme fonksiyonu için, $Q^\pi (s,a) $ fonksiyonunu bulmayı amaçlamaktadır. Bu yazımızın devamında Q öğrenme algoritmasının çözmeye çalıştığı problem denklemlerle ifade edilecek, bir sonraki yazıda ise bu denklemlerin çözümü ve kodlması verilecektir.
+[Bir sonraki yazımızda]({% post_url 2020-01-05-q-ogrenme %}) öğreneceğimiz Q öğrenme algoritması, özel bir karar verme fonksiyonu için, $Q^\pi (s,a) $ fonksiyonunu bulmayı amaçlamaktadır. Bu yazımızın devamında Q öğrenme algoritmasının çözmeye çalıştığı problem denklemlerle ifade edilecek, bir sonraki yazıda ise bu denklemlerin çözümü ve kodlması verilecektir.
 
 Şimdi bir an için elimizde öğrenilmiş $Q^\pi (s,a)$ değerlerinin olduğunu varsayalım. Bu varsayım altında en iyi karar verme fonksiyonu $\pi^\ast$;
 
@@ -127,7 +128,7 @@ Bu verilen denklem $T(s, a, s^\prime)$ olasılığını da hesaba katarak en iyi
 
 $$Q^{\pi^\ast} (s,a) = r(s, a, s^\prime) + \gamma \max_{a^\prime} Q^{\pi^\ast} (s^\prime, a^\prime) \label{bellmanOptimalityDeterministic} \tag{7}$$
 
-Denklem \ref{bellmanOptimalityDeterministic} ile verilen denklemin çözümü literatürde Q Öğrenmesi olarak bilinen bir yöntem ile yapılmaktadır. Bu yöntemin detayları ve c kodlaması [bir sonraki yazımızda]({% post_url 2020-01-05-q-ogrenme-q-learning %}) paylaşılmıştır.
+Denklem \ref{bellmanOptimalityDeterministic} ile verilen denklemin çözümü literatürde Q Öğrenmesi olarak bilinen bir yöntem ile yapılmaktadır. Bu yöntemin detayları ve c kodlaması [bir sonraki yazımızda]({% post_url 2020-01-05-q-ogrenme %}) paylaşılmıştır.
 
 
 **Referanslar**

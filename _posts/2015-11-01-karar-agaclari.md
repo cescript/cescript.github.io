@@ -1,16 +1,15 @@
 ---
 layout: post
-title: Karar Ağaçları (Decision Trees)
-date: '2015-11-01T15:22:00.000+03:00'
+title: Karar Ağaçları
+slug: decision-trees
 author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
 - Veri Analizi
-modified_time: '2015-11-04T23:47:05.547+03:00'
 thumbnail: /assets/post_resources/decision_trees/thumbnail.png
 ---
 
-Karar ağacları (decision trees) makine öğrenmesi ve veri analizinde
+Karar Ağacları (Decision Trees) makine öğrenmesi ve veri analizinde
 kullanılan bir öğrenme/sınıflandırma yöntemidir. Günümüzde cep telefonu
 kameralarındaki yüz yakalama sisteminden, Kinect kameralarındaki hareket
 sınıflandırmasına kadar pek çok görüntü işleme uygulamasında ve
@@ -305,7 +304,7 @@ void predict(double *data, int *tree[2], int *label, int Ntest, int Nlength, int
 Yazılan kodda idx değişkeni kök düğümü gösterecek şekilde (`idx=1`) ayarlanır. Ardından ilk adımda test sonucu "1" ise `idx = 3`, "0" ise `idx = 2` olacak şekilde $idx = 2\times idx + test$ işlemine tabi tutulur.
 Ağaç yapısı dikkatli incelenirse bu döngü sonucunda ulaşacağımız son düğüm vermemiz gereken kararı söyleyen düğüm olacaktır.  
   
-[Lojistik regresyon](http://www.cescript.com/2015/07/lojistik-regresyon-analizi.html)
+[Lojistik regresyon]({% post_url 2015-07-23-lojistik-regresyon-analizi %})
 yazımızda da yaptığımız üzere bu yazımızda da örnek ve testler kısmını
 sonraki paylaşımlara bırakalım. Bu yazımızda kullandığımız ağaç yapısı
 (ikili karar ağaçları) ve algoritması (ID3) hakkında farklı kaynaklar

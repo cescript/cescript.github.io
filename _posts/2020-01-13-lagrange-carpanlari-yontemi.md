@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Lagrange Çarpanları Yöntemi (Lagrange Multipliers)
+title: Lagrange Çarpanları Yöntemi
+slug: lagrange-multipliers
 author: Bahri ABACI
 categories:
 - Lineer Cebir
@@ -148,7 +149,7 @@ $L$ fonksiyonunun $x$ değişkenine göre türevi alınıp sıfıra eşitlenirse
 
 $$Ax = \lambda x \label{example2LagrangeResult} \tag{12} $$
 
-sonucuna ulaşılır. Bu eşitlik [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler-eigenvalues-and %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\ref{example2LagrangeResult}$ şeklinde verilen bir problemin çözümünü sağlayan $x$ vektörleri $A$ matrisinin özvektörleri, $\lambda$ değerleri ise $A$ matrisinin özdeğerleri olarak bilinir.
+sonucuna ulaşılır. Bu eşitlik [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\ref{example2LagrangeResult}$ şeklinde verilen bir problemin çözümünü sağlayan $x$ vektörleri $A$ matrisinin özvektörleri, $\lambda$ değerleri ise $A$ matrisinin özdeğerleri olarak bilinir.
 
 
 ### Örnek Problem: Doğrusal En Küçük Kareler Yöntemi

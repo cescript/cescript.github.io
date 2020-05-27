@@ -1,14 +1,13 @@
 ---
 layout: post
-title: Temel Bilesen Analizi (Principal Component Analysis)
-date: '2019-09-01T22:17:00.000+03:00'
+title: Temel Bilesen Analizi
+slug: principal-component-analysis
 author: Bahri ABACI
 categories:
 - Lineer Cebir
 - Nümerik Yöntemler
 - Makine Öğrenmesi
 - Veri Analizi
-modified_time: '2019-09-01T22:18:20.750+03:00'
 thumbnail: /assets/post_resources/principal_component_analysis/thumbnail.png
 ---
 
@@ -16,7 +15,7 @@ Temel Bileşen Analizi (Principal Component Analysis), bir veri setinin en küç
 
 <!--more-->
 
-[Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler-eigenvalues-and %}) yazımızda büyük bir veri setinin kovaryans matrisinin özdeğer ve özvektör analizi yapıldığında, özvektörlerin verinin en yüksek değişintiyi gösterdiği düzlemi/ekseni, özdeğerlerin ise bu düzlemdeki değişinti miktarını gösterdiğini söylemiştik. Şimdi bu söylemimizi TBA' nin yazımızda verilen tanımını, <i>"bir veri setinin en küçük karesel ortalama hata ile daha küçük boyutlu bir alt uzaya izdüşümünü sağlayan dönüşüm matrisini bulmamıza yarayan bir analiz yöntemidir"</i>, kullanarak ispatlayalım.
+[Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızda büyük bir veri setinin kovaryans matrisinin özdeğer ve özvektör analizi yapıldığında, özvektörlerin verinin en yüksek değişintiyi gösterdiği düzlemi/ekseni, özdeğerlerin ise bu düzlemdeki değişinti miktarını gösterdiğini söylemiştik. Şimdi bu söylemimizi TBA' nin yazımızda verilen tanımını, <i>"bir veri setinin en küçük karesel ortalama hata ile daha küçük boyutlu bir alt uzaya izdüşümünü sağlayan dönüşüm matrisini bulmamıza yarayan bir analiz yöntemidir"</i>, kullanarak ispatlayalım.
 
 ![temel bileşen analizi][pca_proof]
 
@@ -34,7 +33,7 @@ Amacımız hatanın en küçük olduğu $P$ doğrusunu bulmak olduğundan, $\mat
 
 $$\underset{\mathbb{p}}{\text{maximize}} \quad \mathbf{p}^\intercal \mathbf{C} \mathbf{p} \quad s.t \quad \left \lVert \mathbf{p} \right \lVert ^2=1\tag{3} \label{3}$$
 
-Denklem $\ref{3}$ ile verilen optimizasyon problemi [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi-lagrange-multipliers %}) yardımı ile çözülebilir. $\lambda$ Lagrange çarpanı kullanılarak $\ref{3}$ ile verilen maliyet fonksiyonu aşağıdaki şekilde ifade edilir: 
+Denklem $\ref{3}$ ile verilen optimizasyon problemi [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %}) yardımı ile çözülebilir. $\lambda$ Lagrange çarpanı kullanılarak $\ref{3}$ ile verilen maliyet fonksiyonu aşağıdaki şekilde ifade edilir: 
 
 $$\mathcal{L}\left (\mathbf{p},\lambda \right ) = \mathbf{p}^\intercal \mathbf{C} \mathbf{p} - \lambda \left ( \mathbf{p}^\intercal \mathbf{p} - 1 \right ) \tag{4} \label{4}$$ 
 
@@ -44,12 +43,12 @@ Denklem $\ref{4}$ in $\mathbf{p}$ ye göre türevi alınıp sıfıra eşitlenirs
 
 $$\frac{\partial{\mathcal{L}\left (\mathbf{p},\lambda \right ) }}{\partial{\mathbf{p}}}=2\mathbf{C}\mathbf{p}-2\lambda \mathbf{p} = 0 \implies \mathbf{C}\mathbf{p} = \lambda \mathbf{p} \tag{5} \label{5} $$ 
 
-bulunur. Denklem $\ref{5}$ ifadesi [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler-eigenvalues-and %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\ref{5}$ şeklinde verilen bir problemin çözümünü sağlayan $\mathbf{p}$ vektörleri $\mathbf{C}$ matrisinin özvektörleri, $\lambda$ değerleri ise $\mathbf{C}$ matrisinin özdeğerleri olarak bilinir. Hesaplanabilecek tüm özvektör ve özdeğerler $\mathbf{P}=\left [ \mathbf{p_1},\mathbf{p_2},\dots,\mathbf{p_D} \right ]$ ve $\mathbf{\lambda} = \left [ \lambda_1, \lambda_2, \dots, \lambda_D\right ]$, $\mathbf{X}\in \mathcal{R}^{D\times N}$ matrisinin temel bileşenlerini oluşturmaktadır.
+bulunur. Denklem $\ref{5}$ ifadesi [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\ref{5}$ şeklinde verilen bir problemin çözümünü sağlayan $\mathbf{p}$ vektörleri $\mathbf{C}$ matrisinin özvektörleri, $\lambda$ değerleri ise $\mathbf{C}$ matrisinin özdeğerleri olarak bilinir. Hesaplanabilecek tüm özvektör ve özdeğerler $\mathbf{P}=\left [ \mathbf{p_1},\mathbf{p_2},\dots,\mathbf{p_D} \right ]$ ve $\mathbf{\lambda} = \left [ \lambda_1, \lambda_2, \dots, \lambda_D\right ]$, $\mathbf{X}\in \mathcal{R}^{D\times N}$ matrisinin temel bileşenlerini oluşturmaktadır.
 
 İfadede yer alan $\mathbf{C}=\frac{1}{N}\sum_{n=1}^{N}{\mathbf{x_n}\mathbf{x_n}^\intercal}$ matrisinin de sıfır ortalamalı bir $\mathbf{x_n}$ veri seti için kovaryans (özdeğişinti) matrisi olduğu dikkate alınırsa; **bir veri setinin en küçük karesel ortalama hata ile daha küçük boyutlu bir alt uzaya izdüşümünü sağlayan dönüşüm matrisininin; verinin kovaryans matrisinin özvektörleri olduğu sonucuna ulaşılır.**
 
 ### Temel Bileşen Analizi C Kodu
-[Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler-eigenvalues-and %}) yazımızda özdeğer ve özvektörlerin IMLAB içerisinde yer alan `eig` fonksiyonu yardımıyla hesaplanabileceğini görmüştük. Kovaryans hesaplamak için de kütüphanede yer alan `covariance` fonksiyonu kullanılarak Temel Bileşen Analizi aşağıdaki verilen kod parçassı ile hesaplanabilmektedir.
+[Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızda özdeğer ve özvektörlerin IMLAB içerisinde yer alan `eig` fonksiyonu yardımıyla hesaplanabileceğini görmüştük. Kovaryans hesaplamak için de kütüphanede yer alan `covariance` fonksiyonu kullanılarak Temel Bileşen Analizi aşağıdaki verilen kod parçassı ile hesaplanabilmektedir.
 
 ```c
 // compute the PCA of the input

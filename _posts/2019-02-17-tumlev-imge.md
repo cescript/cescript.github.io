@@ -1,12 +1,11 @@
 ---
 layout: post
-title: Tümlev İmge (Integral Image)
-date: '2019-02-17T22:27:00.000+03:00'
+title: Tümlev İmge
+slug: integral-image
 author: Bahri ABACI
 categories:
 - Görüntü İşleme
 - Hızlı Algoritmalar
-modified_time: '2019-07-14T23:08:12.843+03:00'
 thumbnail: /assets/post_resources/integral_image/thumbnail.png
 ---
 
@@ -113,7 +112,7 @@ Kodun farklı maske ve imgelerle çalıştırılması sonucu elde edilen bazı �
 ![tümlev imge filtre uygulaması][integral_image_sample1]
 ![tümlev imge filtre uygulaması][integral_image_sample2]
 
-Çalışmaya ait ilave dosya ve belgeler de [https://github.com/cescript/cescript_blog_integral_image](https://github.com/cescript/cescript_blog_integral_image) github sayfasında paylaşılmıştır. Çalışmada kullanılan IMLAB kütüphanesi hakkında daha detaylı bilgi almak isterseniz de [http://www.cescript.com/2018/12/imlab-goruntu-isleme-kutuphanesi.html](http://www.cescript.com/2018/12/imlab-goruntu-isleme-kutuphanesi.html) yazımıza göz atabilirsiniz.
+Çalışmaya ait ilave dosya ve belgeler de [https://github.com/cescript/cescript_blog_integral_image](https://github.com/cescript/cescript_blog_integral_image) github sayfasında paylaşılmıştır. Çalışmada kullanılan IMLAB kütüphanesi hakkında daha detaylı bilgi almak isterseniz de [IMLAB Göruntü İşleme Kütüphanesi]({% post_url 2018-12-03-imlab-goruntu-isleme-kutuphanesi %}) yazımıza göz atabilirsiniz.
 
 **Referanslar**
 * Crow, Franklin C. "Summed-area tables for texture mapping." ACM SIGGRAPH computer graphics. Vol. 18. No. 3. ACM, 1984.
