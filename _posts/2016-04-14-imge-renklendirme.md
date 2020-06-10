@@ -1,6 +1,6 @@
 ---
 layout: post
-title: İmge Renklendirme (Image Colorization)
+title: İmge Renklendirme
 slug: image-colorization
 author: Bahri ABACI
 categories:
@@ -170,6 +170,7 @@ Yukarıda verilen kod $U$ ve $V$ kanalları için çalıştırılıp sonuçlar b
 
 [RESOURCES]: # (List of the resources used by the blog post)
 [isoluminance]: /assets/post_resources/image_colorization/iso_lum.png
-[steps]: /assets/post_resources/image_colorization/tum_komsular.png
+[steps]: /assets/post_resources/image_colorization/imge_renklendirme_ornek.png
+[neighbours]: /assets/post_resources/image_colorization/tum_komsular.png
 [example1]: /assets/post_resources/image_colorization/gray2color_example1.png
 [example2]: /assets/post_resources/image_colorization/gray2color_example2.png
