@@ -242,6 +242,19 @@ main {
 			margin:0 auto;
 		}
 	}
+
+	// style for the blockquotes
+	blockquote {
+		background: #ecf0f0;
+		ul {
+			font-family: 'Consolas';
+			font-size: 10pt;
+			display: block;
+			color: 080808;
+			list-style-type: none;
+			padding-inline-start: 20px;
+		}
+	}
 }
 
 .post-navigation {
