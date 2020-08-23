@@ -51,12 +51,12 @@ Yukarıda verilen ispat aracılığıyla, $\eta_k = \epsilon$ ve $d_k=d$ iniş d
 
 Algoritmik olarak bu akış aşağıdaki şekilde özetlenebilir.
 
-* İlklendirme: $\mathbf{x_0} \in \mathbb{R}^n$
-* İterasyon: $k=0,1,\dots$ için
-  * (a) Bir iniş yönü $d_k$ seç, öyle ki $\nabla^\intercal f(x) d_k \lt 0$ olsun
-  * (b) Bir adım boyu $\eta_k$ belirle, öyle ki $f(\mathbf{x_k} + \eta_k d_k) < f(\mathbf{x_k})$ olsun
-  * (c) $\mathbf{x_{k+1}} = \mathbf{x_k} + \eta_k d_k$ şeklinde güncelle
-  * (d) Durma koşulu sağnadıysa dur, yoksa (a) adımına dön
+> * İlklendirme: $\mathbf{x_0} \in \mathbb{R}^n$
+> * İterasyon: $k=0,1,\dots$ için
+>   * (a) Bir iniş yönü $d_k$ seç, öyle ki $\nabla^\intercal f(x) d_k \lt 0$ olsun
+>   * (b) Bir adım boyu $\eta_k$ belirle, öyle ki $f(\mathbf{x_k} + \eta_k d_k) < f(\mathbf{x_k})$ olsun
+>   * (c) $\mathbf{x_{k+1}} = \mathbf{x_k} + \eta_k d_k$ şeklinde güncelle
+>   * (d) Durma koşulu sağnadıysa dur, yoksa (a) adımına dön
 
 Verilen akış incelendiğinde iniş yöntemine dayalı iteratif en küçükleme algoritmasında kritik iki adımın (a,b) olduğu görülmektedir. Bunlardan ilki $d_k$ iniş yönünün belirlenmesi, ikincisi ise yukarıdaki ispatta sabit kabul ettiğimiz $\eta_k$ adım aralığının belirlenmesi işlemidir. Bu iki parametrenin farklı yöntemlerle belirlenmesine dayanarak, literatürde çeşitli iniş yöntemi algoritmaları önerilmiştir. Bu yazımızda literatürde yaygın olarak kullanılan Gradyan İniş Yöntemi ve Kesin Doğru Arama iniş yöntemleri incelenecektir. İniş yöntemlerininin davranışlarını ve aradaki farkları daha iyi görebilmek adına yöntemlerin tanımı verildikten sonra basit bir optimizasyon problemi üzerinden yöntemin çalışması incelenecektir.
 
