@@ -5,6 +5,7 @@ slug: imlab
 author: Bahri ABACI
 categories:
 - Görüntü İşleme
+references: ""
 thumbnail: /assets/post_resources/imlab_library/thumbnail.png
 ---
 

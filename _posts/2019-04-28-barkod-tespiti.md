@@ -5,6 +5,7 @@ slug: barcode-detection
 author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
+references: "Reading 1D Barcodes With Mobile Phones Using Deformable Templates"
 thumbnail: /assets/post_resources/barcode_detection/thumbnail.png
 ---
 

@@ -7,6 +7,7 @@ categories:
 - Görüntü İşleme Uygulamaları
 - Lineer Cebir
 - Nümerik Yöntemler
+references: "Poisson Image Editing"
 thumbnail: /assets/post_resources/poisson_image_editing/thumbnail.png 
 ---
 Görüntü düzenleme (image editing), imge üzerinde yer alan renklerin evrensel veya yerel ilişkiler ile değiştirilmesi işlemidir. Önceki yazılarımızda bahsettiğimiz Renk Dönüşümleri, Instagram Filtreleme Yöntemleri gibi yöntemler imge üzerinde evrensel ilişkiler ile dönüşüm yaparken, bu yazımızın konusu olan Poisson eşitliği yardımıyla görüntü düzenleme algoritması yerel ilişkilere dayalı bir dönüşüm işlemidir. Patrick Pérez ve arkadaşları tarafından 2003 yılında önerilen bu yöntem basit bir anlatımla verilen bir imgenin (kaynak:source) gradyanını elimizde bulunan bir başka imgeye (hedef:target) kopyalama işlemidir. Bu kopyalama işlemi sonucunda kaynak imgenin dokusu (gradyanı) hedef imge içerisine yerleştirilmiş olur.

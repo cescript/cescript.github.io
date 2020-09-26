@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Görüntü İşleme
 - Hızlı Algoritmalar
+references: "A Simple and Efficient Connected Components Labeling Algorithm"
 thumbnail: /assets/post_resources/connected_component_labeling/thumbnail.png
 ---
 

@@ -7,6 +7,7 @@ categories:
 - Makine Öğrenmesi
 - Nümerik Yöntemler
 - Veri Analizi
+references: ""
 thumbnail: /assets/post_resources/reinforcement_learning_q_learning/thumbnailr.png
 ---
 

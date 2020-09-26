@@ -10,8 +10,24 @@ layout: default
 
 {%- if site.posts.size > 0 -%}
 <ul class="posts">
+  <!-- list of implemented papers -->
   <li>
-    <h1 id="posts-label">posts</h1>
+    <h1 id="posts-label">Gerçeklenen Makaleler</h1>
+  </li>
+  <div class="papers-list">
+    {%- for post in site.posts -%}
+    {%- for article in post.references -%}
+    <li>
+      <a class="papers-link" href="{{ post.url | relative_url }}">
+        {{ article | escape }}
+      </a>
+    </li>
+    {%- endfor -%}
+    {%- endfor -%}
+  </div>
+  <!-- list of written posts -->
+  <li>
+    <h1 id="posts-label">Blog Yazıları</h1>
   </li>
 
   {%- for post in site.posts -%}

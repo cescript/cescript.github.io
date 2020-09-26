@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
 - Veri Analizi
+references: "Seam Carving for Content-Aware Image Resizing"
 thumbnail: /assets/post_resources/content_based_image_scaling/thumbnail.png
 ---
 

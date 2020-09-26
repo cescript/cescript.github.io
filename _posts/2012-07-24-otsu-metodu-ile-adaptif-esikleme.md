@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Görüntü İşleme
 - Hızlı Algoritmalar
+references: "A Threshold Selection Method From Gray-Level Histograms"
 thumbnail: /assets/post_resources/otsu_thresholding/thumbnail.png
 ---
 
@@ -149,9 +150,7 @@ Yukarıda bahsettiğim üzere, aşağıda seçilen eşik değerinin işlemin son
   
 **Referanslar**
 
-* Di Stefano, Luigi, and Andrea Bulgarelli. "A simple and efficient connected components labeling algorithm." Proceedings 10th International Conference on Image Analysis and Processing. IEEE, 1999.
-
-* He, Lifeng, et al. "Fast connected-component labeling." Pattern recognition 42.9 (2009): 1977-1987.
+* Otsu, Nobuyuki. "A threshold selection method from gray-level histograms." IEEE transactions on systems, man, and cybernetics 9.1 (1979): 62-66.
 
 [RESOURCES]: # (List of the resources used by the blog post)
 [lena_otsu_threshold]: /assets/post_resources/otsu_thresholding/lena_gray.png

@@ -7,10 +7,11 @@ categories:
 - Görüntü İşleme Uygulamaları
 - Lineer Cebir
 - Nümerik Yöntemler
+references: "Colorization Using Optimization"
 thumbnail: /assets/post_resources/image_colorization/thumbnail.png
 ---
 
-Kısa bir süre önceki [İmge Renksizleştirme yazımızda]({% post_url 2015-10-16-imge-renksizlestirme %}) renkli imgelerin gri seviye dönüşümü için yenilikçi bir yöntem incelemiştik. Yöntem üç farklı kanaldan (R,G,B) oluşan renkli sayısal bir imgeyi tek bir kanala indirirken doku bilgisinin korunmasınını da güvence altına almaktaydı. Bu yazımızda ise önceki yöntemin tersi olarak İmge Renklendirmeyi ele alacağız. İmge renklendirme (Image colorization) gri seviye kodlanmış bir imgeden renkli imge elde etmeye yarayan bir yöntemdir. Genellikle görselliği iyileştirmek için kullanılsa da gri seviye kameradan / sensörden alınan görüntülerin renklendirilmesi, eski fotoğrafların canlandırılması veya imge renklerinin değiştirilmesi gibi
+Kısa bir süre önceki [İmge Renksizleştirme yazımızda]({% post_url 2015-10-16-imge-renksizlestirme %}) renkli imgelerin gri seviye dönüşümü için yenilikçi bir yöntem incelemiştik. Yöntem üç farklı kanaldan (R,G,B) oluşan renkli sayısal bir imgeyi tek bir kanala indirirken doku bilgisinin korunmasını da güvence altına almaktaydı. Bu yazımızda ise önceki yöntemin tersi olarak İmge Renklendirmeyi ele alacağız. İmge renklendirme (Image colorization) gri seviye kodlanmış bir imgeden renkli imge elde etmeye yarayan bir yöntemdir. Genellikle görselliği iyileştirmek için kullanılsa da gri seviye kameradan / sensörden alınan görüntülerin renklendirilmesi, eski fotoğrafların canlandırılması veya imge renklerinin değiştirilmesi gibi
 uygulamalarda da kullanılmaktadır.  
   
 <!--more-->

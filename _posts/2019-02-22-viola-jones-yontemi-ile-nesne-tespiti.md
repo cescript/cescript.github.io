@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
 - Nesne Tespiti
+references: "Rapid Object Detection Using a Boosted Cascade of Simple Features"
 thumbnail: /assets/post_resources/object_detection/thumbnail.png
 ---
 

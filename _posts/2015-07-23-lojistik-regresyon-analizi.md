@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
 - Veri Analizi
+references: ""
 thumbnail:  /assets/post_resources/logistic_regression/thumbnail.png
 ---
 

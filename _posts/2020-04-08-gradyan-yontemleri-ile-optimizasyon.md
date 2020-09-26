@@ -7,6 +7,7 @@ categories:
 - Makine Öğrenmesi
 - Nümerik Yöntemler
 - Veri Analizi
+references: ""
 thumbnail: /assets/post_resources/optimization_using_gradient_methods/thumbnail.png
 ---
 Optimizasyon, hemen hemen tüm mühendislik çalışmalarında karşımıza çıkan bir en iyileme çalışmasıdır. Görüntü işleme ve bilgisayarlı görü alanında, özellikle Makine Öğrenmesi ve Örüntü Tanıma alanlarında önerilen Doğrusal Regresyon, [Lojistik Regresyon Analizi]({% post_url 2015-07-23-lojistik-regresyon-analizi %}), Destek Vektör Makineleri gibi pek çok algoritmanın matematiksel denklemlerinin çözümü için kullanılmaktadır. Bu yazımızda literatürde sıklıkla kullanılan gradyan tabanlı optimizasyon algoritmaları üzerinde durulacak, bu algoritmların teorik çalışması incelendikten sonra, algoritmaların artı ve eksi yönleri örnek bir problem üzerinden anlatılacaktır.

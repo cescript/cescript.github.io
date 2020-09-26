@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Veri Analizi
 - Görüntü İşleme Uygulamaları
+references: ""
 thumbnail: /assets/post_resources/perceptual_hashing/thumbnail.png
 ---
 

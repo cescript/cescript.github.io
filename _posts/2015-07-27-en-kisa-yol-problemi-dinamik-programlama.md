@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Makine Öğrenmesi
 - Hızlı Algoritmalar
+references: ""
 thumbnail: /assets/post_resources/dynamic_programming/thumbnail.png
 ---
 

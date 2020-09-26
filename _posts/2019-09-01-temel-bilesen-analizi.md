@@ -8,6 +8,7 @@ categories:
 - Nümerik Yöntemler
 - Makine Öğrenmesi
 - Veri Analizi
+references: ""
 thumbnail: /assets/post_resources/principal_component_analysis/thumbnail.png
 ---
 

@@ -290,3 +290,24 @@ main {
 	padding-bottom: 10px;
 	font-weight: normal;
 }
+
+.papers-link {
+	text-decoration: none;
+	line-height: 1.2em;
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #000;
+	transition: color 0.3s;
+}
+
+.papers-list {
+	list-style-type: disc;
+	li a{ color: #3d3d3d; }
+	li:nth-child(odd) a{ color: #0a0a0a; }
+	li a:hover {
+		color: $linkColor;
+		box-shadow: 0 0 6px $linkColor;
+	}
+	margin-left: 20px;
+	margin-bottom: 20px;
+}

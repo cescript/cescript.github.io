@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
 - Görüntü İşleme
+references: "Contrast Preserving Decolorization"
 thumbnail: /assets/post_resources/image_decolorization/thumbnail.png
 ---
 

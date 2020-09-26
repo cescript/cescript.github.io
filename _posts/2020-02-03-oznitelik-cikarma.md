@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Görüntü İşleme
 - Makine Öğrenmesi
+references: ""
 thumbnail: /assets/post_resources/feature_extraction/thumbnail.png
 ---
 

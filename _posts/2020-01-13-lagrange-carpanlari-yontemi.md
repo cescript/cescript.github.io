@@ -7,6 +7,7 @@ categories:
 - Lineer Cebir
 - Nümerik Yöntemler
 - Makine Öğrenmesi
+references: ""
 thumbnail: /assets/post_resources/lagrange_multipliers/thumbnail.png
 ---
 Lagrange Çarpanları (Lagrange Multipliers), Joseph Louis Lagrange tarafından 1770 li yılların başında literatüre kazandırılan ve verilen denklem takımlarının kısıt (constraint) altında çözümünü bulmak için kullanılan önemli bir matematiksel yaklaşımdır. Özellikle Makine Öğrenmesi ve Örüntü Tanıma alanlarında önerilen Doğrusal Regresyon, [Lojistik Regresyon Analizi]({% post_url 2015-07-23-lojistik-regresyon-analizi %}), Destek Vektör Makineleri gibi pek çok algoritmanın matematiksel denklemlerinin çözümü için kullanılmaktadır. Bu yazımızda basit örneklerden başlayarak Kısıtlı Optimizasyon (Constraint Optimization) kavramı üzerinde durulacak ve Lagrange Çarpanları ile bu tip eşitliklerinin nasıl çözüleceği örnekler ile anlatılacaktır.

@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Görüntü İşleme
 - Hızlı Algoritmalar
+references: "Summed-Area Tables for Texture Mapping"
 thumbnail: /assets/post_resources/integral_image/thumbnail.png
 ---
 

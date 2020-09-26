@@ -7,6 +7,7 @@ categories:
 - Makine Öğrenmesi
 - Nümerik Yöntemler
 - Veri Analizi
+references: "Random sample consensus: a paradigm for model fitting with applications to image analysis and automated cartography"
 thumbnail: /assets/post_resources/ransac_algorithm/thumbnail.svg
 ---
 RANSAC (Random Sample and Consensus); gürültülü veriler üzerinde makine öğrenmesi ve veri analizi algoritmalarının gürbüz şekilde çalışabilmesi için kullanılan bir yöntemdir. Yöntem ilk olarak 1981 yılında Fischler ve Bolles tarafından konum belirleme problemlerinde karşılaşılan gürültülü (noisy) ve aykırı (outlier) veri sorununu ortadan kaldırmak için önerilmiştir. Bugüne kadar 24 binin üzerinde atıf alan yöntem, aykırı veri tespiti veya gürültüden bağımsız model uyumlama problemlerinde akla gelen ilk yöntemdir. Bu yazımızda RANSAC algoritmasının çalışma mantığından bahsettikten sonra, basit bir doğru uyumlama probleminde ne şekilde bir katkı sağladığı incelenecektir.

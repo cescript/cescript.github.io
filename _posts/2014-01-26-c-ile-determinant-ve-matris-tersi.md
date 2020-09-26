@@ -6,6 +6,7 @@ author: Bahri ABACI
 categories:
 - Lineer Cebir
 - Nümerik Yöntemler
+references: ""
 thumbnail: /assets/post_resources/determinant/thumbnail.png
 ---
 
