@@ -5,7 +5,9 @@ slug: barcode-detection
 author: Bahri ABACI
 categories:
 - Görüntü İşleme Uygulamaları
-references: "Reading 1D Barcodes With Mobile Phones Using Deformable Templates"
+references: 
+ - "Reading 1D Barcodes With Mobile Phones Using Deformable Templates"
+ - "Finding Best-Fitted Rectangle For Regions Using A Bisection Method"
 thumbnail: /assets/post_resources/barcode_detection/thumbnail.png
 ---
 
@@ -131,7 +133,11 @@ Yapılan çalışmada veri  seti sağlayıcıları tarafından verilen maskelerd
 
 **Referanslar**
 * Gallo, Orazio, and Roberto Manduchi. "Reading 1D barcodes with mobile phones using deformable templates." IEEE transactions on pattern analysis and machine intelligence 33.9 (2011): 1834-1843.
+
+* Chaudhuri, D., et al. "Finding best-fitted rectangle for regions using a bisection method." Machine Vision and Applications 23.6 (2012): 1263-1271.
+
 * Zamberletti, Alessandro, Ignazio Gallo, and Simone Albertini. "Robust angle invariant 1d barcode detection." 2013 2nd IAPR Asian Conference on Pattern Recognition. IEEE, 2013.
+
 * Bodnár, Péter, and László G. Nyúl. "Barcode detection using local analysis, mathematical morphology, and clustering." Acta Cybernetica 21.1 (2013): 21-35.
 
 [RESOURCES]: # (List of the resources used by the blog post)
