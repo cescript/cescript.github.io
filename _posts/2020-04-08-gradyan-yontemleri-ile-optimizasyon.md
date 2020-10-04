@@ -104,25 +104,25 @@ olduğundan Denklem \ref{descentCondition} ile verilen iniş doğrultusu olma ş
 Verilen örnek problemin *Gradyan İniş Yöntemi* ile çözümü için $\eta_k=0.25$ gibi sabit bir sayı olduğunu varsayalım. Bu durumda problem şu şekilde çözülecektir.
 
 - İlklendirme: 
-  - \$$\mathbf{x_0} = \begin{bmatrix}2.0 \\ 2.0 \end{bmatrix}$$
+  - $\mathbf{x_0} = \begin{bmatrix}2.0 \\ 2.0 \end{bmatrix}$
 - İterasyon 1
-  - \$$d_0 = -\nabla f(x,y) = -\begin{bmatrix} 2 \times 2.0 \\ 4 \times 2.0\end{bmatrix} = -\begin{bmatrix} 4.0 \\ 8.0\end{bmatrix}$$
-  - \$$\eta_0 = 0.25$$
-  - \$$\mathbf{x_1} = \mathbf{x_0} + \eta_0 d_0 = \begin{bmatrix}2.0 \\ 2.0 \end{bmatrix} - 0.25 \begin{bmatrix} 4.0 \\ 8.0\end{bmatrix} = \begin{bmatrix} 1.0 \\ 0.0\end{bmatrix}$$
-  - \$$f(\mathbf{x_1}) = x^2+2y^2 = 1^2 + 2 \times 0.0^2 = 1$$
-  - \$$\lVert \nabla f(\mathbf{x_1}) \lVert = 2$$
+  - $d_0 = -\nabla f(x,y) = -\begin{bmatrix} 2 \times 2.0 \\ 4 \times 2.0\end{bmatrix} = -\begin{bmatrix} 4.0 \\ 8.0\end{bmatrix}$
+  - $\eta_0 = 0.25$
+  - $\mathbf{x_1} = \mathbf{x_0} + \eta_0 d_0 = \begin{bmatrix}2.0 \\ 2.0 \end{bmatrix} - 0.25 \begin{bmatrix} 4.0 \\ 8.0\end{bmatrix} = \begin{bmatrix} 1.0 \\ 0.0\end{bmatrix}$
+  - $f(\mathbf{x_1}) = x^2+2y^2 = 1^2 + 2 \times 0.0^2 = 1$
+  - $\lVert \nabla f(\mathbf{x_1}) \lVert = 2$
 - İterasyon 2
-  - \$$d_1 = -\nabla f(x,y) = -\begin{bmatrix} 2 \times 1.0 \\ 4 \times 0.0\end{bmatrix} = -\begin{bmatrix} 2.0 \\ 0.0\end{bmatrix}$$
-  - \$$\eta_1 = 0.25$$
-  - \$$\mathbf{x_2} = \mathbf{x_1} + \eta_1 d_1 = \begin{bmatrix}1.0 \\ 0.0 \end{bmatrix} - 0.25 \begin{bmatrix} 2.0 \\ 0.0\end{bmatrix} = \begin{bmatrix} 0.5 \\ 0.0\end{bmatrix}$$
-  - \$$f(\mathbf{x_2}) = x^2+2y^2 = 0.5^2 + 2 \times 0.0^2 = 0.25$$
-  - \$$\lVert \nabla f(\mathbf{x_2}) \lVert = 1.0$$
+  - $d_1 = -\nabla f(x,y) = -\begin{bmatrix} 2 \times 1.0 \\ 4 \times 0.0\end{bmatrix} = -\begin{bmatrix} 2.0 \\ 0.0\end{bmatrix}$
+  - $\eta_1 = 0.25$
+  - $\mathbf{x_2} = \mathbf{x_1} + \eta_1 d_1 = \begin{bmatrix}1.0 \\ 0.0 \end{bmatrix} - 0.25 \begin{bmatrix} 2.0 \\ 0.0\end{bmatrix} = \begin{bmatrix} 0.5 \\ 0.0\end{bmatrix}$
+  - $f(\mathbf{x_2}) = x^2+2y^2 = 0.5^2 + 2 \times 0.0^2 = 0.25$
+  - $\lVert \nabla f(\mathbf{x_2}) \lVert = 1.0$
 - İterasyon 3
-  - \$$d_2 = -\nabla f(x,y) = -\begin{bmatrix} 2 \times 0.5 \\ 4 \times 0.0\end{bmatrix} = -\begin{bmatrix} 1.0 \\ 0.0\end{bmatrix}$$
-  - \$$\eta_2 = 0.25$$
-  - \$$\mathbf{x_3} = \mathbf{x_2} + \eta_2 d_2 = \begin{bmatrix}0.5 \\ 0.0 \end{bmatrix} - 0.25 \begin{bmatrix} 1.0 \\ 0.0\end{bmatrix} = \begin{bmatrix} 0.25 \\ 0.0\end{bmatrix}$$
-  - \$$f(\mathbf{x_3}) = x^2+2y^2 = 0.25^2 + 2 \times 0.0^2 = 0.0625$$
-  - \$$\lVert \nabla f(\mathbf{x_3}) \lVert = 0.5$$
+  - $d_2 = -\nabla f(x,y) = -\begin{bmatrix} 2 \times 0.5 \\ 4 \times 0.0\end{bmatrix} = -\begin{bmatrix} 1.0 \\ 0.0\end{bmatrix}$
+  - $\eta_2 = 0.25$
+  - $\mathbf{x_3} = \mathbf{x_2} + \eta_2 d_2 = \begin{bmatrix}0.5 \\ 0.0 \end{bmatrix} - 0.25 \begin{bmatrix} 1.0 \\ 0.0\end{bmatrix} = \begin{bmatrix} 0.25 \\ 0.0\end{bmatrix}$
+  - $f(\mathbf{x_3}) = x^2+2y^2 = 0.25^2 + 2 \times 0.0^2 = 0.0625$
+  - $\lVert \nabla f(\mathbf{x_3}) \lVert = 0.5$
 
 İterasyonlardan da görüldüğü üzere her iterasyon adımında $f(\mathbf{x_k})$ fonksiyonu geometrik olarak sıfıra yaklaşmaktadır. İterasyon adımlarına $\lVert \nabla f(\mathbf{x_k}) \lVert \lt 10^{-5}$ olana kadar devam edilirse (toplam 20 iterasyon) aşağıda verilen grafik oluşur.
 
