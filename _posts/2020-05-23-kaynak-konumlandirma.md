@@ -113,7 +113,8 @@ do
 ```
 Yazılan kod parçası $P_0=(0,0)$ ve $P_0=(10,10)$ gibi farklı iki başlangıç noktasından, elde edilen yeni konum $P_{k+1}$ ile eski konum $P_k$ arasındaki fark $10^{-3}$ ten küçük olana kadar çalıştırıldığında, toplam $17$ adımda aşağıdaki görselde verilen adımları izleyerek $P_x=(4.24, 3.20)$ noktasına ulaşmaktadır.
 
-|-----------|-----------|
+|Başlangıç Noktası $P_0=(0,0)$ | Başlangıç Noktası $P_0=(10,10)$|
+|:-------:|:----:|
 ![kaynak konumlandırma örnek][source_localization_solution1] | ![kaynak konumlandırma örnek][source_localization_solution2]
 
 Verilen grafiklerde, arka plan renkleri ve kontur çizgileri $P=(x,y)$ seçilmesi durumunda elde edilecek hatayı göstermektedir. Siyah ile işaretlenen nokta iterasyonun başlangıç noktasını, kırmızı nokta ise iterasyonlar sonucunda ulaşılan noktayı göstermektedir. Turuncu ile gösterilen noktalar her iterasyon sonucunda gidilen yeni noktayı göstermektedir.

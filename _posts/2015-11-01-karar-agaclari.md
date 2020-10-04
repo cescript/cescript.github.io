@@ -10,47 +10,23 @@ references: ""
 thumbnail: /assets/post_resources/decision_trees/thumbnail.png
 ---
 
-Karar Ağacları (Decision Trees) makine öğrenmesi ve veri analizinde
-kullanılan bir öğrenme/sınıflandırma yöntemidir. Günümüzde cep telefonu
-kameralarındaki yüz yakalama sisteminden, Kinect kameralarındaki hareket
-sınıflandırmasına kadar pek çok görüntü işleme uygulamasında ve
-moleküler biyoloji, finans ve tıp gibi diğer alanlarda sıklıkla
-kullanılmakta ve çok başarılı sonuçlar elde edilmektedir. Yöntemin bu
-kadar yaygın kullanılmasının en önemli nedeni çoğu makine öğrenmesi
-yöntemlerinin aksine beyaz-kutu (white box) bir öğrenme yöntemi
-olmasıdır. Yani eğitim tamamlandıktan sonra, yöntemin verdiği kararda
-verinin hangi bileşenin nasıl bir rol oynadığı gözlemlenebilir ve
-böylece veri daha kolay bir şekilde yorumlanabilir.
+Karar Ağacları (Decision Trees) makine öğrenmesi ve veri analizinde kullanılan bir öğrenme/sınıflandırma yöntemidir. Günümüzde cep telefonu kameralarındaki yüz yakalama sisteminden, Kinect kameralarındaki hareket
+sınıflandırmasına kadar pek çok görüntü işleme uygulamasında ve moleküler biyoloji, finans ve tıp gibi diğer alanlarda sıklıkla kullanılmakta ve çok başarılı sonuçlar elde edilmektedir. Yöntemin bu kadar yaygın kullanılmasının en önemli nedeni çoğu makine öğrenmesi yöntemlerinin aksine beyaz-kutu (white box) bir öğrenme yöntemi olmasıdır. Yani eğitim tamamlandıktan sonra, yöntemin verdiği kararda verinin hangi bileşenin nasıl bir rol oynadığı gözlemlenebilir ve böylece veri daha kolay bir şekilde yorumlanabilir.
 
 <!--more-->
 
-Yöntemin bir diğer avantajı ise eğitim sürecinin herhangi bir
-rastgelelik içermemesi ve ayarlanabilir parametrelerinin oldukça az
-olmasıdır. Bu nedenle aynı veri üzerinde bir kez çalıştırılarak elde
-edilen sonuçlar, yöntemin sonraki çalıştırılmalarında da aynı
-kalacaktır.
+Yöntemin bir diğer avantajı ise eğitim sürecinin herhangi bir rastgelelik içermemesi ve ayarlanabilir parametrelerinin oldukça az olmasıdır. Bu nedenle aynı veri üzerinde bir kez çalıştırılarak elde
+edilen sonuçlar, yöntemin sonraki çalıştırılmalarında da aynı kalacaktır.
+
+  
+Karar ağaçları yöntemi hem anlama hem de gerçekleme yönünden makine öğrenmesi ve veri madenciliğinde kullanılan en anlaşılabilir yöntemlerden biridir. Yöntem her seferinde verinin bir özniteliğini (baz noktasını) kullanarak adi bir sınıflama yapar. Ardından bu adi sınıflandırma sonuçları üzerinde başka bir öznitelik kullanılarak tekrar adi bir sınıflama yapılır. Bu adi sınıflamaların art arda yapılması ile sonuçta oldukça kuvvetli bir sınıflayıcı elde edilir.
 
   
 
-Karar ağaçları yöntemi hem anlama hem de gerçekleme yönünden makine
-öğrenmesi ve veri madenciliğinde kullanılan en anlaşılabilir
-yöntemlerden biridir. Yöntem her seferinde verinin bir özniteliğini (baz
-noktasını) kullanarak adi bir sınıflama yapar. Ardından bu adi
-sınıflandırma sonuçları üzerinde başka bir öznitelik kullanılarak tekrar
-adi bir sınıflama yapılır. Bu adi sınıflamaların art arda yapılması ile
-sonuçta oldukça kuvvetli bir sınıflayıcı elde edilir.
-
-  
-
-Kodlama kısmına geçmeden önce yöntemi basit bir örnekle anlamaya
-çalışalım. Aşağıda verilen tabloda 10 hastadan alınan yedi farklı test
-sonuçları (pozitif: "1", negatif: "0") paylaşılmıştır. Amacımız bu test
-sonuçlarını öznitelik/baz olarak  kullanarak hastanın kalp krizi riski
-taşıyıp taşımadığına (riskli: "+1", risksiz: "-1") dair sonuca
-varabilecek bir makine öğretmesi yapmak.
+Kodlama kısmına geçmeden önce yöntemi basit bir örnekle anlamaya çalışalım. Aşağıda verilen tabloda 10 hastadan alınan yedi farklı test sonuçları (pozitif: "1", negatif: "0") paylaşılmıştır. Amacımız bu test sonuçlarını öznitelik/baz olarak  kullanarak hastanın kalp krizi riski taşıyıp taşımadığına (riskli: "+1", risksiz: "-1") dair sonuca varabilecek bir makine öğretmesi yapmak.
 
 |Yaş > 65|Erkek|Sigara|Diyabet|Tansiyon|Test A|Test B|Sonuç|
-|--- |--- |--- |--- |--- |--- |--- |--- |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |0|1|1|0|1|0|1|-1|
 |1|0|0|1|1|1|0|-1|
 |0|1|0|0|0|1|0|-1|
@@ -65,13 +41,13 @@ varabilecek bir makine öğretmesi yapmak.
 Yukarıda verilen tablo dikkatli incelenirse kalp krizi riski ile Yaş > 65 testinin yüksek derecede ilişkili olduğu görülür. Öyle ki yaşı 65 üstü olan altı hastadan dördünde risk bulunurken, 65 yaşından genç dört hastadan sadece bir tanesinde kalp krizi riski bulunmaktadır. Bu dört hastaya daha dikkatli bakmak için tabloyu sadece bu dört hasta (65 yaşından küçük kişiler) kalacak şekilde  güncellersek aşağıdaki tablo elde edilir.
 
 |Yaş > 65|Erkek|Sigara|Diyabet|Tansiyon|Test A|Test B|Sonuç|
-|--- |--- |--- |--- |--- |--- |--- |--- |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |0|1|1|0|1|0|1|-1|
 |0|1|0|0|0|1|0|-1|
 |0|1|1|0|1|1|0|-1|
 |0|1|0|1|0|1|1|+1|
 
-Bu tablodan da net bir şekilde görüldüğü üzere 65 yaşından küçük hastalarda kalp krizi riskini belirleyen en önemli öznitelik diyabet testidir. Benzer şekilde tabloyu sadece 65 yaş üstü hastalar kalacak şekilde düzenlersek aşağıdaki tablo elde edilir.
+Bu tablodan da net bir şekilde görüldüğü üzere 65 yaşından küçük hastalarda kalp krizi riskini belirleyen en önemli öznitelik diyabet testidir. Benzer şekilde tabloyu sadece 65 yaş üstü hastalar kalacak şekilde  düzenlersek aşağıdaki tablo elde edilir.
 
 |Yaş > 65|Erkek|Sigara|Diyabet|Tansiyon|Test A|Test B|Sonuç|
 |--- |--- |--- |--- |--- |--- |--- |--- |
@@ -82,51 +58,23 @@ Bu tablodan da net bir şekilde görüldüğü üzere 65 yaşından küçük has
 |1|0|1|0|0|1|1|+1|
 |1|0|1|0|1|1|0|+1|
 
-Bu tablodan da 65 yaş üstü hastalarda kalp krizi riskinin en çok sigara
-öz niteliği ile ilgili olduğu gözlemlenebilir. Analiz sayesinde şöyle
-bir sonuca varabiliriz: "Hasta 65 yaşından küçükse diyabet, büyükse
-sigara testi uygula. Eğer testlerin sonucu pozitif ise hastada kalp
-krizi riski bulunmakta, negatif ise hastada kalp krizi riski
-bulunmamaktadır."  
+Bu tablodan da 65 yaş üstü hastalarda kalp krizi riskinin en çok sigara öz niteliği ile ilgili olduğu gözlemlenebilir. Analiz sayesinde şöyle bir sonuca varabiliriz: "Hasta 65 yaşından küçükse diyabet, büyükse
+sigara testi uygula. Eğer testlerin sonucu pozitif ise hastada kalp krizi riski bulunmakta, negatif ise hastada kalp krizi riski bulunmamaktadır."  
   
-Yukarıda anlatımını yaptığımız bu işlemler ve vardığımız sonuç aşağıda
-verilen üç derinlikli bir ağaç yapısı ile gösterilebilir.  
+Yukarıda anlatımını yaptığımız bu işlemler ve vardığımız sonuç aşağıda verilen üç derinlikli bir ağaç yapısı ile gösterilebilir.  
 
 ![Karar Ağacı Yöntemi][decision_tree]
   
-Karar ağacında her seferinde bir öznitelik seçilir ve bu özniteliğin
-pozitif (1) veya negatif (0) olmasına göre diğer öznitelikler seçilerek
-verinin gruplaması yapılır. Ağaç yapısında yuvarlaklar düğüm olarak
-adlandırılır ve her bir yuvarlakta bir öznitelik test edilir. Sarı
-yuvarlak kök düğümünü, mavi yuvarlaklar ise ara düğümleri
-göstermektedir. Dikdörtgenle çizilen kutular ise sonuç düğümlerini yani
-veriye atanan etiketleri göstermektedir.  
+Karar ağacında her seferinde bir öznitelik seçilir ve bu özniteliğin pozitif (1) veya negatif (0) olmasına göre diğer öznitelikler seçilerek verinin gruplaması yapılır. Ağaç yapısında yuvarlaklar düğüm olarak adlandırılır ve her bir yuvarlakta bir öznitelik test edilir. Sarı yuvarlak kök düğümünü, mavi yuvarlaklar ise ara düğümleri
+göstermektedir. Dikdörtgenle çizilen kutular ise sonuç düğümlerini yani veriye atanan etiketleri göstermektedir.  
   
-Gelelim karar ağacını otomatik olarak oluşturma adımına. Yaptığımız
-işlemleri adım adım inceleyecek olursak en zor kısmın düğümleri seçmek
-olduğu görülecektir. Yukarıdaki örnekte Yaş > 65 özniteliğini neden
-seçtiğimizi hatırlayalım.  
+Gelelim karar ağacını otomatik olarak oluşturma adımına. Yaptığımız işlemleri adım adım inceleyecek olursak en zor kısmın düğümleri seçmek olduğu görülecektir. Yukarıdaki örnekte Yaş > 65 özniteliğini neden seçtiğimizi hatırlayalım.  
   
 
 *"Yukarıda verilen tablo dikkatli incelenirse kalp krizi riski ile Yaş > 65 testinin yüksek derecede ilişkili olduğu görülür."*
 
-Burada "ilişki" ile kastedilen, Yaş > 65 özniteliğinin bilinmesi ile
-kalp krizi riski hakkında elde edilen bilgi miktarıdır. Bilgi kuramı ve
-makine öğrenmesinde bir özniteliğin taşıdığı bilgi $I(X)$ şu formül ile
-ifade edilir: $$I(X) = H(Y)-H(Y|X)$$Burada $H(Y)$ fonksiyonu `entropi`
-fonksiyonu olarak bilinir ve içerisine aldığı özelliğin
-*belirsizliğinin* bir ölçüsüdür. Bu fonksiyonun değeri $p=Pr\{Y=+1\}$
-olmak üzere; $$H(Y) = -p\log_2(p) - (1-p)\log_2(1-p)$$işlemi ile
-bulunur. Benzer şekilde koşullu entropi fonksiyonu $H(Y|X)$ ise $X$' in
-bilinmesi durumunda $Y$'nin belirsizliğinin ölçüsüdür ve aşağıdaki
-formül ile bulunur. $$H(Y|X)=\sum_{x=0}^{1}\sum_{y=-1}^{+1}Pr\{X=x,Y=y\}\log_2(Pr\{Y=y|X=x\})$$ $H(Y)$ entropi işlemini daha dikkatli
-inceleyecek olursak fonksiyonun en büyük değerini $p=0.5$ noktasında
-aldığını görürüz. Yani $Y$ özniteliğinde artı bir ve eksi birlerin
-sayısı bir birine ne kadar yakınsa $Y$' nin değerinin o kadar
-belirsiz/tahmin edilemez olduğu söylenir. Benzer şekilde eğer $p=1$ ise
-$Y$ özniteliğinin tüm değerlerinin "+1" olduğu bilgisi kesindir ve
-dolayısıyla $Y$' nin belirsizliği $H(Y)=0$'dır. Verilen formüller
-aşağıdaki fonksiyon şeklinde kodlanabilir.
+Burada "ilişki" ile kastedilen, Yaş > 65 özniteliğinin bilinmesi ile kalp krizi riski hakkında elde edilen bilgi miktarıdır. Bilgi kuramı ve makine öğrenmesinde bir özniteliğin taşıdığı bilgi $I(X)$ şu formül ile
+ifade edilir: $$I(X) = H(Y)-H(Y|X)$$Burada $H(Y)$ fonksiyonu `entropi` fonksiyonu olarak bilinir ve içerisine aldığı özelliğin *belirsizliğinin* bir ölçüsüdür. Bu fonksiyonun değeri $p=Pr\{Y=+1\}$ olmak üzere; $$H(Y) = -p\log_2(p) - (1-p)\log_2(1-p)$$işlemi ile bulunur. Benzer şekilde koşullu entropi fonksiyonu $H(Y|X)$ ise $X$' in bilinmesi durumunda $Y$'nin belirsizliğinin ölçüsüdür ve aşağıdaki formül ile bulunur. $$H(Y|X)=\sum_{x=0}^{1}\sum_{y=-1}^{+1}Pr\{X=x,Y=y\}\log_2(Pr\{Y=y|X=x\})$$ $H(Y)$ entropi işlemini daha dikkatli inceleyecek olursak fonksiyonun en büyük değerini $p=0.5$ noktasında aldığını görürüz. Yani $Y$ özniteliğinde artı bir ve eksi birlerin sayısı bir birine ne kadar yakınsa $Y$' nin değerinin o kadar belirsiz/tahmin edilemez olduğu söylenir. Benzer şekilde eğer $p=1$ ise $Y$ özniteliğinin tüm değerlerinin "+1" olduğu bilgisi kesindir ve dolayısıyla $Y$' nin belirsizliği $H(Y)=0$'dır. Verilen formüller aşağıdaki fonksiyon şeklinde kodlanabilir.
 
 ```c
 float bilgi_miktari(double *data, int *label, int i, int *idx, int Nsample, int Nlength, float H[2][2]) 
@@ -164,22 +112,13 @@ float bilgi_miktari(double *data, int *label, int i, int *idx, int Nsample, int 
 }
 ```
 
-Kodda fonksiyona aktarılan i değişkeni seçilen özniteliği (yaş > 65,
-erkek, ..) göstermektedir. Yazılan bu koda yukarıda verilen tabloyu
-girdi olarak verirsek özniteliklerin içerdiği bilgi miktarları şu
-şekilde hesaplanır.
+Kodda fonksiyona aktarılan i değişkeni seçilen özniteliği (yaş > 65, erkek, ..) göstermektedir. Yazılan bu koda yukarıda verilen tabloyu girdi olarak verirsek özniteliklerin içerdiği bilgi miktarları şu şekilde hesaplanır.
 
 |Yaş > 65|Erkek|Sigara|Diyabet|Tansiyon|Test A|Test B|
-|--- |--- |--- |--- |--- |--- |--- |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |0.12|0.03|0.12|0.03|0.03|0.03|0.12|
 
-Tabloya dikkat edilirse kök düğümü için en kuvvetli bileşenlerin
-yaş>65, sigara ve test b oldukları görülür. Yazılan kod bu bileşenler
-içerisinde ilk sıradakini seçtiğinden, kök düğümü yaş>65 şeklinde
-belirlenir. Bu işlemin ardından tablo iki parçaya ayrılarak, tüm
-bileşenler sınıflanana kadar her parça için bu işlemleri tekrarlamak
-gerekir. Yazımızda bu işlem ikiye_bol özyinelemeli fonksiyonu ile
-yapılmıştır.
+Tabloya dikkat edilirse kök düğümü için en kuvvetli bileşenlerin yaş>65, sigara ve test b oldukları görülür. Yazılan kod bu bileşenler içerisinde ilk sıradakini seçtiğinden, kök düğümü yaş>65 şeklinde belirlenir. Bu işlemin ardından tablo iki parçaya ayrılarak, tüm bileşenler sınıflanana kadar her parça için bu işlemleri tekrarlamak gerekir. Yazımızda bu işlem ikiye_bol özyinelemeli fonksiyonu ile yapılmıştır.
 
 ```c
 void ikiye_bol(double *data, int *label, int *idx,int Nsample,int Nlength, int address, int max_depth, int *tree[2]) 
@@ -240,13 +179,13 @@ void ikiye_bol(double *data, int *label, int *idx,int Nsample,int Nlength, int a
 Kod içerisinde tüm öznitelikler test edilerek en uygun öznitelik seçilmekte ve bu özniteliğin değerine göre veri iki gruba ayrılmaktadır. Eğer örneğin seçilen özniteliği pozitif ise örneğin sırası `PosIx` vektörüne, negatif ise `NegIx` vektörüne atanır ve bu vektörler üzerinde tekrar ikiye_bol fonksiyonu çağrılır. Yukarıdaki tablo için `PosIx=[1,3,5,7,8,9]`, `NegIx=[0,2,4,6]` dir. ikiye_bol fonksiyonu `NegIx` üzerinde çalıştırılırsa aşağıdaki tablo elde edilir.
 
 |Yaş > 65|Erkek|Sigara|Diyabet|Tansiyon|Test A|Test B|
-|--- |--- |--- |--- |--- |--- |--- |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |0.0|0.0|0.31|0.81|0.31|0.12|0.31|
 
 Tablo ikiye bölündüğünde yaş>65 ve erkek özniteliklerinin dört örneğinin de tamamı aynı değere sahip olduğundan bilgi miktarları sıfır olur. Diğer öznitelikler içerisinde de diyabet beklenildiği gibi en yüksek bilgi miktarına sahiptir. Aynı analiz PosIx vektörü üzerinde çalıştırılırsa da şu şekilde bir sonuç elde edilir.
 
 |Yaş > 65|Erkek|Sigara|Diyabet|Tansiyon|Test A|Test B|
-|--- |--- |--- |--- |--- |--- |--- |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |0.0|0.11|0.92|0.04|0.0|0.04|0.04|
 
 Yine aynı nedenlerden dolayı yaş>65 özniteliğinin bilgi miktarı sıfırdır ve beklendiği üzere sigara özniteliğinin içerdiği bilgi miktarı en büyük olmuştur. Bu ölçümler sonucu diyabet ve sigara özniteliği seçilerek ikiye_bol fonksiyonu çağrıldığında tüm örnekler doğru sınıflandırıldığından işlem sona erecektir.  
@@ -302,15 +241,11 @@ void predict(double *data, int *tree[2], int *label, int Ntest, int Nlength, int
 }
 ```
 
-Yazılan kodda idx değişkeni kök düğümü gösterecek şekilde (`idx=1`) ayarlanır. Ardından ilk adımda test sonucu "1" ise `idx = 3`, "0" ise `idx = 2` olacak şekilde $idx = 2\times idx + test$ işlemine tabi tutulur.
-Ağaç yapısı dikkatli incelenirse bu döngü sonucunda ulaşacağımız son düğüm vermemiz gereken kararı söyleyen düğüm olacaktır.  
+Yazılan kodda idx değişkeni kök düğümü gösterecek şekilde (`idx=1`) ayarlanır. Ardından ilk adımda test sonucu "1" ise `idx = 3`, "0" ise `idx = 2` olacak şekilde $idx = 2\times idx + test$ işlemine tabi tutulur. Ağaç yapısı dikkatli incelenirse bu döngü sonucunda ulaşacağımız son düğüm vermemiz gereken kararı söyleyen düğüm olacaktır.  
   
-[Lojistik regresyon]({% post_url 2015-07-23-lojistik-regresyon-analizi %})
-yazımızda da yaptığımız üzere bu yazımızda da örnek ve testler kısmını
-sonraki paylaşımlara bırakalım. Bu yazımızda kullandığımız ağaç yapısı
-(ikili karar ağaçları) ve algoritması (ID3) hakkında farklı kaynaklar
-okumak, kullanım alanlarına göz atmak isterseniz yazının referanslar
-kısmını inceleyebilirsiniz.  
+[Lojistik regresyon]({% post_url 2015-07-23-lojistik-regresyon-analizi %}) yazımızda da yaptığımız üzere bu yazımızda da örnek ve testler kısmını
+sonraki paylaşımlara bırakalım. Bu yazımızda kullandığımız ağaç yapısı (ikili karar ağaçları) ve algoritması (ID3) hakkında farklı kaynaklar
+okumak, kullanım alanlarına göz atmak isterseniz yazının referanslar kısmını inceleyebilirsiniz.  
   
 **Referanslar**  
 

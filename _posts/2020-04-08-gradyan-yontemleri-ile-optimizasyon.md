@@ -135,6 +135,7 @@ Verilen grafikte siyah ile gösterilen nokta iterasyonun başlangıç noktasın�
 Gradyan iniş yönteminin çalışmasını etkileyen en önemli parametre $\eta$ adım boyutudur. Bu parametrenin etkisini incelemek için örnek problem farklı $\eta$ değerleri üzerinden çözülerek aşağıda verilen grafikler hazırlanmıştır.
 
 | $\eta=0.05$ | $\eta=0.15$ | $\eta=0.25$ | $\eta=0.35$ | $\eta=0.45$ |
+|:-------:|:----:|:----:|:----:|:----:|
 ![gradient descent effect of step size][gradient_descent_eta1] | ![gradient descent effect of step size][gradient_descent_eta2] | ![gradient descent effect of step size][gradient_descent_eta3] | ![gradient descent effect of step size][gradient_descent_eta4] | ![gradient descent effect of step size][gradient_descent_eta5] |
 
 Grafiklerden de görüldüğü üzere, küçük $\eta$ değerleri için yöntemin yakısaması uzun sayıda iterasyon gerektirirken, büyük $\eta$ değerleri için yöntemin hiç yakınsamama riski bulunmaktadır. Bu problemlerin önüne geçmek için gradyan iniş yöntemi ile birlikte sabit $\eta$ kullanmak yerine iterasyonlar arasında değişen bir adım boyutu kullanmak tercih edilmektedir. Bu adım boyutu genllikle, $\eta_k = \frac{\eta}{k}$ gibi, iterasyonun başlangıcında büyük adım boyları kullanmaya izin verirken, ilerleyen iterasyonlarda kullanılan adım boyunu kısaltacak şekilde seçilmektedir.

@@ -30,6 +30,7 @@ YSA da bu karmaşık ağ yapısına benzer olarak nöron benzeri algılayıcıla
 Algılayıcılar; yapay sinir ağlarının girdi ve çıktıya sahip en küçük işlem birimleridir. Literatürde bilinen ilk algılayıcı modeli, basitleştirilmiş nöron davranışını matematiksel olarak ifade etmeye çalışan McCulloch-Pitts tarafından 1943 yılında önerilmiştir. Önerilen bu model ile basit mantık devrelerini nöron modelleri ile gerçeklemek ve bu devreleri katmanlar şeklinde bağlayarak çoğu doğruluk tablosunu gerçekleyebilen bir ağ kurmak mümkündü. Ancak McCulloch-Pitts tarafından yazılan makalede oluşturulan yapının öğrenme yöntemine dair herhangi bir algoritma bulunmamakta ve önerilen model sadece mantıksal veri tiplerini (0/1) desteklemekteydi. Bu iki temel problem, Rosenblatt tarafından 1962 yılında önerilen algılayıcı modeli çözüldü. Aşağıda gerçek bir sinir hücresinin ve Rosenblatt tarafından önerilen yapay sinir hücresinin / algılayıcının görünümü verilmiştir.
 
 |Sinir Hücresi Gösterimi | Yapay Sinir Hücresi Modeli |
+|:-------:|:----:|
 ![sinir hücresi gösterimi][neuron] | ![yapay sinir hücresi][perceptron]
 
 Örnek modeli verilen algılayıcı, girişine uygulanan $\mathbf{x_n}$ girdi vektörünü, çeşitli matematiksel operasyonlardan geçirerek $\hat{y}_n$ çıktısını üretmektedir. Algılayıcının matematiksel ifadesi Denklem \ref{perceptron} ile verilmiştir.

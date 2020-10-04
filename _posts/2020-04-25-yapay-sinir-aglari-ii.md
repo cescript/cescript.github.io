@@ -20,6 +20,7 @@ thumbnail: /assets/post_resources/artificial_neural_networks/thumbnail_2.png
 Aşağıdaki grafikte, iki tek katmanlı algılayıcının kaskat bağlanması ile oluşturulan çok katmanlı bir algılayıcı yapısı gösterilmiştir. Solda yer alan şekilde ilk yazımızda kullandığımız algılayıcı yapısı, sağdaki şekilde ise bu algılayıcıların kaskat bağlanması ile elde edilen iki katmanlı sinir ağı gösterilmiştir.
 
 |Tek Katmanlı Algılayıcı | Çok Katmanlı Algılayıcı |
+|:-------:|:----:|
 ![tek katmanlı algılayıcı][singlelayerperceptron] | ![çok katmanlı algılayıcı][multilayerperceptron]
 
 Grafikten de görüldüğü üzere ilk katmanda girdi vektörlerinden ara bir çıktı ($\mathbf{x}^{(1)}$) elde edilmiş, ikinci katmanda ise bu ara çıktılar kullanılarak ağın çıktısı oluşturulmuştur. [Yapay Sinir Ağları I]({%post_url 2020-04-25-yapay-sinir-aglari-i %}) yazısında incelediğimiz algılayıcı yapısından farklı olarak katman ve nöron sayıları da bir değişken olduğundan, ilk yazımızda kullanılan notasyona bazı eklemeler yapmak gerekmektedir. Aşağıdaki tabloda şekilde verilen matematiksel değişkenlerin tanımı listelenmiştir.
