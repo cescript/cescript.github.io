@@ -141,7 +141,8 @@ Yukarıda verilen fonksiyon imge üzerinde rastgele nokta çiftleri seçmekte ve
 
 Gözekler arasındaki uzaklık bulunduktan sonra tek yapmamız gereken imgeyi $w_r, w_g, w_b$ ağırlıklarını kullanarak gri seviyeye çevirip, enerji fonksiyonumuzun değerini kontrol etmek. Bu çalışmaya özel ağırlıkları bulmak için kullanılacak en hızlı yöntem deneme yanılma yöntemidir. Ağırlıkları belirlemek için üç ağırlık değeri de sıfırdan başlayarak 0.1 artımlarla artırılarak enerji fonksiyonunun değeri hesaplanır. Denenmesi gerek ağırlık kırmızı kanal için 11, yeşil kanal için 11 ve mavi kanal için 11 tanedir. Ancak  $w_r+w_g+w_b=1$ şartının da sağlanması gerektiğinden denenebilecek toplam 66 farklı ağırlık çifti vardır. Ağırlıklardan bazıları aşağıdaki tabloda verilmiştir.
 
-|--- |--- |--- |--- |--- |--- |--- |--- |--- |--- |--- |--- |--- |--- |
+|||||||||||||||
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |0.0|0.0|0.0|0.0|0.0|0.3|0.3|0.3|0.3|0.6|0.6|0.6|0.6|1.0|
 |0.0|0.1|0.4|0.7|1.0|0.0|0.3|0.6|0.7|0.0|0.2|0.3|0.4|0.0|
 |1.0|0.9|0.6|0.3|0.0|0.7|0.4|0.1|0.0|0.4|0.2|0.1|0.0|0.0|

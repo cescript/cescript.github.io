@@ -19,7 +19,7 @@ Sudoku bulmacasının çözümü için ilk yapmamız gereken $9\times 9$ luk bü
 Bağlantılı bileşenleri tespit edilmesi için girdi resminin ikili kodlanması (siyah-beyaz dönüşümü) gerekmektedir. Bunun için IMLAB kütüphanesinde yer alan `imthreshold` fonksiyonu kullanılabilir. Ancak resmin içeriğine dayalı en iyi eşik değerini bulan [Otsu Yöntemi ile Adaptif Eşikleme]({% post_url 2012-07-24-otsu-metodu-ile-adaptif-esikleme %}) algoritmasını dahi kullandığımızda girdi görüntüsünün aydınlanmasının homojen dağılımlı olmaması durumunda görüntünün bazı bölgeleri bağlantılı bileşen etiketlemesi için istediğimiz girdiyi üretmeyecektir. Bu gibi imgelerin üzerinde aydınlanmasnın homojen dağılımlı olmadığı görüntülerde küresel(global) eşik değeri yerine yerel (local) eşik değerleri kullanılmalıdır. Bu yazımızda da IMLAB kütüphanesinde yer alan yerel eşikleme fonksiyonu `imbinarize` kullanılacaktır. Bu fonksiyon görüntüyü $K \times L$ büyüklüğündeki bir kayar pencere ile tarayarak, her bir gözeği, $K \times L$ pencere içerisindeki ortalama değere göre siyah yada beyaza çevirmektedir. Örnek bir girdi görüntüsü için sabit eşik, Otsu yöntemi ile bulunan eşik ve yerel eşikleme sonucu elde edilen görüntüler aşağıda verilmiştir.
 
 | Gri İmge   |  Sabit Eşik = 127 | Sabit Eşik = Otsu Eşiği | Yerel Eşik  |
-|:----------:|:-----------------:||:----------------------:|:-----------:|
+|:----------:|:-----------------:|:----------------------:|:-----------:|
 ![Gri İmge][threshold_gray] | ![Sabit Eşik ile Eşikleme][threshold_constant] | ![Otsu Yöntemi ile Eşikleme][threshold_otsu] | ![Yerel Eşik Yöntemi ile Eşikleme][threshold_local]
 
 Sudoku ızgarasını ayrıştırmak için, girdi imgeleri yerel eşik algoritması ile ikili kodlandıktan sonra elde edilen imge üzerinde bağlantılı bileşen etiketleme yöntemi kullanılacaktır. IMLAB kütüphanesinde bağlantılı bileşen etiketleme için iki fonksiyon bulunmaktadır. İlk fonksiyon `bwlabel` girdi olarak aldığı ikili imge boyutlarında bir matris içerisinde her gözeğe karşı gelen bleşen numarasını çıktı olarak vermektedir. İkinci fonksiyon `bwconncomp` her bağlantılı bileşenlere ait $x,y$ noktalarını bir `vector_t` yapısı içerisinde döndürmektedir. Sudoku ızgarasını ayrıştırmak için ihtiyacımız olan en büyük bağlantılı bileşeni bulmak olduğundan burada `bwconncomp` fonskiyonunu kullanmak kolaylık sağlayacaktır. Aşağıda sudoku ızgarasının tespiti için yazılan kod bloğu verilmiştir.
@@ -61,7 +61,7 @@ highlight(image, connnectionList[largestID], RGB(120, 200, 120));
 Kodun farklı imgeler üzerinde ürettiği sonuçlardan bazıları aşağıdaki tabloda verilmiştir. Verilen örnek çıktıların bazılarında ızgaranın dışında kalan alanlarında ızgara ile gruplandığı görülmektedir. Ancak sudoku çerçevesinin tespiti için uygulayacağımız bir sonraki yöntemde bu taşmalar bir sorun yaratmayacaktır.
 
 | Başarılı Örnek   |  Başarılı Örnek | Başarılı Örnek | Başarısız Örnek  |
-|:----------:|:-----------------:||:----------------------:|:-----------:|
+|:----------:|:-----------------:|:----------------------:|:-----------:|
 ![Sudoku Tespiti Örnek 1][grid_highlighted_1] | ![Sudoku Tespiti Örnek 2][grid_highlighted_2] | ![Sudoku Tespiti Örnek 3][grid_highlighted_3] | ![Sudoku Tespiti Örnek 4][grid_highlighted_4]
 
 Sudoku çerçevesinin tespiti için uygulayacağımız bir sonraki yöntem görüntüde yer alan çizgi benzeri geometrik şekillerin tespiti için kullanılan [Hough Dönüşümü](http://www.keymolen.com/2013/05/hough-transformation-c-implementation.html) yöntemi olacaktır.
@@ -79,7 +79,7 @@ Hough Dönüşümü, 1972 yılında Richard Duda ve Peter Hart tarafından gör�
 
 Dönüşüm işleminden beklendiği ve tablodan görüleceği üzere, $\theta=135$ seçilmesi durumunda doğru üzerindeki tüm noktaların aynı $\rho$ değerini üretmektedir. Bu olay Hough dönüşümünün temelini oluşturmaktadır.
 
-Hough dönüşümününde kartezyen koordinatlarda yer alan tüm noktalar, $\theta \in \[\theta_{min},\theta_{max}\]$ aralığındaki tüm $\theta$ değerleri için ($\rho,\theta$) parametre setinden oluşan iki boyulu bir uzaya aktarılır ve bu uzayda iki boyutlu biir histogram hesabı yapılır. Tablodan görüldüğü gibi, doğru ($\theta$) değeri seçildiğinde tüm noktalar uzayda tek bir noktaya ($\rho,\theta$) gideceğinden, iki boyutlu histogramın ($\rho,\theta$) noktasında dönüşüm yapılan nokta sayısına eşit bir tepe oluşacaktır. Doğru olmayan $\theta$ değerleri için ($\rho,\theta$) çiftleri farklı konumlara dağılacağından, histogramda bu noktaların değerleri küçük kalacaktır.
+Hough dönüşümününde kartezyen koordinatlarda yer alan tüm noktalar, $\theta \in [\theta_{min},\theta_{max}]$ aralığındaki tüm $\theta$ değerleri için ($\rho,\theta$) parametre setinden oluşan iki boyulu bir uzaya aktarılır ve bu uzayda iki boyutlu biir histogram hesabı yapılır. Tablodan görüldüğü gibi, doğru ($\theta$) değeri seçildiğinde tüm noktalar uzayda tek bir noktaya ($\rho,\theta$) gideceğinden, iki boyutlu histogramın ($\rho,\theta$) noktasında dönüşüm yapılan nokta sayısına eşit bir tepe oluşacaktır. Doğru olmayan $\theta$ değerleri için ($\rho,\theta$) çiftleri farklı konumlara dağılacağından, histogramda bu noktaların değerleri küçük kalacaktır.
 
 `minTheta`= $\theta_{min}$ ve `maxTheta`= $\theta_{max}$ tespit edilmek istenen doğruların en küçük ve en büyük açısını göstermek üzere; Hough dönüşümünü hesaplamak için aşağıdaki kod parçası yazılmıştır. Burada `hough` ismi ile tanımlanan matris yapısı iki boyutlu histogram matrisidir.
 
@@ -110,14 +110,14 @@ for (i = 0; i < length(keyPoints); i++)
 
 Kod incelendiğinde dönüşüm yapılacak noktaların (`keyPoints`), `minTheta=-30` ve `maxTheta=120` aralığında Hough uzayına dönüştürülmekte ve noktaların uzayda düştüğü ($\rho,\theta$) noktasının içerdiği nokta sayısının histogramının hesaplandığı görülür. Yukarıda da belirttiğimiz gibi, `keyPoints` ile verilen noktaların oluşturduğu doğrular, histogram matrisi `hough` içerisinde ($\rho,\theta$) noktasında doğrunun uzunluğuna eşit tepeler oluşturacaktır.
 
-Yukarıda verilen başarılı örnekler için `hough` matrisi görselleştirildiğinde aşağıda verilen görüntü elde edilecektir. Oluşan görüntüde dikey eksende her satır $\theta \in \[-30,120\]$ değerini, yatay eksen ise dönüşüm sonucu buluan $\rho$ değerlerini göstermektedir. 
+Yukarıda verilen başarılı örnekler için `hough` matrisi görselleştirildiğinde aşağıda verilen görüntü elde edilecektir. Oluşan görüntüde dikey eksende her satır $\theta \in [-30,120]$ değerini, yatay eksen ise dönüşüm sonucu buluan $\rho$ değerlerini göstermektedir. 
 
 ![Hough Dönüşümü][hough_transform]
 
 Görüntüdeki parlak noktalar (tepe noktaları, doğru adayları) incelendiğinde toplam 20 nokta göze çarpmaktadır. Bu noktaların da kendi içerisinde $\theta=0$ ve $\theta=90$ açıları etrafında dağıldığı görülmektedir. Tahmin edileceği üzere bu tepe noktaları sudoku ızgarasını oluşturan doğru parçalarıdır. Bu parçalardan belirli bir uzunluktan ($\tau = 0.4 * \min(width,height)$) büyük olan (`hough` matrisinin değeri $\tau$ dan büyük olan) noktalar seçilip, görüntü üzerine çizdirildiğinde aşağıdaki görüntü oluşur.
 
 | Başarılı Örnek   |  Başarılı Örnek | Başarılı Örnek | Başarısız Örnek  |
-|:----------:|:-----------------:||:----------------------:|:-----------:|
+|:----------:|:-----------------:|:----------------------:|:-----------:|
 ![Sudoku Tespiti Örnek 1][all_lines_1] | ![Sudoku Tespiti Örnek 2][all_lines_2] | ![Sudoku Tespiti Örnek 3][all_lines_3] | ![Sudoku Tespiti Örnek 4][all_lines_4]
 
 ### Sudoku Çerçevesinin Bulunması
@@ -177,7 +177,7 @@ else
 kesişim noktasının bulunması işlemi bir önceki adımda elde ettiğimiz dört kenar doğrusuna uygulanması durumunda sudoku çerçevesinin kenar noktaları tespit edilebilir. Aşağıda bu işlemler sonucunda tespit edilen köşe noktaları ve kenar doğruları çizilmiştir.
 
 | Başarılı Örnek   |  Başarılı Örnek | Başarılı Örnek | Başarısız Örnek  |
-|:----------:|:-----------------:||:----------------------:|:-----------:|
+|:----------:|:-----------------:|:----------------------:|:-----------:|
 ![Sudoku Tespiti Örnek 1][all_edges_1] | ![Sudoku Tespiti Örnek 2][all_edges_2] | ![Sudoku Tespiti Örnek 3][all_edges_3] | ![Sudoku Tespiti Örnek 4][all_edges_4]
 
 Bu adımdan sonra [Perspektif Dönüşümü]({% post_url 2013-12-08-perspektif-donusumu %}) yazımızda detaylarından bahsedilen perspektif dönüşümü işlemi uygulanarak sudoku bölgesinin sabit büyüklükteki bir imgeye dönüştürülmesi sağlanacaktır. Bu işlem için öncelikle dönüşüm matrisinin bulunması gerekmektedir. [Perspektif Dönüşümü]({% post_url 2013-12-08-perspektif-donusumu %}) yazımızda incelediğimiz dört nokta kullanılarak perspektif dönüşüm matrisinin bulunması işlemi IMLAB kütüphanesinde yer alan `pts2tform` fonksiyonu yardımıyla yapılabilir. Bu fonksiyon ile bulunan dönüşüm matrisi kütüphanede yer alan `imtransform` yöntemi ile girdi imgesine uygulanarak sudoku bölgesi elde edilir. Aşağıda perpektif düzeltmesi yapmak için kullanılan kod parçası verilmiştir.
@@ -194,7 +194,7 @@ imtransform(image, transform, sudoku);
 Verilen kodda `pts2tform` yardımı ile bir önceki adımda tespit edilen `corners` noktalarını, `destination` olarak belirlenen $360 \times 360$ bir imgenin köşe noktalarına taşıyacak dönüşüm matrisi hesaplanmıştır. Ardından bu matris girdi imgesine uygulanarak `sudoku` imgesi elde edilmiştir. Aşağıda örnek olarak kullanılan dört imge için elde edilen çıktı imgeleri verilmiştir.
 
 | Başarılı Örnek   |  Başarılı Örnek | Başarılı Örnek | Başarısız Örnek  |
-|:----------:|:-----------------:||:----------------------:|:-----------:|
+|:----------:|:-----------------:|:----------------------:|:-----------:|
 ![Sudoku Tespiti Örnek 1][sudoku_1] | ![Sudoku Tespiti Örnek 2][sudoku_2] | ![Sudoku Tespiti Örnek 3][sudoku_3] | ![Sudoku Tespiti Örnek 4][sudoku_4]
 
 Bu aşamadan sonra yapılması gereken elde edilen sudoku imgesini parçalara yaırarak rakam tanıma işlemi yapmaktır. Ancak şu ana kadar kullandığım yöntemler istenilen sınıflandırma başarısını elde edemediği için rakam tanıma ile ilgili detayları daha sonraya bırakıyorum. Projenin güncel ve kısmen çalışır haline yazının [GitHub sayfası](https://github.com/cescript/imlab_sudoku_solver_app) üzerinden erişebilirsiniz.

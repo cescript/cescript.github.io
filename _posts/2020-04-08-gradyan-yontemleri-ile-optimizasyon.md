@@ -71,8 +71,7 @@ $$
 \begin{bmatrix}
 \frac{\partial f(x,y)}{\partial x} \\
 \frac{\partial f(x,y)}{\partial y}
-\end{bmatrix}
-=
+\end{bmatrix}=
 \begin{bmatrix}
 2x \\
 4y
@@ -86,8 +85,7 @@ $$
 \begin{bmatrix}
 \frac{\partial^2 f(x,y)}{\partial x \partial x} && \frac{\partial^2 f(x,y)}{\partial x \partial y}\\
 \frac{\partial^2 f(x,y)}{\partial y \partial x} && \frac{\partial^2 f(x,y)}{\partial y \partial y}
-\end{bmatrix}
-=
+\end{bmatrix}=
 \begin{bmatrix}
 2 & 0 \\
 0 & 4

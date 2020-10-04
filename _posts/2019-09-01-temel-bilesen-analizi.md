@@ -24,7 +24,9 @@ Yukarıda verilen şekilde verilen $\mathbf{x} \in \mathbb{R}^D$, $D$ boyutlu uz
 
 Bu durumda Pisagor teoremi yardımı ile izdüşüm hatasının karesi aşağıdaki formül ile hesaplanabilir.
 
-$$\left\lVert\mathbf{y}-\mathbf{x}\right\lVert ^2 =\left\lVert\mathbf{x}\right\lVert ^2-\left\lVert\mathbf{y}\right\lVert ^2 = \mathbf{x}^\intercal\mathbf{x}-\mathbf{p}^\intercal \mathbf{x}\mathbf{x}^\intercal\mathbf{p} \tag{1} \label{1}$$ 
+$$
+\left\lVert\mathbf{y}-\mathbf{x}\right\lVert ^2 =\left\lVert\mathbf{x}\right\lVert ^2-\left\lVert\mathbf{y}\right\lVert ^2 = \mathbf{x}^\intercal\mathbf{x}-\mathbf{p}^\intercal \mathbf{x}\mathbf{x}^\intercal\mathbf{p} \tag{1} \label{1}
+$$ 
 
 Elimizde $\mathbf{x}$ noktalarından $N$ tane olması durumunda Denklem $\ref{1}$ kullanılarak ortalama karesel hata $\mathcal{L}\left (\mathbf{p} \right )$ aşağıdaki şekilde yazılabilir: 
 

@@ -29,8 +29,7 @@ a_{21} & a_{22}\\
 1\\
 -1\\
 \end{array}
-\right ]
-=
+\right ]=
 \left [
 \begin{array}{c}
 a_{11}-a_{12}\\
@@ -56,8 +55,7 @@ a_{21} & a_{22}\\
 1\\
 -1\\
 \end{array}
-\right ]
-=
+\right ]=
 \left [
 \begin{array}{r}
 \lambda\\

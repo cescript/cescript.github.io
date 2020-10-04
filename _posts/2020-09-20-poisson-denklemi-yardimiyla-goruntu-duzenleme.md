@@ -66,7 +66,6 @@ $$
 &&&&\dots \\
 \end{bmatrix}
 }_{\mathbf{P}}
-
 \underbrace{
 \begin{bmatrix}
 \dots \\ I(x,y-1) \\ \dots\\
@@ -75,10 +74,7 @@ I(x-1,y) \\ I(x,y) \\ I(x+1,y)\\
 \hline
 \dots \\I(x,y+1) \\ \dots
 \end{bmatrix}
-}_{\mathbf{I(\Omega)}}
-
-=
-
+}_{\mathbf{I(\Omega)}}=
 \underbrace{
 \begin{bmatrix}
 \dots \\ \dots \\ \dots \\
@@ -128,16 +124,13 @@ $$
 &&&&\dots \\
 &&&&\dots \\
 \end{bmatrix}
-
 \begin{bmatrix}
 \dots \\ \dots \\ \dots\\
 \hline
 \dots \\ I(x,y) \\ I(x+1,y)\\ 
 \hline
 \dots \\I(x,y+1) \\ \dots
-\end{bmatrix}
-
-=
+\end{bmatrix}=
 \begin{bmatrix}
 \dots \\ \dots \\ \dots \\
 \hline
@@ -162,8 +155,7 @@ a_{11} & \dots & a_{1n} \\
 \vdots & \ddots & \vdots \\ 
 a_{n1} & \dots & a_{nn}
 \end{bmatrix}
-}_{A}
-=
+}_{A}=
 \underbrace{
 \begin{bmatrix}
 a_{11} & \dots & 0 \\

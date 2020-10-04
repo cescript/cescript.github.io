@@ -67,8 +67,7 @@ $$
 \begin{bmatrix}
 \frac{\partial E(\mathbf{w}^{(1)},b^{(1)})}{\partial\mathbf{w}^{(1)}}\\
 \frac{\partial E(\mathbf{w}^{(1)},b^{(1)})}{\partial b^{(1)}}
-\end{bmatrix}
-=
+\end{bmatrix}=
 \begin{bmatrix}
 {\delta_n^{(1)} \mathbf{x}_{n}^{(1)}}\\
 {\delta_n^{(1)}}

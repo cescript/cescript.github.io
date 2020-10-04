@@ -97,31 +97,26 @@ işlemi ile bulunur. Burada $W_{rs}$ matrisi her satırın da 8 komşu için ağ
   
 Bu imgede yer alan gözekler için oluşturulan ağırlık matrisi $W_{rs}$ aşağıdaki şekilde olacaktır. Matriste birinci satır 1. gözeğin, ikinci satır 2. gözeğin, dokuzuncu satır 9. gözeğin komşularına olan uzaklıklarını barındıracaktır.  
   
-\\begin{equation}  
-\left \[  
-\\begin{array}{c}  
-U'(1)\\\\U'(2)\\\\U'(3)\\\\U'(4)\\\\U'(5)\\\\U'(6)\\\\U'(7)\\\\U'(8)\\\\U'(9)  
-\\end{array}  
-\right \] =  
-\left \[  
-\\begin{array}{ccccccccc}1 & w_{1}^{2} & 0 & w_{1}^{4} & w_{1}^{5} &
-0 & 0 & 0 & 0\\\\w_{2}^{1} & 1 & w_{2}^{3} & w_{2}^{4} & w_{2}^{5} &
-w_{2}^{6} & 0 & 0 & 0\\\\0 & w_{3}^{2} & 1 & 0 & w_{3}^{5} &
-w_{3}^{6} & 0 & 0 & 0\\\\w_{4}^{1} & w_{4}^{2} & 0 & 1 & w_{4}^{5} &
-0 & w_{4}^{7} & w_{4}^{8} & 0\\\\w_{5}^{1} & w_{5}^{2} & w_{5}^{3}
-& w_{5}^{4} & 1 & w_{5}^{6} & w_{5}^{7} & w_{5}^{8} &
-w_{5}^{9}\\\\0 & w_{6}^{2} & w_{6}^{3} & 0 & w_{6}^{5} & 1 & 0 &
-w_{6}^{8} & w_{6}^{9}\\\\0 & 0 & 0 & w_{7}^{4} & w_{7}^{5} & 0 & 1 &
-w_{7}^{8} & 0\\\\0 & 0 & 0 & w_{8}^{4} & w_{8}^{5} & w_{8}^{6} &
-w_{8}^{7} & 1 & w_{8}^{9}\\\\0 & 0 & 0 & 0 & w_{9}^{5} & w_{9}^{6} &
-0 & w_{9}^{8} & 1\\\\\\end{array}  
-\right \]^{-1}  
-\left \[  
-\\begin{array}{c}  
-U(1)\\\\U(2)\\\\U(3)\\\\U(4)\\\\U(5)\\\\U(6)\\\\U(7)\\\\U(8)\\\\U(9)  
-\\end{array}  
-\right \]  
-\\end{equation}  
+$$  
+\begin{bmatrix}
+U'(1)\\ U'(2)\\ U'(3)\\ U'(4)\\ U'(5)\\ U'(6)\\ U'(7)\\ U'(8)\\ U'(9) 
+\end{bmatrix}=
+\begin{bmatrix}
+1 & w_{1}^{2} & 0 & w_{1}^{4} & w_{1}^{5} & 0 & 0 & 0 & 0\\
+w_{2}^{1} & 1 & w_{2}^{3} & w_{2}^{4} & w_{2}^{5} & w_{2}^{6} & 0 & 0 & 0\\
+0 & w_{3}^{2} & 1 & 0 & w_{3}^{5} &w_{3}^{6} & 0 & 0 & 0\\
+w_{4}^{1} & w_{4}^{2} & 0 & 1 & w_{4}^{5} &0 & w_{4}^{7} & w_{4}^{8} & 0\\
+w_{5}^{1} & w_{5}^{2} & w_{5}^{3} & w_{5}^{4} & 1 & w_{5}^{6} & w_{5}^{7} & w_{5}^{8} &
+w_{5}^{9}\\
+0 & w_{6}^{2} & w_{6}^{3} & 0 & w_{6}^{5} & 1 & 0 & w_{6}^{8} & w_{6}^{9}\\
+0 & 0 & 0 & w_{7}^{4} & w_{7}^{5} & 0 & 1 & w_{7}^{8} & 0\\
+0 & 0 & 0 & w_{8}^{4} & w_{8}^{5} & w_{8}^{6} & w_{8}^{7} & 1 & w_{8}^{9}\\
+0 & 0 & 0 & 0 & w_{9}^{5} & w_{9}^{6} & 0 & w_{9}^{8} & 1\\ 
+\end{bmatrix}^{-1} 
+\begin{bmatrix}
+U(1)\\U(2)\\U(3)\\U(4)\\U(5)\\U(6)\\U(7)\\U(8)\\U(9) 
+\end{bmatrix}
+$$
   
 Yukarıdaki formulasyonda da gösterildiği üzere yapmamız gereken işlemde bu matrisin tersine ihtiyacımız vardır. Matrisin boyutu ($MN \times MN$) resmin boyutunun ($MN$) karesi ile hesaplandığından işlem yükü oldukça ağır sanılabilir ancak matrisin her satırında en fazla 8 eleman 0 dan farklı olduğundan uygun algoritmalarla tersi bulma işlemi oldukça hızlandırılabilir. Bu çalışmada Gauss-Seidel yöntemi kullanılarak $U$ ve $V$ kanalları bulunmuştur.  
   

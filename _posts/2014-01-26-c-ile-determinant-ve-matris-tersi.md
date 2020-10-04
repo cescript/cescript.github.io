@@ -20,7 +20,7 @@ Yazımın başlığı matris tersi almak olduğu için diğer kavramların uzun 
 ### Determinant:
 
   
-Pek çok kaynakta verildiği tarifle determinant kare matrisler üzerinde tanımlanmış özel bir işlemdir! Peki neden bulunur determinant, fiziksel bir anlamı yok mudur? Tabi ki vardır ancak nedense bahsedilmez ve bu alanda çalışanlara ezber olarak öğretilir. Determinant (tutarlılık) bir matrisin tersinin olup olmadığı hakkında bilgi veren ve değeri girdi vektöründen elde edilmiş paralel kenarın (2 boyut için) hacmine eşit olan bir büyüklüktür. Önce geometrik olarak bu söylemimizi doğrulayalım ve $2\\times 2$ matris için yani iki adet vektör için herhangi bir formül kullanmadan determinant hesabını yapalım.  
+Pek çok kaynakta verildiği tarifle determinant kare matrisler üzerinde tanımlanmış özel bir işlemdir! Peki neden bulunur determinant, fiziksel bir anlamı yok mudur? Tabi ki vardır ancak nedense bahsedilmez ve bu alanda çalışanlara ezber olarak öğretilir. Determinant (tutarlılık) bir matrisin tersinin olup olmadığı hakkında bilgi veren ve değeri girdi vektöründen elde edilmiş paralel kenarın (2 boyut için) hacmine eşit olan bir büyüklüktür. Önce geometrik olarak bu söylemimizi doğrulayalım ve $2\times 2$ matris için yani iki adet vektör için herhangi bir formül kullanmadan determinant hesabını yapalım.  
   
 ![Determinant Hesaplama][determinant]
   
@@ -115,14 +115,14 @@ double *matris_bol(double *A,double *B,int M,int K)
        int d,satir,sutun;
        double eps = 10e-10;
        double diag;
-       
+
        double *matris = (double*) malloc(M*(M+K)*sizeof(double));
        double *sonuc  = (double*) malloc(M*K*sizeof(double));
-       
+
        memcpy(matris,A,M*M*sizeof(double));
        memcpy(matris+M*M,B,M*K*sizeof(double));
        //matris = [A B];
-       
+
        for(d=0; d<M; d++) {//diyagon üzerinde hareket edeceğiz matris[d][d]
               
               diag = matris[d*M+d]; 
@@ -150,7 +150,7 @@ double *matris_bol(double *A,double *B,int M,int K)
                      break;
                      }
               }
-       
+
               for (satir = 0; satir < M; satir++) {
                      double katsayi = -matris[satir+M*d]/matris[d*M+d];
 
@@ -160,9 +160,9 @@ double *matris_bol(double *A,double *B,int M,int K)
                      }
               }/*satır sutun for döngüsü sonu*/
        } /* diyagonal tarama bitişi*/
-       
+
        for(satir=0; satir<M; satir++) {
-       
+
                      double normalize = matris[satir+M*satir];
                      
                      for(sutun=0; sutun<M+K; sutun++) {         
@@ -176,7 +176,7 @@ double *matris_bol(double *A,double *B,int M,int K)
 }
 ```
 
-Kodu adım adım incelemek gerekirse ilk yapılan işlemler kendi notasyonumuzla matris $\left\[A\lvert B\right\]$ şeklinde tutacağımız ve üzerinde satır/sütun işlemleri yapacağımız ve sonucu saklayacağımız sonuc göstericilerini tanımlamak. Ardından mavi ile gösterilen kısımda satır işlemleri yapılarak sol tarafta birim matris elde edilmeye çalışılmaktadır. Yazımızı kodun çalışmasına ilişkin bir örnekle bitirecek olursak;
+Kodu adım adım incelemek gerekirse ilk yapılan işlemler kendi notasyonumuzla matris $\left [A\lvert B\right ]$ şeklinde tutacağımız ve üzerinde satır/sütun işlemleri yapacağımız ve sonucu saklayacağımız sonuc göstericilerini tanımlamak. Ardından mavi ile gösterilen kısımda satır işlemleri yapılarak sol tarafta birim matris elde edilmeye çalışılmaktadır. Yazımızı kodun çalışmasına ilişkin bir örnekle bitirecek olursak;
 
 ```c
 //1.sütun 2.sütun 3.sütun

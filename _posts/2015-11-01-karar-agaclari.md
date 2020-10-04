@@ -210,7 +210,7 @@ void karar_agaci(double *data, int *label, int *tree[2], int Nsample, int Nlengt
 
 Bu kod parçası ikiye_bol fonksiyonunu ilk çağrım için uygun parametrelerle çağırmak için yazılmıştır. İlk çağrımda veri herhangi bir gruba ayrılmadığından verinin tüm elemanları `idx` vektörü içerisinde fonksiyona gönderilmiştir. Ayrıca karar ağacının çok fazla büyümemesi için de bir derinlik sınırı koyulmuştur.  
   
-Kod içerisinde karar ağacı tree adlı $2\times P$ matriste saklanmıştır. Burada $P$ ağaçtaki düğüm sayısını göstermekte ve $P=2^{max_depth}$
+Kod içerisinde karar ağacı tree adlı $2\times P$ matriste saklanmıştır. Burada $P$ ağaçtaki düğüm sayısını göstermekte ve $P=2^\text{max_depth}$
 işlemi ile hesaplanmaktadır. Matrisin ilk satırında o düğüme ulaşan bir veriye atanacak etiket bilgisi, ikinci satırında ise o düğümü en iyi ayıran özniteliğin sıra numarası tutulmaktadır. Örnek tablomuz için oluşan ağaç yapısının içeriği şu şekildedir.  
 
     TREE\[1\]: Oz Nitelik: 0, Etiket: -1
@@ -221,7 +221,7 @@ işlemi ile hesaplanmaktadır. Matrisin ilk satırında o düğüme ulaşan bir 
     TREE\[6\]: Oz Nitelik: 0, Etiket: -1
     TREE\[7\]: Oz Nitelik: 0, Etiket: +1
 
-Bu tabloya göre karar aşamasında ilkin sıfır numaralı özniteliğe (yaş>65) bakıyoruz. Eğer bu özniteliğin değeri sıfır ise iki numaralı düğüme (TREE\[2\]) geçerek üç numaralı özniteliğe (diyabet), bakıyoruz. Bu özniteliğin değeri negatif ise dört numaralı düğüme (TREE\[4\]) geçiyor ve sonucu -1 olarak, pozitif ise beş numaralı düğüme geçerek sonucu +1 olarak döndürüyoruz. Yaş>65 özniteliğinin değeri bir ise de üç numaralı düğüme (TREE\[3\]) geçiyoruz. Bu düğümde sigara özniteliğini kontrol ediyor ve öznitelik sıfır ise altı numaralı düğüme geçerek sonucu -1, öznitelik bir ise de yedi numaralı düğüme geçerek sonucu +1 olarak belirliyoruz.  
+Bu tabloya göre karar aşamasında ilkin sıfır numaralı özniteliğe (yaş>65) bakıyoruz. Eğer bu özniteliğin değeri sıfır ise iki numaralı düğüme (TREE[2]) geçerek üç numaralı özniteliğe (diyabet), bakıyoruz. Bu özniteliğin değeri negatif ise dört numaralı düğüme (TREE[4]) geçiyor ve sonucu -1 olarak, pozitif ise beş numaralı düğüme geçerek sonucu +1 olarak döndürüyoruz. Yaş>65 özniteliğinin değeri bir ise de üç numaralı düğüme (TREE[3]) geçiyoruz. Bu düğümde sigara özniteliğini kontrol ediyor ve öznitelik sıfır ise altı numaralı düğüme geçerek sonucu -1, öznitelik bir ise de yedi numaralı düğüme geçerek sonucu +1 olarak belirliyoruz.  
   
 Sınıflama için yaptığımız bu işlemleri kodlamak oldukça kolaydır ve hız sadece ağacın derinliğine bağlıdır. Sınıflama için yazılan kod şu şekildedir.
 

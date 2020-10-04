@@ -144,7 +144,7 @@ imwrite(bw_otsu, "..//data//lena_otsu.bmp");
 Yukarıda bahsettiğim üzere, aşağıda seçilen eşik değerinin işlemin sonucuna olan etkisi görünmektedir. İkinci resim $T=75$ eşik değeri ile eşiklendiğinden yüz kısmında bulunan pek çok veri kaybolmuş, üçüncü resim yüksek bir eşik değeri $T=180$ ile eşiklendiğinden neredeyse tüm bilgiler kaybolmuştur. Son resim ise adaptif eşik değeri bulunarak $T=115$ eşiklenmiştir ve bu sayede resim üzerindeki pek çok bilgi korunmuştur.  
   
 | Gri İmge   |  $T=75$ ile Eşikleme Sonucu | $T=180$ ile Eşikleme Sonucu | $T=147$(Otsu) ile Eşikleme Sonucu  |
-|:----------:|:-----------------:||:----------------------:|:-----------:|
+|:----------:|:-----------------:|:----------------------:|:-----------:|
 ![Gri İmge][lena_otsu_threshold] | ![T=75 ile Eşikleme Sonucu][lena_otsu_threshold_75] | ![T=180 ile Eşikleme Sonucu][lena_otsu_threshold_180] | ![T=147(Otsu) ile Eşikleme Sonucu][lena_otsu_threshold_otsu]
 
   

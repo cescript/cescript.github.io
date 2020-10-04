@@ -162,6 +162,7 @@ for(h=0; h < height(out); h++)
 Dikkat edilecek olursa kodlamadaki tek değişimin T matrisi yerine iT olmadığı görülür. Bahsettiğim üzere bu değişim sonrasında for döngülerimizi çıkış görüntüsü üzerindeki koordinatlarda döndüreceğimizden `x` ve `y` (yani x' ve y') değerleri giriş görüntüsünde yerine yazılacaktır. Artık basitten karmaşığa doğru örneklerimize geçebiliriz.
 
 |Orjinal İmge| 45° Döndürme | 90° Döndürme | 45° Döndürme ve Yarıya Ölçekleme|
+|:----------:|:-----------------:|:----------------------:|:-----------:|
 ![affine dönüşümü örnek][affine] | ![affine dönüşümü örnek][affine1] | ![affine dönüşümü örnek][affine2] | ![affine dönüşümü örnek][affine3]
 | `rot2tform(128, 128, 0, 1.0)` | `rot2tform(128, 128, 45, 1.0)` | `rot2tform(128, 128, 90, 1.0)` | `rot2tform(128, 128, 45, 0.5)` |
 | $$T= \begin{bmatrix} 1.0 & 0.0 & 0.0 \\ 0.0 & 1.0 & 0.0 \\ 0.0 & 0.0 & 1.0 \end{bmatrix}$$ | $$T= \begin{bmatrix} 0.7 & -0.7 & 128.0 \\ 0.7 & 0.7 & -53.0 \\ 0.0 & 0.0 & 1.0 \end{bmatrix}$$ | $$T= \begin{bmatrix} 0.0 & -1.0 & 256.0 \\ 1.0 & 0.0 & 0.0 \\ 0.0 & 0.0 & 1.0 \end{bmatrix}$$ | $$T= \begin{bmatrix} 1.4 & -1.4 & 128.0 \\ 1.4 & 1.4 & -234.0 \\ 0.0 & 0.0 & 1.0 \end{bmatrix}$$ |
@@ -213,8 +214,7 @@ $$
 \begin{bmatrix} 
 x'\\
 y'  
-\end{bmatrix}  
-=  
+\end{bmatrix}=  
 \begin{bmatrix}
 x & y & 1 & 0 & 0 & 0 & -xx' & -yx'\\  
 &&&&&&&\\  
@@ -296,11 +296,13 @@ imwrite(test_aligned, "../data/test_aligned.bmp");
   
 Yazılan kod okunan sudoku resminin dört köşesini girdi olarak aldıktan sonra sudoku karesini $512 \times 512$ lik bir karenin içerisine hizalayacak dönüşüm matrisini bulur ve dönüşümü gerçekleştirir. Kodumuzun girdi ve çıktıları şu şekilde olacaktır.
 
+|Girdi İmgesi|Hizalama İçin Seçilen Noktalar|Hizalanmış İmge|
 |:-------:|:----:|:----:|
 ![perspektif dönüşümü örnek][sudoku1] | ![perspektif dönüşümü örnek][sudoku2] | ![perspektif dönüşümü örnek][sudoku3]
 
 Başka bir uygulama olarak da rubik küp örneğine bakalım. Burada amacımız verilen rubik küpe yukarıdan baksaydık nasıl bir görüntü elde ederdik sorusuna cevap bulmak.
 
+|Girdi İmgesi|Hizalama İçin Seçilen Noktalar|Hizalanmış İmge|
 |:-------:|:----:|:----:|
 ![perspektif dönüşümü örnek][rubik1] | ![perspektif dönüşümü örnek][rubik2] | ![perspektif dönüşümü örnek][rubik3]
 
