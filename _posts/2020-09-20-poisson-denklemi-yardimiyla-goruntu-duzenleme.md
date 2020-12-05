@@ -209,7 +209,7 @@ Aşağıda yöntemin farklı imgeler üzerinde çalıştırılması ile elde edi
 ![Poisson Image Editing][turkey_background] | ![Poisson Image Editing][turkey_foreground] | ![Poisson Image Editing][turkey_foreground_mask] | ![Poisson Image Editing][turkey_blended_image] |
 ![Poisson Image Editing][tshirt_background] | ![Poisson Image Editing][tshirt_foreground] | ![Poisson Image Editing][tshirt_foreground_mask] | ![Poisson Image Editing][tshirt_blended_image] |
 
-Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [poisson_image_editing](https://github.com/cescript/poisson_image_editing) GitHub sayfası üzerinden erişebilirsiniz.
+Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [poisson_image_editing](https://github.com/cescript/imlab_poisson_image_editing) GitHub sayfası üzerinden erişebilirsiniz.
 
 **Referanslar**
 * Pérez, Patrick, Michel Gangnet, and Andrew Blake. "Poisson image editing." ACM SIGGRAPH 2003 Papers. 2003. 313-318.

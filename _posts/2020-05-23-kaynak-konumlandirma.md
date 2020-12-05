@@ -119,7 +119,7 @@ Yazılan kod parçası $P_0=(0,0)$ ve $P_0=(10,10)$ gibi farklı iki başlangı�
 
 Verilen grafiklerde, arka plan renkleri ve kontur çizgileri $P=(x,y)$ seçilmesi durumunda elde edilecek hatayı göstermektedir. Siyah ile işaretlenen nokta iterasyonun başlangıç noktasını, kırmızı nokta ise iterasyonlar sonucunda ulaşılan noktayı göstermektedir. Turuncu ile gösterilen noktalar her iterasyon sonucunda gidilen yeni noktayı göstermektedir.
 
-Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [source_localization](https://github.com/cescript/source_localization) GitHub sayfası üzerinden erişilebilirsiniz.
+Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [source_localization](https://github.com/cescript/imlab_source_localization) GitHub sayfası üzerinden erişilebilirsiniz.
 
 **Referanslar**
 * Beck, Amir. Introduction to nonlinear optimization: Theory, algorithms, and applications with MATLAB. Vol. 19. Siam, 2014.

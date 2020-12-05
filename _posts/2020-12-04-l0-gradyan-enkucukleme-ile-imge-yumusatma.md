@@ -190,7 +190,7 @@ Yazılan kod parçası farklı imgeler üzerinde çalıştırılarak aşağıdak
 
 Verilen tablo incelendiğinde önerilen yöntemin pencere boyundan bağımsız olarak çok geniş alanlarda da yumuşatma işlemi yapabildiği ve bunu yaparken görüntüyü herhangi bir şekilde bulanıklaştırmadığı görülmektedir. 
 
-Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [Image Smoothing](https://github.com/cescript/image_smoothing) GitHub sayfası üzerinden erişebilirsiniz.
+Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [Image Smoothing](https://github.com/cescript/imlab_image_smoothing) GitHub sayfası üzerinden erişebilirsiniz.
 
 **Referanslar**
 * Xu, Li, et al. "Image smoothing via L 0 gradient minimization." Proceedings of the 2011 SIGGRAPH Asia Conference. 2011.

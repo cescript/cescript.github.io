@@ -121,7 +121,7 @@ Kodun farklı maske ve imgelerle çalıştırılması sonucu elde edilen bazı �
 ![tümlev imge filtre uygulaması][integral_image_sample1]
 ![tümlev imge filtre uygulaması][integral_image_sample2]
 
-Çalışmaya ait ilave dosya ve belgeler de [https://github.com/cescript/cescript_blog_integral_image](https://github.com/cescript/cescript_blog_integral_image) github sayfasında paylaşılmıştır. Çalışmada kullanılan IMLAB kütüphanesi hakkında daha detaylı bilgi almak isterseniz de [IMLAB Göruntü İşleme Kütüphanesi]({% post_url 2018-12-03-imlab-goruntu-isleme-kutuphanesi %}) yazımıza göz atabilirsiniz.
+Çalışmaya ait ilave dosya ve belgeler de [https://github.com/cescript/cescript_blog_integral_image](https://github.com/cescript/imlab_integral_image) github sayfasında paylaşılmıştır. Çalışmada kullanılan IMLAB kütüphanesi hakkında daha detaylı bilgi almak isterseniz de [IMLAB Göruntü İşleme Kütüphanesi]({% post_url 2018-12-03-imlab-goruntu-isleme-kutuphanesi %}) yazımıza göz atabilirsiniz.
 
 **Referanslar**
 * Crow, Franklin C. "Summed-area tables for texture mapping." ACM SIGGRAPH computer graphics. Vol. 18. No. 3. ACM, 1984.

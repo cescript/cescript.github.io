@@ -114,7 +114,7 @@ olarak hesaplanır. Aşağıda bazı örnek durumlar için gerekli iterasyon say
 
 Tablodan görüldüğü üzere gerekli iterasyon/örnekleme sayısı istenilen başarı oranına bağlı olarak hızla artmaktadır. Ancak, $K=10$ olarak seçilen bir problemde $q=0.4$ aykırı veri oranında dahi yöntem ortalama 760 iterasyon sonucunda $99\%$ olasılıkla doğru bir sonuç üretmesi beklenmektedir.
 
-Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [ransac_algorithm](https://github.com/cescript/ransac_algorithm) GitHub sayfası üzerinden erişebilirsiniz.
+Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [ransac_algorithm](https://github.com/cescript/imlab_ransac_algorithm) GitHub sayfası üzerinden erişebilirsiniz.
 
 **Referanslar**
 * Fischler, Martin A., and Robert C. Bolles. "Random sample consensus: a paradigm for model fitting with applications to image analysis and automated cartography." Communications of the ACM 24.6 (1981): 381-395.

@@ -106,7 +106,7 @@ Temel Bileşen Analizi her ne kadar eğitimcisiz boyut indirgeme yöntemleri ara
 
 Bu ölçümlere ait TBA sonucu ise sağdaki grafikte verilmiştir. Dikkat edilecek olursa A ve B sınıfı birinci temel bileşen doğrultusunda en yüksek değişintiyi göstermesine rağmen bu doğrultuda ($y$ ekseni sıfır kabul edildiğinde) A ve B sınıflarının ayrıştırılması mümkün değildir. İncelenen veri ikinci temel bileşen doğrultusunda daha az değişinti göstermesine rağmen bu eksenin ayrıştırma gücü daha yüksektir. Örnekte verildiği gibi sınıfların en büyük değişinti eksenleri etrafında dağılmadığı bir sınıflandırma probleminde, boyut indirgeme sonucu elde edilen öznitelikleri sınıflandırma algoritmaları (ne kadar ileri seviye olursa olsun) ayrıştıramayacaktır. Bu gibi durumların önüne geçmek için etiket bilgisinin kullanılabildiği durumlarda toplam değişintinin en büyük olduğu eksen yerine, sınıfların ayrışımını en iyi yapan ekseni bulmaya çalışan Doğrusal Ayrıştırma Analizi (Linear Discriminant Analysis) gibi yöntemler tercih edilebilir.
 
-Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [cescript_blog_principal_component_analysis](https://github.com/cescript/cescript_blog_principal_component_analysis) GitHub sayfası üzerinden erişilebilir.
+Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [cescript_blog_principal_component_analysis](https://github.com/cescript/imlab_principal_component_analysis) GitHub sayfası üzerinden erişilebilir.
 
 **Referanslar**
 * Jolliffe, Ian. Principal component analysis. Springer Berlin Heidelberg, 2011.
