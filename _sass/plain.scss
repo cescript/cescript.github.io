@@ -243,16 +243,36 @@ main {
 		}
 	}
 
-	// style for the blockquotes
+	// style for the blockquotes (psuedo codes)  
 	blockquote {
 		background: #ecf0f0;
+		counter-reset: lineNumber;
+		position: relative;
+		display: grid;
+		grid-template-columns: 2ch 1fr;
+		padding-left: 2ch;
+		
 		ul {
-			font-family: 'Consolas';
-			font-size: 10pt;
-			display: block;
-			color: 080808;
+			font-family: 'Consolas', Menlo, monospace;
+			line-height: 1.4em;
 			list-style-type: none;
-			padding-inline-start: 20px;
+			padding-inline-start: 4ch;
+			grid-column: 2 / 2;
+		}
+
+		li {
+			counter-increment: lineNumber;
+		}
+		
+		li::before {
+			content: counter(lineNumber) ". ";
+			color: #3d3d3d;
+			left: 0;
+			right: 0;
+			position: absolute;
+			text-align: right;
+			padding-right: 2em;
+			grid-column: 1 / 1;
 		}
 	}
 }
