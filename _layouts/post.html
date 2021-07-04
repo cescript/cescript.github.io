@@ -14,6 +14,21 @@ layout: default
     </ul>
     <div class="post-date"><i class="icon-calendar"></i>{{ page.date | date: date_format }}</div>
   </div>
+  <div class="post-about" onclick="location.href='/';" style="cursor: pointer;">
+    <div class="author">
+    <img src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.plainwhite.name }}" class="author-img"/>
+    <div class="author-text">
+      <p>{{ site.plainwhite.name }}</p>
+      <p>{{ site.plainwhite.tagline }}</p>
+      <p>&copy; {{ "now" | date: "%Y" }} </p>
+    </div>
+    </div>
+    <div class="social">
+      <a href="https://github.com/{{ site.plainwhite.social_links.github }}"><li><i class="icon-github-circled"></i></li></a>
+      <a href="https://www.linkedin.com/{{ site.plainwhite.social_links.linkedIn }}"><li><i class="icon-linkedin-squared"></i></li></a>
+      <a href="https://reddit.com/{{ site.plainwhite.social_links.reddit }}"><li><i class="icon-reddit-circled"></i></li></a>
+    </div>
+  </div>
   <div class="post">
       {{content}}
   </div>
