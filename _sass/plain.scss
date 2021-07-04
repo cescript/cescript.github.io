@@ -251,6 +251,7 @@ main {
 		display: grid;
 		grid-template-columns: 2ch 1fr;
 		padding-left: 2ch;
+		overflow: scroll;
 		
 		ul {
 			font-family: 'Consolas', Menlo, monospace;
