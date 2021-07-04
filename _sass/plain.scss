@@ -5,7 +5,6 @@
 $linkColor: #0A59B0;
 $mobileW: 768px;
 $smallMobileW: 480px;
-$bigScreenW: 1600px;
 
 *,*:before,*:after {
 	box-sizing: border-box;
@@ -36,34 +35,14 @@ h2 {
 	margin: 0.7em 0;
 }
 main {
-	margin: 0 90px;
-	display: flex;
+	max-width: 70rem;
 	height: 100%;
+	margin: 0 auto;
+	padding: 30px;
 
-	@media screen and (min-width: $bigScreenW) {
-		margin: 0 auto;
-		max-width: 1440px;	
-	}
-	@media screen and (max-width: 1280px) {
-		margin: 0 75px;	
-	}
-	@media screen and (max-width: 1024px){
-		margin: 0 35px;	
-	}
-
-	@media screen and (max-width: $mobileW) {
-		margin: 0 10px;
-		flex-direction: column;	
-	}
-	@media screen and (max-width: $smallMobileW) {
-		margin: 0;	
-	}
-
-	.content {
-		@media screen and (min-width: $mobileW + 1){
-			max-width: 100%;
-			margin-left: 0;
-		}
+	@media screen and (max-width: $smallMobileW){
+		padding-left: 15px;
+		padding-right: 15px;
 	}
 }
 
@@ -102,18 +81,7 @@ main {
 }
 .posts, .post-container {
 	list-style-type: none;
-	margin: 45px 30px;
-	@media screen and (max-width: $smallMobileW){
-		margin-left: 20px;
-		margin-right: 20px;
-	}
-	@media screen and (max-width: $mobileW){
-		padding: 0 !important;	
-		margin-top: 0;
-	}
-}
-.post-container {
-	padding-left: 40px;
+	padding: 0 !important;	
 }
 
 .post-about {
@@ -129,7 +97,7 @@ main {
 	.author {
 		display: flex;
 		flex-direction: row;
-		height: 50px;
+		height: min-content;
 		width: 100%;
 
 		.author-text {
@@ -143,7 +111,7 @@ main {
 			}
 		}
 		.author-img {
-			height: 100%;
+			height: 50px;
 			padding-right: 20px;
 		}
 	}
@@ -158,6 +126,10 @@ main {
 			i {
 				font-size: 34px;
 			}
+		}
+
+		@media screen and (max-width: $smallMobileW){
+			display: none;
 		}
 	}
 }
