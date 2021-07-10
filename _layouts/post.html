@@ -6,21 +6,13 @@ layout: default
   <a class="post-link" href="{{ page.url | relative_url }}">
     <h2 class="post-title">{{ page.title | escape }}</h2>
   </a>
-  <div class="post-meta">
-    <ul class="post-categories">
-      {%- for tag in page.categories -%}
-      <li>{{ tag }}</li>
-      {%- endfor -%}
-    </ul>
-    <div class="post-date"><i class="icon-calendar"></i>{{ page.date | date: date_format }}</div>
-  </div>
   <div class="post-about" onclick="location.href='/';" style="cursor: pointer;">
     <div class="author">
     <img src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.plainwhite.name }}" class="author-img"/>
     <div class="author-text">
       <p>{{ site.plainwhite.name }}</p>
       <p>{{ site.plainwhite.tagline }}</p>
-      <p>&copy; {{ "now" | date: "%Y" }} </p>
+      <p>{{ page.date | date: date_format }}</p>
     </div>
     </div>
     <div class="social">
