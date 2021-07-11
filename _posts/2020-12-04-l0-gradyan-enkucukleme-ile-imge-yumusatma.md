@@ -123,14 +123,14 @@ C(h_p,v_p) =
 \end{cases}
 $$
 
-Denklem $\eqref{4}$ ile verilen ifade ve $C$ fonksiyonu birlikte ele alındığında $h_p=0$ ve $v_p=0$ seçilmesi durumunda $E(S^\ast, 0,0) = (\nabla_x S_p)^2 + (\nabla_y S_p)^2$ şeklinde hesaplanacaktır. $h_p,v_p$ değerlerinin sıfırdan farklı seçilmesi durumunda da en mantıklı seçim ikinci terimleri sıfır yapacak olan $h_p=\nabla_x S_p$ ve $v_p=\nabla_y S_p$ seçilmesi olacaktır. Bu drumumda ise toplam hata $E(S^\ast, \nabla_x S_p,\nabla_y S_p) = \frac{lambda}{\beta}$ şeklinde bulunacaktır.
+Denklem $\eqref{4}$ ile verilen ifade ve $C$ fonksiyonu birlikte ele alındığında $h_p=0$ ve $v_p=0$ seçilmesi durumunda $E(S^\ast, 0,0) = (\nabla_x S_p)^2 + (\nabla_y S_p)^2$ şeklinde hesaplanacaktır. $h_p,v_p$ değerlerinin sıfırdan farklı seçilmesi durumunda da en mantıklı seçim ikinci terimleri sıfır yapacak olan $h_p=\nabla_x S_p$ ve $v_p=\nabla_y S_p$ seçilmesi olacaktır. Bu drumumda ise toplam hata $E(S^\ast, \nabla_x S_p,\nabla_y S_p) = \frac{\lambda}{\beta}$ şeklinde bulunacaktır.
 
-Bu durumda $(\nabla_x S_p)^2 + (\nabla_y S_p)^2$ gradyan toplamı $\frac{lambda}{\beta}$ değerinden büyük olması durumunda $h_p=\nabla_x S_p, \; v_p=\nabla_y S_p$ seçilmesi mantıklıyken, diğer durumda $h_p=0, \; v_p=0$ en iyi seçim olacaktır. Bu seçim stratejisi aşağıdaki parçalı fonskiyon ile gösterilebilir.
+Bu durumda $(\nabla_x S_p)^2 + (\nabla_y S_p)^2$ gradyan toplamı $\frac{\lambda}{\beta}$ değerinden büyük olması durumunda $h_p=\nabla_x S_p, \; v_p=\nabla_y S_p$ seçilmesi mantıklıyken, diğer durumda $h_p=0, \; v_p=0$ en iyi seçim olacaktır. Bu seçim stratejisi aşağıdaki parçalı fonskiyon ile gösterilebilir.
 
 $$
 (h_p,v_p) = 
 \begin{cases}
-(0,0), &  (\nabla_x S_p)^2 + (\nabla_y S_p)^2 \leq \frac{lambda}{\beta} \\
+(0,0), &  (\nabla_x S_p)^2 + (\nabla_y S_p)^2 \leq \frac{\lambda}{\beta} \\
 (\nabla_x S_p, \nabla_y S_p), & \text{ diğer}
 \end{cases}
 \tag{5}
