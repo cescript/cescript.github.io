@@ -34,3 +34,4 @@ plugins:
 
 kramdown:
   input: GFM
+  math_engine: katex

@@ -12,3 +12,4 @@ gem "json"
 # add seo tag
 gem "jekyll-seo-tag", "2.1.0"
 gem "kramdown-parser-gfm"
+gem "kramdown-math-katex"
