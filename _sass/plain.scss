@@ -3,8 +3,8 @@
 @import 'syntax';
 
 $linkColor: #0A59B0;
-$mobileW: 768px;
-$smallMobileW: 480px;
+$smallScreenSize: 479px;
+$largeScreenSize: 1023px;
 
 *,*:before,*:after {
 	box-sizing: border-box;
@@ -40,7 +40,7 @@ main {
 	margin: 0 auto;
 	padding: 30px;
 
-	@media screen and (max-width: $smallMobileW){
+	@media screen and (max-width: $smallScreenSize){
 		padding-left: 15px;
 		padding-right: 15px;
 	}
@@ -126,7 +126,7 @@ main {
 			}
 		}
 
-		@media screen and (max-width: $smallMobileW){
+		@media screen and (max-width: $smallScreenSize){
 			display: none;
 		}
 	}
@@ -188,7 +188,7 @@ main {
 			justify-content: center;
 		}
 
-		@media screen and (max-width: 1200px) {
+		@media screen and (max-width: $largeScreenSize) {
 			.thumbnail {display:none;}
 		}
 	}
