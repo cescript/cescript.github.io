@@ -25,28 +25,28 @@ Yukarıda verilen şekilde verilen $\mathbf{x} \in \mathbb{R}^D$, $D$ boyutlu uz
 Bu durumda Pisagor teoremi yardımı ile izdüşüm hatasının karesi aşağıdaki formül ile hesaplanabilir.
 
 $$
-\left\lVert\mathbf{y}-\mathbf{x}\right\lVert ^2 =\left\lVert\mathbf{x}\right\lVert ^2-\left\lVert\mathbf{y}\right\lVert ^2 = \mathbf{x}^\intercal\mathbf{x}-\mathbf{p}^\intercal \mathbf{x}\mathbf{x}^\intercal\mathbf{p} \tag{1} \label{1}
+\left\lVert\mathbf{y}-\mathbf{x}\right\lVert ^2 =\left\lVert\mathbf{x}\right\lVert ^2-\left\lVert\mathbf{y}\right\lVert ^2 = \mathbf{x}^\intercal\mathbf{x}-\mathbf{p}^\intercal \mathbf{x}\mathbf{x}^\intercal\mathbf{p} \tag{1}
 $$ 
 
-Elimizde $\mathbf{x}$ noktalarından $N$ tane olması durumunda Denklem $\ref{1}$ kullanılarak ortalama karesel hata $\mathcal{L}\left (\mathbf{p} \right )$ aşağıdaki şekilde yazılabilir: 
+Elimizde $\mathbf{x}$ noktalarından $N$ tane olması durumunda Denklem $\eqref{1}$ kullanılarak ortalama karesel hata $\mathcal{L}\left (\mathbf{p} \right )$ aşağıdaki şekilde yazılabilir: 
 
-$$\mathcal{L}\left (\mathbf{p} \right )=\frac{1}{N}\sum_{n=1}^{N}\left\lVert\mathbf{y_n}-\mathbf{x_n}\right\lVert ^2 = \underbrace{\frac{1}{N}\sum_{n=1}^{N}{\mathbf{x_n}^\intercal\mathbf{x_n}}}_{2a} - \underbrace{\frac{1}{N}\sum_{n=1}^{N}{\mathbf{p}^\intercal \mathbf{x_n}\mathbf{x_n}^\intercal\mathbf{p}}}_{\text{2b}} \tag{2} \label{2}$$
+$$\mathcal{L}\left (\mathbf{p} \right )=\frac{1}{N}\sum_{n=1}^{N}\left\lVert\mathbf{y_n}-\mathbf{x_n}\right\lVert ^2 = \underbrace{\frac{1}{N}\sum_{n=1}^{N}{\mathbf{x_n}^\intercal\mathbf{x_n}}}_{2a} - \underbrace{\frac{1}{N}\sum_{n=1}^{N}{\mathbf{p}^\intercal \mathbf{x_n}\mathbf{x_n}^\intercal\mathbf{p}}}_{\text{2b}} \tag{2}$$
 
-Amacımız hatanın en küçük olduğu $P$ doğrusunu bulmak olduğundan, $\mathcal{L}\left (\mathbf{p} \right )$ maliyet fonksiyonu $\mathbf{p}$ değişkeni üzerinden optimize edilmelidir. Denklem $\ref{2}$ de yer alan $\text{2a}$ ifadesi $\mathbf{p}$ ye bağlı olmadığından optimizasyona bir katkısı yoktur. Bu terim çıkarıldığında ve $\mathbf{C} = \frac{1}{N}\sum_{n=1}^{N}{\mathbf{x_n}\mathbf{x_n}^\intercal}$ tanımlandığında, $\mathcal{L}\left (\mathbf{p} \right )$ maliyet fonksiyonunun en küçüklenmesi problemi aşağıdaki optimizasyon problemine dönüşür: 
+Amacımız hatanın en küçük olduğu $P$ doğrusunu bulmak olduğundan, $\mathcal{L}\left (\mathbf{p} \right )$ maliyet fonksiyonu $\mathbf{p}$ değişkeni üzerinden optimize edilmelidir. Denklem $\eqref{2}$ de yer alan $\text{2a}$ ifadesi $\mathbf{p}$ ye bağlı olmadığından optimizasyona bir katkısı yoktur. Bu terim çıkarıldığında ve $\mathbf{C} = \frac{1}{N}\sum_{n=1}^{N}{\mathbf{x_n}\mathbf{x_n}^\intercal}$ tanımlandığında, $\mathcal{L}\left (\mathbf{p} \right )$ maliyet fonksiyonunun en küçüklenmesi problemi aşağıdaki optimizasyon problemine dönüşür: 
 
-$$\underset{\mathbb{p}}{\text{maximize}} \quad \mathbf{p}^\intercal \mathbf{C} \mathbf{p} \quad s.t \quad \left \lVert \mathbf{p} \right \lVert ^2=1\tag{3} \label{3}$$
+$$\underset{\mathbb{p}}{\text{maximize}} \quad \mathbf{p}^\intercal \mathbf{C} \mathbf{p} \quad s.t \quad \left \lVert \mathbf{p} \right \lVert ^2=1\tag{3} $$
 
-Denklem $\ref{3}$ ile verilen optimizasyon problemi [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %}) yardımı ile çözülebilir. $\lambda$ Lagrange çarpanı kullanılarak $\ref{3}$ ile verilen maliyet fonksiyonu aşağıdaki şekilde ifade edilir: 
+Denklem $\eqref{3}$ ile verilen optimizasyon problemi [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %}) yardımı ile çözülebilir. $\lambda$ Lagrange çarpanı kullanılarak $\eqref{3}$ ile verilen maliyet fonksiyonu aşağıdaki şekilde ifade edilir: 
 
-$$\mathcal{L}\left (\mathbf{p},\lambda \right ) = \mathbf{p}^\intercal \mathbf{C} \mathbf{p} - \lambda \left ( \mathbf{p}^\intercal \mathbf{p} - 1 \right ) \tag{4} \label{4}$$ 
+$$\mathcal{L}\left (\mathbf{p},\lambda \right ) = \mathbf{p}^\intercal \mathbf{C} \mathbf{p} - \lambda \left ( \mathbf{p}^\intercal \mathbf{p} - 1 \right ) \tag{4}$$ 
 
-Denklem $\ref{4}$ ile verilen maliyet fonksiyonun $\lambda$ değişkenine göre türevi alınıp sıfıra eşitlenirse $\mathbf{p}^\intercal \mathbf{p}=1$ bulunur.
+Denklem $\eqref{4}$ ile verilen maliyet fonksiyonun $\lambda$ değişkenine göre türevi alınıp sıfıra eşitlenirse $\mathbf{p}^\intercal \mathbf{p}=1$ bulunur.
 
-Denklem $\ref{4}$ in $\mathbf{p}$ ye göre türevi alınıp sıfıra eşitlenirse de 
+Denklem $\eqref{4}$ in $\mathbf{p}$ ye göre türevi alınıp sıfıra eşitlenirse de 
 
-$$\frac{\partial{\mathcal{L}\left (\mathbf{p},\lambda \right ) }}{\partial{\mathbf{p}}}=2\mathbf{C}\mathbf{p}-2\lambda \mathbf{p} = 0 \implies \mathbf{C}\mathbf{p} = \lambda \mathbf{p} \tag{5} \label{5} $$ 
+$$\frac{\partial{\mathcal{L}\left (\mathbf{p},\lambda \right ) }}{\partial{\mathbf{p}}}=2\mathbf{C}\mathbf{p}-2\lambda \mathbf{p} = 0 \implies \mathbf{C}\mathbf{p} = \lambda \mathbf{p} \tag{5}$$ 
 
-bulunur. Denklem $\ref{5}$ ifadesi [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\ref{5}$ şeklinde verilen bir problemin çözümünü sağlayan $\mathbf{p}$ vektörleri $\mathbf{C}$ matrisinin özvektörleri, $\lambda$ değerleri ise $\mathbf{C}$ matrisinin özdeğerleri olarak bilinir. Hesaplanabilecek tüm özvektör ve özdeğerler $\mathbf{P}=\left [ \mathbf{p_1},\mathbf{p_2},\dots,\mathbf{p_D} \right ]$ ve $\mathbf{\lambda} = \left [ \lambda_1, \lambda_2, \dots, \lambda_D\right ]$, $\mathbf{X}\in \mathcal{R}^{D\times N}$ matrisinin temel bileşenlerini oluşturmaktadır.
+bulunur. Denklem $\eqref{5}$ ifadesi [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\eqref{5}$ şeklinde verilen bir problemin çözümünü sağlayan $\mathbf{p}$ vektörleri $\mathbf{C}$ matrisinin özvektörleri, $\lambda$ değerleri ise $\mathbf{C}$ matrisinin özdeğerleri olarak bilinir. Hesaplanabilecek tüm özvektör ve özdeğerler $\mathbf{P}=\left [ \mathbf{p_1},\mathbf{p_2},\dots,\mathbf{p_D} \right ]$ ve $\mathbf{\lambda} = \left [ \lambda_1, \lambda_2, \dots, \lambda_D\right ]$, $\mathbf{X}\in \mathcal{R}^{D\times N}$ matrisinin temel bileşenlerini oluşturmaktadır.
 
 İfadede yer alan $\mathbf{C}=\frac{1}{N}\sum_{n=1}^{N}{\mathbf{x_n}\mathbf{x_n}^\intercal}$ matrisinin de sıfır ortalamalı bir $\mathbf{x_n}$ veri seti için kovaryans (özdeğişinti) matrisi olduğu dikkate alınırsa; **bir veri setinin en küçük karesel ortalama hata ile daha küçük boyutlu bir alt uzaya izdüşümünü sağlayan dönüşüm matrisininin; verinin kovaryans matrisinin özvektörleri olduğu sonucuna ulaşılır.**
 

@@ -26,10 +26,10 @@ Verilen problem ilk bakışta üçgen eşitlikleri veya analitik yöntemler ile 
 Problem tanımı gereği, $\lVert P_a-P_x \lVert \approx d_a$, $\lVert P_b-P_x \lVert \approx d_b$ ve $\lVert P_c-P_x \lVert \approx d_c$ yazılabilir. Bu durumda herhangi bir $P$ konumu için oluşacak ortalama karesel hata şu şekilde ifade edilebilir.
 
 $$
-f(P) = \frac{1}{2} \sum_{i \in S} (\lVert P-P_i \lVert - d_i)^2 \label{cost_function} \tag{1}
+f(P) = \frac{1}{2} \sum_{i \in S} (\lVert P-P_i \lVert - d_i)^2 \tag{1}
 $$
 
-Verilen denklemde $S=\\{ a,b,c \\}$ problemde verilen bilinen noktaları göstermektedir. Denklem \ref{cost_function} ile verilen hata fonksiyonu incelendiğinde, fonksiyonun en küçük değerini $P=P_x$ olduğunda aldığı görülür. $P=P_x$ seçilmesi durumunda oluşan hata $d$ konum kestirim hatalarının karesel toplamının yarısı kadar olacaktır.
+Verilen denklemde $S=\\{ a,b,c \\}$ problemde verilen bilinen noktaları göstermektedir. Denklem $\eqref{1}$ ile verilen hata fonksiyonu incelendiğinde, fonksiyonun en küçük değerini $P=P_x$ olduğunda aldığı görülür. $P=P_x$ seçilmesi durumunda oluşan hata $d$ konum kestirim hatalarının karesel toplamının yarısı kadar olacaktır.
 
 Problemin çözümü için $f(P)$ fonksiyonu en küçükleyen $\hat{P_x} = \arg \min_{P} f(P)$ noktasının bulunması gerekmektedir. Bu değer [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) ve [Lagrange Çarpanları]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %}) yazılarımızda değindiğimiz üzere $C$ fonksiyonun gradyanını sıfıra eşitleyerek bulunur. Gradyan hesaplamasında kolaylık sağlaması açısından işlemlere başlamadan $g_i(P) = \lVert P-P_i \lVert$ tanımlamasını yapalım. Bu tanım kullanılarak $\nabla f$ aşağıdaki şekilde yazılabilir.
 
@@ -39,7 +39,7 @@ $$
     &= \sum_{i \in S} \nabla g_i(P) \left ( g_i(P) -d_i \right )\\
     &= \sum_{i \in S} \nabla g_i(P) g_i(P) - \sum_{i \in S}  \nabla g_i(P) d_i
 \end{aligned}
-\label{gradientfclosed} \tag{2}
+\tag{2}
 $$
 
 Elde edilen eşitlikten de görüldüğü üzere, hesaplamaya devam edebilmek için $g_i(P)$ fonksiyonunun gradyanına ihtiyaç duyulmaktadır. Bu hesaplama aşağıdaki şekilde yapılabilir.
@@ -52,10 +52,10 @@ $$
     &= \frac{\sum_{j=1}^n (P_j - P_{ij}) \frac{\partial (P_j - P_{ij})}{\partial P}}{\left( \sum_{j=1}^n \left ( x_j - P_{ij} \right )^2 \right)^{\frac{1}{2}}}\\
     &= \frac{P - P_i}{\lVert P - P_i \lVert}
 \end{aligned}
-\label{gradientg} \tag{3}
+\tag{3}
 $$
 
-Denklem \ref{gradientg} ile elde edilen eşitlik Denklem \ref{gradientfclosed} da yerine konularsa;
+Denklem $\eqref{3}$ ile elde edilen eşitlik Denklem $\eqref{2}$ da yerine konularsa;
 
 $$
 \begin{aligned}
@@ -64,7 +64,7 @@ $$
     &= \sum_{i \in S} \left(P - P_i\right) - \sum_{i \in S}  d_i\frac{P - P_i}{\lVert P - P_i \lVert} \\
     &= m P - \sum_{i \in S}  P_i - \sum_{i \in S}  d_i\frac{P - P_i}{\lVert P - P_i \lVert} 
 \end{aligned}
-\label{gradientf} \tag{4}
+\tag{4}
 $$
 
 bulunur. Burada $m$ verilen nokta sayısını ($m=3$) göstermektedir. Bulunan $\nabla f(P)$ ifadesi kullanılarak, $\eta_k=\frac{1}{m}$ seçilen [En Dik İniş Yöntemi]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) ile çözüm aşağıdaki şekilde hesaplanır.
@@ -75,7 +75,7 @@ P_{k+1} &= P_k - \eta_k \nabla f(P_k)\\
 &= P_k - \frac{1}{m} \left(  m P_k - \sum_{i \in S}  P_i - \sum_{i \in S}  d_i\frac{P_k - P_i}{\lVert P_k - P_i \lVert} \right)\\
 &= \frac{1}{m} \left( \sum_{i \in S}  P_i + \sum_{i \in S}  d_i\frac{P_k - P_i}{\lVert P_k - P_i \lVert} \right)
 \end{aligned}
-\label{optimalf} \tag{5}
+\tag{5}
 $$
 
 Elde edilen iteratif çözümün gerçeklenmesi için C dilinde aşağıdaki kod parçası yazılmıştır.

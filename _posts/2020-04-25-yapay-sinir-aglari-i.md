@@ -33,29 +33,29 @@ Algılayıcılar; yapay sinir ağlarının girdi ve çıktıya sahip en küçük
 |:-------:|:----:|
 ![sinir hücresi gösterimi][neuron] | ![yapay sinir hücresi][perceptron]
 
-Örnek modeli verilen algılayıcı, girişine uygulanan $\mathbf{x_n}$ girdi vektörünü, çeşitli matematiksel operasyonlardan geçirerek $\hat{y}_n$ çıktısını üretmektedir. Algılayıcının matematiksel ifadesi Denklem \ref{perceptron} ile verilmiştir.
+Örnek modeli verilen algılayıcı, girişine uygulanan $\mathbf{x_n}$ girdi vektörünü, çeşitli matematiksel operasyonlardan geçirerek $\hat{y}_n$ çıktısını üretmektedir. Algılayıcının matematiksel ifadesi Denklem $\eqref{1}$ ile verilmiştir.
 
-$$ \hat{y}_n = \mathcal{f}\left( \sum_{d=0}^{D-1} {w_{d} x_d} + b \right) \label{perceptron} \tag{1}$$
+$$ \hat{y}_n = \mathcal{f}\left( \sum_{d=0}^{D-1} {w_{d} x_d} + b \right) \tag{1}$$
 
 Verilen ifadedenin $\mathbf{x_n}$ girdi vektörünü; ilki doğrusal $a_n=\sum_{d} {w_d x_d} + b$, ikincisi doğrusal olmayan $\hat{y}_n=\mathcal{f}(a_n)$ iki dönüşümden geçirerek çıktı değerini ürettiği görülmektedir. YSA öğrenmesinde amaç, verilen girdi vektörlerine ve hedef çıktılara en küçük hata ile yakınsamamızı sağlayacak $[\mathbf{w}, b]$ ağırlık vektörünün öğrenilmesidir.
 
-Denklem \ref{perceptron} incelendiğinde parantez içerisinde kalan kısmın [Doğrusal Regresyon]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %})' a benzer bir şekilde girdi vektörünü doğrusal bir dönüşüme tabi tuttuğu görülmektedir. YSA öğrenmesini farklı kılan önemli nokta denklemde kullanılan $\mathcal{f}(a)$ aktivasyon fonksiyonu dönüşümüdür. Bu dönüşümde doğrusal olmayan bir $\mathcal{f}$ fonksiyonunun seçilmesi durumunda algılayıcı çıktılarının doğrusal olmayan (non-linear) yapıda olması sağlanmaktadır. Bu sayede birden fazla sayıda nöronun birbirlerine bağlanarak oluşturduğu yapay sinir ağı ile doğrusal olmayan problemlerinde öğrenebilmesi mümkün olmaktadır.
+Denklem $\eqref{1}$ incelendiğinde parantez içerisinde kalan kısmın [Doğrusal Regresyon]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %})' a benzer bir şekilde girdi vektörünü doğrusal bir dönüşüme tabi tuttuğu görülmektedir. YSA öğrenmesini farklı kılan önemli nokta denklemde kullanılan $\mathcal{f}(a)$ aktivasyon fonksiyonu dönüşümüdür. Bu dönüşümde doğrusal olmayan bir $\mathcal{f}$ fonksiyonunun seçilmesi durumunda algılayıcı çıktılarının doğrusal olmayan (non-linear) yapıda olması sağlanmaktadır. Bu sayede birden fazla sayıda nöronun birbirlerine bağlanarak oluşturduğu yapay sinir ağı ile doğrusal olmayan problemlerinde öğrenebilmesi mümkün olmaktadır.
 
 ### Tek Katmanlı Algılayıcı Eğitimi {#perceptron_learning}
 
 YSA öğrenmesinde başlangıç noktası algılayıcı eğitimi aşamasıdır. Bu aşamada verilen $\mathbf{X}=[\mathbf{x_1}, \mathbf{x_2}, \dots, \mathbf{x_N}]$ girdi vektörlerine ve $\mathbf{y}=[y_1, y_2, \dots, y_N]$ hedef çıktılara en küçük hata (burada hata etiketlere olan ortalama karesel hata olabileceği gibi farklı bir ölçüt de olabilir) ile yakınsamamızı sağlayacak $[\mathbf{w}, b]$ ağırlık vektörünün öğrenilmesi amaçlanmaktadır. Tek bir $\mathbf{x_n}, y_n$ çifti için  _karesel hata_ aşağıdaki şekilde yazılabilir.
 
-$$ E_n(\mathbf{w},b) = \frac{1}{2} (y_n - \hat{y}_n)^2 \label{perceptron_learning} \tag{2}$$
+$$ E_n(\mathbf{w},b) = \frac{1}{2} (y_n - \hat{y}_n)^2 \tag{2}$$
 
-Yazılan hata fonksiyonunda yer alan $\hat{y}_n$, Denklem \ref{perceptron} eşitliği göz önüne alındığında, $\mathbf{w}$ ve $b$ değişkenlerine bağlıdır. Bu hata fonksiyonun en küçükleyen $\mathbf{w}$ ve $b$ değerleri sırasıyla $\frac{\partial E_n(\mathbf{w},b)}{\partial \mathbf{w}} = 0$ ve $\frac{\partial E_n(\mathbf{w},b)}{\partial b} = 0$ eşitlikleri çözülerek bulunabilir.
+Yazılan hata fonksiyonunda yer alan $\hat{y}_n$, Denklem $\eqref{1}$ eşitliği göz önüne alındığında, $\mathbf{w}$ ve $b$ değişkenlerine bağlıdır. Bu hata fonksiyonun en küçükleyen $\mathbf{w}$ ve $b$ değerleri sırasıyla $\frac{\partial E_n(\mathbf{w},b)}{\partial \mathbf{w}} = 0$ ve $\frac{\partial E_n(\mathbf{w},b)}{\partial b} = 0$ eşitlikleri çözülerek bulunabilir.
 
-Denklem \ref{perceptron_learning} ile verilen eşitliğin $\mathbf{w}$ değerine göre kısmi türevi zincir kuralı kullanılarak aşağıdaki şekilde yazılabilir.
+Denklem $\eqref{2}$ ile verilen eşitliğin $\mathbf{w}$ değerine göre kısmi türevi zincir kuralı kullanılarak aşağıdaki şekilde yazılabilir.
 
-$$\frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}} = \frac{1}{2} \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right) \left( \frac{\partial a_n}{\partial\mathbf{w}} \right) \label{partials} \tag{3}$$
+$$\frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}} = \frac{1}{2} \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right) \left( \frac{\partial a_n}{\partial\mathbf{w}} \right) \tag{3}$$
 
-<span style="color: yellow;">NOT: </span> Burada ileride kolaylık sağlaması açısından önemli bir tanımlama yapmamız gerekir. Denklem \ref{partials} ile verilen eşitlikte $\frac{\partial E_n(\mathbf{w},b)}{\partial a_n} = \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right)$ çarpımına kısaca $\delta_n$ adı verilir.
+<span style="color: yellow;">NOT: </span> Burada ileride kolaylık sağlaması açısından önemli bir tanımlama yapmamız gerekir. Denklem $\eqref{3}$ ile verilen eşitlikte $\frac{\partial E_n(\mathbf{w},b)}{\partial a_n} = \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right)$ çarpımına kısaca $\delta_n$ adı verilir.
 
-Denklem \ref{partials} ile verilen üç kısmi türev ifadesinde ilk ifade, hata fonksiyonun $\hat{y}$ kestirilen çıktıya bağlı değişimini ölçmektedir. Bu değer _karesel hata_ ölçütü kullanıldığı için;
+Denklem $\eqref{3}$ ile verilen üç kısmi türev ifadesinde ilk ifade, hata fonksiyonun $\hat{y}$ kestirilen çıktıya bağlı değişimini ölçmektedir. Bu değer _karesel hata_ ölçütü kullanıldığı için;
 
 $$\frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} = \frac{\partial}{\partial \hat{y_n}} \frac{1}{2} \left( y_n - \hat{y}_n \right )^2 = \hat{y}_n-y_n$$
 
@@ -69,15 +69,15 @@ $$\frac{\partial a_n}{\partial\mathbf{w}} =  \frac{\partial \left( \mathbf{w}^\i
 
 Hesaplanan ilk iki türev ifadesi kullanılarak $\delta_n$ aşağıdaki şekilde tanımlanır.
 
-$$\delta_n = \left(y_n-\hat{y}_n \right) \mathcal{f}^\prime (a_n) \label{delta} \tag{4}$$
+$$\delta_n = \left(y_n-\hat{y}_n \right) \mathcal{f}^\prime (a_n)\tag{4}$$
 
-Hesaplanan $\delta_n$ ve $\frac{\partial a_n}{\partial\mathbf{w}}$ değerleri Denklem \ref{partials} de yerine yazılırsa Denklem \ref{partials_solution_w} ile verilen eşitlik elde edilir.
+Hesaplanan $\delta_n$ ve $\frac{\partial a_n}{\partial\mathbf{w}}$ değerleri Denklem $\eqref{3}$ de yerine yazılırsa Denklem $\eqref{5}$ ile verilen eşitlik elde edilir.
 
-$$\frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}} = {\delta_n \mathbf{x}_{n}} \label{partials_solution_w} \tag{5}$$
+$$\frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}} = {\delta_n \mathbf{x}_{n}} \tag{5}$$
 
-Benzer şekilde Denklem \ref{perceptron_learning} ile verilen eşitliğin $b$ değişkenine göre kısmi türevi zincir kuralına göre hesaplanırsa Denklem \ref{partials_solution_b} ile verilen eşitlik elde edilir.
+Benzer şekilde Denklem $\eqref{2}$ ile verilen eşitliğin $b$ değişkenine göre kısmi türevi zincir kuralına göre hesaplanırsa Denklem $\eqref{6}$ ile verilen eşitlik elde edilir.
 
-$$\frac{\partial E_n(\mathbf{w},b)}{\partial b} = {\delta_n} \label{partials_solution_b} \tag{6}$$
+$$\frac{\partial E_n(\mathbf{w},b)}{\partial b} = {\delta_n} \tag{6}$$
 
 Elde edilen bu iki eşitlik [Gradyan İniş Yönteminde]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) kullanılarak denklemleri sağlayan $\mathbf{w},b$ çifti bulunabilir. Bu yöntem herhangi bir fonksiyonun yerel en küçük noktasının o fonksiyonun o noktadaki gradyanı tersi yönüne hareket edilerek bulunacağı fikrine dayanmaktadır. Matematiksel olarak gradyan iniş yöntemi;
 
@@ -87,7 +87,7 @@ $\mathbf{w}_k=0$ (veya rasgele) ilk değerinden başlayarak iteratif bir şekild
 
 ### Aktivasyon Fonksiyonları
 
-Denklem \ref{perceptron} ile verilen ifadede yer alan $\mathcal{f}$ fonksiyonu literatürde __aktivasyon fonksiyonu__ olarak bilinmektedir. Yazımızın ilk başlarında değindiğimiz gibi doğrusal olmayan problemlerin öğrenilebilmesi için aktivasyon fonksiyonunun doğrusal olmaması gerekmektedir. [Tek Katmanlı Algılayıcı Eğitimi](#perceptron_learning) başlığında da hesapladığımız üzere seçilen aktivasyon fonksiyonunun türevlenebilir de olması gerekmektedir. Bu iki temel özellik göz önünde bulundurularak literatürde farklı aktivasyon fonksiyonları önerilmiştir.
+Denklem $\eqref{1}$ ile verilen ifadede yer alan $\mathcal{f}$ fonksiyonu literatürde __aktivasyon fonksiyonu__ olarak bilinmektedir. Yazımızın ilk başlarında değindiğimiz gibi doğrusal olmayan problemlerin öğrenilebilmesi için aktivasyon fonksiyonunun doğrusal olmaması gerekmektedir. [Tek Katmanlı Algılayıcı Eğitimi](#perceptron_learning) başlığında da hesapladığımız üzere seçilen aktivasyon fonksiyonunun türevlenebilir de olması gerekmektedir. Bu iki temel özellik göz önünde bulundurularak literatürde farklı aktivasyon fonksiyonları önerilmiştir.
 
 * __Adım Aktivasyon Fonksiyonu:__ 
 
@@ -131,7 +131,7 @@ Denklem \ref{perceptron} ile verilen ifadede yer alan $\mathcal{f}$ fonksiyonu l
  
 Her makine öğrenmesi yönteminde olduğu gibi YSA' nın da bir öğrenme sürecinden geçmesi gerekmektedir. [Tek Katmanlı Algılayıcı Eğitimi](#perceptron_learning) başlığında tek bir algılayıcının hatasının nasıl en küçükleneceğine dair matematiksel çıkarımları yapmıştık. Burada bahsedilen [Gradyan İniş Yöntemi]({post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon}) iteratif bir algoritma olduğundan YSA eğitiminin _epoch_ adı verilen belirli bir iterasyon süresince devam etmesi gerekmektedir.
 
-Her _epoch_ kendi içerisinde iki ana adımdan oluşmaktadır. Bunlardan ilki İleri Besleme (Feed Forward), ikincisi Geri Yayılım (Back Propagation) adımlarıdır. İleri Besleme adımında bir önceki iterasyondan bulunan $\mathcal{w},b$ ağrılıkları ve Denklem \ref{perceptron} kullanılarak ağın çıktısı hesaplanır. Geri Yayılım adımında Denklem \ref{partials_solution_w} ve Denklem \ref{partials_solution_b} denklemleri kullanılarak bulunan ağırlık değişimi güncel ağırlıklara eklenerek ağırlıkların güncellenir. Veri setindeki tüm örnekler için İleri Besleme ve Geri Yayılım adımları tamamlandığında bir _epoch_ tamamlanmış olur. Öğrenmenin iyileştirilmesi için belirli bir başarı kriteri sağlanana veya sabit bir _epoch_ sayısına ulaşana kadar eğitim adımları devam ettirilir.
+Her _epoch_ kendi içerisinde iki ana adımdan oluşmaktadır. Bunlardan ilki İleri Besleme (Feed Forward), ikincisi Geri Yayılım (Back Propagation) adımlarıdır. İleri Besleme adımında bir önceki iterasyondan bulunan $\mathcal{w},b$ ağrılıkları ve Denklem $\eqref{1}$ kullanılarak ağın çıktısı hesaplanır. Geri Yayılım adımında Denklem $\eqref{5}$ ve Denklem $\eqref{6}$ denklemleri kullanılarak bulunan ağırlık değişimi güncel ağırlıklara eklenerek ağırlıkların güncellenir. Veri setindeki tüm örnekler için İleri Besleme ve Geri Yayılım adımları tamamlandığında bir _epoch_ tamamlanmış olur. Öğrenmenin iyileştirilmesi için belirli bir başarı kriteri sağlanana veya sabit bir _epoch_ sayısına ulaşana kadar eğitim adımları devam ettirilir.
 
 Çok Katlı Yapay Sinir Ağlarının matematiksel ifadeleri ve Geri Yayılım Algoritması'nın anlatıldığı serinin ikinci yazısına [Yapay bağlantıdan]({%post_url 2020-04-25-yapay-sinir-aglari-ii %}) ulaşabilirsiniz.
 

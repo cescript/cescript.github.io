@@ -29,10 +29,10 @@ $$
 \frac{\partial E(m,b)}{\partial m} &= \sum_i \left ( y_i x_i + b x_i + m x_i x_i \right ) = 0 \Rightarrow m = \frac{\sum_i x_i y_i - b\sum_i x_i}{\sum_i x_i x_i}\\
 \frac{\partial E(m,b)}{\partial b} &= \sum_i \left( m x_i - yi + b \right ) = 0 \Rightarrow b = \frac{\sum_i y_i - m\sum_i x_i}{N}\\
 \end{aligned}
-\label{gradient} \tag{1}
+\tag{1}
 $$
 
-Denklem \ref{gradient} de görüldüğü üzere, $m$ ve $b$ değişkenlerine en küçükleyen noktalar birbirine bağımlı olarak elde edilmektedir. Bu bağıntıdan kurtulmak için $b$ için bulunan en iyi değer $m$ için elde edilen denklemde yerine yazılırsa;
+Denklem $\eqref{1}$ de görüldüğü üzere, $m$ ve $b$ değişkenlerine en küçükleyen noktalar birbirine bağımlı olarak elde edilmektedir. Bu bağıntıdan kurtulmak için $b$ için bulunan en iyi değer $m$ için elde edilen denklemde yerine yazılırsa;
 
 $$
 \begin{aligned}
@@ -41,7 +41,7 @@ m &= \frac{\sum_i x_i y_i - b\sum_i x_i}{\sum_i x_i x_i}\\
 &= \frac{\sum_i x_i y_i - \frac{1}{N} \left(\sum_i y_i \sum_i x_i - m\sum_i x_i \sum_i x_i \right)}{\sum_i x_i x_i}\\
 &= \frac{N \sum_i x_i y_i - \sum_i x_i \sum_i y_i}{N \sum_i x_i x_i - \sum_i x_i \sum_i x_i}\\
 \end{aligned}
-\label{slope} \tag{2}
+\tag{2}
 $$
 
 elde edilir. $m$ değeri çözüldükten sonra $b$ için elde edilen denklemde yerine yazılarak $b$ noktasını en iyileyen çözüm de bulunabilir. Yukarıda matematiksel ifadesi verilen uyumlama işlemi C dilinde ```void fit(matrix_t *sdata, void *model)``` fonksiyonu ile gerçeklenmiştir. Fonksiyon $N \times 2$ boyutunda verilen $N$ tane $(x_i,y_i)$ veri çiftini girdi olarak almakta ve sonuçları ```model ``` ile verilen bellek alanına yazmaktadır.

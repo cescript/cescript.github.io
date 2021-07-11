@@ -28,25 +28,25 @@ Newton yöntemi temelde çok basit bir fikre dayanmaktadır. Newton yönteminde 
 
 İlk olarak bu yöntemi $f(x^\ast) = 0$ şartını sağlayan $x^\ast$ köklerini bulmak için kullanalım. $f(x)$ fonksiyonu, Taylor serisi kullanılarak 
 
-$$f(x+h) \approx f(x) + f'(x)h$$
+$$f(x+h) \approx f(x) + f^{\prime}(x)h$$
 
 şeklinde yazılabilir. Yazılan bu ifade $h$ değişkenine bağlı olarak doğrusa bir ifadedir. İfadeyi sıfıra eşit yapan $h$ değeri çözülürse;
 
-$$h = -\frac{f(x)}{f'(x)}$$
+$$h = -\frac{f(x)}{f^{\prime}(x)}$$
 
-olması gerektiği görülür. Yani $f$ fonksiyonunu yaklaşık sıfır yapan $x+h$ değeri $x-f(x) / f'(x)$ ile bulunur. Yazılan ifade bir yaklaşım olduğundan, $x$ iteratif olarak hesaplanarak gerçek sıfıra doğru yaklaşılabilir. Bu durumda iterasyonlar 
+olması gerektiği görülür. Yani $f$ fonksiyonunu yaklaşık sıfır yapan $x+h$ değeri $x-f(x) / f^{\prime}(x)$ ile bulunur. Yazılan ifade bir yaklaşım olduğundan, $x$ iteratif olarak hesaplanarak gerçek sıfıra doğru yaklaşılabilir. Bu durumda iterasyonlar 
 
-$$x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$$ 
+$$x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}$$ 
 
-şeklinde hesaplanır. Burada dikkat edilmesi gereken bir nokta başlangıç noktası $x_0$ ile $x^\ast$ arasında herhangi bir noktada $f'(x_k)=0$ olması durumunda Newton yönteminin çalışmayacağıdır.
+şeklinde hesaplanır. Burada dikkat edilmesi gereken bir nokta başlangıç noktası $x_0$ ile $x^\ast$ arasında herhangi bir noktada $f^{\prime}(x_k)=0$ olması durumunda Newton yönteminin çalışmayacağıdır.
 
-Problemi kodlamadan önce bir örnek ile anlamaya çalışalım. Köklerini bulmak istediğimiz örnek fonksiyonumuz $f(x) = x^3 -3x + 2$ olsun. Bu durumda fonksiyonun türevi $f'(x) = 3x^2-3$ olacaktır. $x_0 = 2$ seçerek Newton iterasyonlarını uygularsak;
+Problemi kodlamadan önce bir örnek ile anlamaya çalışalım. Köklerini bulmak istediğimiz örnek fonksiyonumuz $f(x) = x^3 -3x + 2$ olsun. Bu durumda fonksiyonun türevi $f^{\prime}(x) = 3x^2-3$ olacaktır. $x_0 = 2$ seçerek Newton iterasyonlarını uygularsak;
 
-- $x_1 = x_0 - \frac{f(x_0)}{f'(x_0)} = 2.00 - \frac{2.00^3-3 \cdot 2.00 + 2}{3 \cdot 2.00^2 - 3} = 1.55$
-- $x_2 = x_1 - \frac{f(x_1)}{f'(x_1)} = 1.55 - \frac{1.55^3-3 \cdot 1.55 + 2}{3 \cdot 1.55^2 - 3} = 1.29$
-- $x_3 = x_2 - \frac{f(x_2)}{f'(x_2)} = 1.29 - \frac{1.29^3-3 \cdot 1.29 + 2}{3 \cdot 1.29^2 - 3} = 1.16$
-- $x_4 = x_3 - \frac{f(x_3)}{f'(x_3)} = 1.16 - \frac{1.16^3-3 \cdot 1.16 + 2}{3 \cdot 1.16^2 - 3} = 1.08$
-- $x_5 = x_4 - \frac{f(x_4)}{f'(x_4)} = 1.08 - \frac{1.08^3-3 \cdot 1.08 + 2}{3 \cdot 1.08^2 - 3} = 1.04$
+- $x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)} = 2.00 - \frac{2.00^3-3 \cdot 2.00 + 2}{3 \cdot 2.00^2 - 3} = 1.55$
+- $x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)} = 1.55 - \frac{1.55^3-3 \cdot 1.55 + 2}{3 \cdot 1.55^2 - 3} = 1.29$
+- $x_3 = x_2 - \frac{f(x_2)}{f^{\prime}(x_2)} = 1.29 - \frac{1.29^3-3 \cdot 1.29 + 2}{3 \cdot 1.29^2 - 3} = 1.16$
+- $x_4 = x_3 - \frac{f(x_3)}{f^{\prime}(x_3)} = 1.16 - \frac{1.16^3-3 \cdot 1.16 + 2}{3 \cdot 1.16^2 - 3} = 1.08$
+- $x_5 = x_4 - \frac{f(x_4)}{f^{\prime}(x_4)} = 1.08 - \frac{1.08^3-3 \cdot 1.08 + 2}{3 \cdot 1.08^2 - 3} = 1.04$
 
 değerleri elde edilir. Görüldüğü üzere yöntem $x_0=2$ noktasından başlayarak $x^\ast=1.00$ noktasına doğru yakınsamaktadır. Bu nokta $f(x)$ fonksiyonun iki kökünden biridir. Fonksiyonun diğer kökü $x^\ast=-2.00$ noktasındadır. Bu noktanın bulunması için Newton iterasyonlarının $x^\ast=-2.00$ noktasına daha yakın bir noktadan başlatılması yeterlidir.
 
@@ -81,13 +81,13 @@ int main(int argc, char *argv[])
 ```
 
 
-Yazılan kod parçası $f(x), f'(x)$ ve $x_0$ değerlerini girdi olarak almakta ve $\lvert f(x_k) \lvert < \epsilon$ yeteri kadar küçük olana kadar iterasyonlara devam etmektedir.
+Yazılan kod parçası $f(x), f^{\prime}(x)$ ve $x_0$ değerlerini girdi olarak almakta ve $\lvert f(x_k) \lvert < \epsilon$ yeteri kadar küçük olana kadar iterasyonlara devam etmektedir.
 
 Verilen yöntem $x_0 = 2$ seçilerek başlatıldığında $k=12$ iterasyon sonucunda $x^\ast=1.00$ noktasına, $x^\ast=-5.00$ seçildiğinde $k=6$ iterasyon sonucunda $x=-2.00$ noktasına yakınsamaktadır.
 
 Newton yöntemi oldukça basit olmasına rağmen kökü bulunmak istenilen fonksiyonun türevine de ihtiyaç duyduğundan pratik kullanımda bazı zorluklar yaratmaktadır. Ancak bu dezavantaj sonlu farklar yöntemi kullanılarak kolayca aşılabilir. Sonlu farklar yönteminde türev fonksiyonuna;
 
-$$f'(x_k) \approx \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}$$
+$$f^{\prime}(x_k) \approx \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}$$
 
 şeklinde bir yaklaşım yapılır. Bu yaklaşım Newton yönteminde elde edilen iterasyonlara uygulanırsa;
 
@@ -123,30 +123,30 @@ Bu durumda $F(\mathbf{x} + \mathbf{h}) = \mathbf{0}$ yapacak olan $\mathbf{h}$ d
 
 Bir önceki adımda verilen bir $f$ fonksiyonu için $f(x^\ast)=0$ şartını sağlayan $x^\ast$ noktası bulunmuştu. Bu bölümde fonksiyonun sıfır noktası yerine, yerel en küçük/büyük noktası bulunmaya çalışılacaktır.
 
-Bir fonksiyonun yerel en küçük/büyük noktasında türevi varsa bu türev değeri sıfıra eşittir. Türevi sıfır yapan bu noktaya fonksiyonun kritik noktası denir. Buradan hareketle kritik noktaların bulunması için $f'(x)=0$ denkleminin çözülmesi gerektiği görülür.
+Bir fonksiyonun yerel en küçük/büyük noktasında türevi varsa bu türev değeri sıfıra eşittir. Türevi sıfır yapan bu noktaya fonksiyonun kritik noktası denir. Buradan hareketle kritik noktaların bulunması için $f^{\prime}(x)=0$ denkleminin çözülmesi gerektiği görülür.
 
-Problemi Newton yöntemi ile çözmek için $g(x) = f'(x)$ tanımı yapar ve $g(x^\ast) = 0$ şartını sağlayan $x^\ast$ noktası için Newton iterasyonlarını yazarsak;
+Problemi Newton yöntemi ile çözmek için $g(x) = f^{\prime}(x)$ tanımı yapar ve $g(x^\ast) = 0$ şartını sağlayan $x^\ast$ noktası için Newton iterasyonlarını yazarsak;
 
-$$x_{k+1} = x_k - \frac{g(x_k)}{g'(x_k)} = x_k - \frac{f'(x_k)}{f''(x_k)}$$
+$$x_{k+1} = x_k - \frac{g(x_k)}{g^{\prime}(x_k)} = x_k - \frac{f^{\prime}(x_k)}{f^{\prime \prime}(x_k)}$$
 
-iterasyonları elde edilir. İlk iterasyona benzer şekilde başlangıç noktası $x_0$ ile $x^\ast$ arasında herhangi bir noktada $f''(x_k)=0$ olması durumunda Newton yönteminin çalışmayacağına dikkat edilmelidir.
+iterasyonları elde edilir. İlk iterasyona benzer şekilde başlangıç noktası $x_0$ ile $x^\ast$ arasında herhangi bir noktada $f^{\prime \prime}(x_k)=0$ olması durumunda Newton yönteminin çalışmayacağına dikkat edilmelidir.
 
 Yöntemi daha iyi anlamak için $f(x)=x^4 -2x + 5$ şeklinde tanımlanan bir fonksiyonun kritik noktasını, $x_0 = 2$ noktasından başlayarak bulmaya çalışalım. 
 
-Verilen fonksiyonun türevi $f'(x)=4x^3-2$ ve ikinci türevi $f''(x)=12x^2$ şeklinde hesaplanmaktadır. Bu fonksiyonlar kullanılarak Newton iterasyonları uygulanırsa;
+Verilen fonksiyonun türevi $f^{\prime}(x)=4x^3-2$ ve ikinci türevi $f^{\prime \prime}(x)=12x^2$ şeklinde hesaplanmaktadır. Bu fonksiyonlar kullanılarak Newton iterasyonları uygulanırsa;
 
-- $x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)} = 2.00 - \frac{4 \cdot 2.00^3 - 2}{12 \cdot 2.00^2} = 1.38$
-- $x_2 = x_1 - \frac{f'(x_1)}{f''(x_1)} = 1.38 - \frac{4 \cdot 1.38^3 - 2}{12 \cdot 1.38^2} = 1.00$
-- $x_3 = x_2 - \frac{f'(x_2)}{f''(x_2)} = 1.00 - \frac{4 \cdot 1.00^3 - 2}{12 \cdot 1.00^2} = 0.83$
-- $x_4 = x_3 - \frac{f'(x_3)}{f''(x_3)} = 0.83 - \frac{4 \cdot 0.83^3 - 2}{12 \cdot 0.83^2} = 0.79$
+- $x_1 = x_0 - \frac{f^{\prime}(x_0)}{f^{\prime \prime}(x_0)} = 2.00 - \frac{4 \cdot 2.00^3 - 2}{12 \cdot 2.00^2} = 1.38$
+- $x_2 = x_1 - \frac{f^{\prime}(x_1)}{f^{\prime \prime}(x_1)} = 1.38 - \frac{4 \cdot 1.38^3 - 2}{12 \cdot 1.38^2} = 1.00$
+- $x_3 = x_2 - \frac{f^{\prime}(x_2)}{f^{\prime \prime}(x_2)} = 1.00 - \frac{4 \cdot 1.00^3 - 2}{12 \cdot 1.00^2} = 0.83$
+- $x_4 = x_3 - \frac{f^{\prime}(x_3)}{f^{\prime \prime}(x_3)} = 0.83 - \frac{4 \cdot 0.83^3 - 2}{12 \cdot 0.83^2} = 0.79$
 
 adımları elde edilir. Görüldüğü üzere iterasyonlar fonksiyonun en küçük noktası olan $x^\ast = 1/\sqrt[3]{2} \approx 0.794$ değerine yakınsamaktadır. Yukarıda yazılan C kodu kullanılarak iterasyonlar hesaplandığında, $x_k$ değerinin $k=6$ adımda $x^\ast = 0.794$ noktasına yakınsadığı görülmektedir.
 
-Bu noktanın fonksiyonun en küçük/büyük noktası olduğunda karar vermek için ikinci türevin değerine bakılmalıdır. $f''(x^\ast) > 0$ olduğundan bu nokta verilen fonksiyonun en küçük noktasıdır.
+Bu noktanın fonksiyonun en küçük/büyük noktası olduğunda karar vermek için ikinci türevin değerine bakılmalıdır. $f^{\prime \prime}(x^\ast) > 0$ olduğundan bu nokta verilen fonksiyonun en küçük noktasıdır.
 
 #### Çok Boyutlu Uzayda Optimizasyon
 
-Bir boyutlu uzayda yaptığımız $g(x) = f'(x)$ tanımını çok boyutlu uzayda $G(\mathbf{x}) = \nabla F(\mathbf{x})$ şeklinde yaparsak; $G(\mathbf{x})$ fonksiyonunun kökleri $F(\mathbf{x})$ fonksiyonunun kritik noktaları olacaktır.
+Bir boyutlu uzayda yaptığımız $g(x) = f^{\prime}(x)$ tanımını çok boyutlu uzayda $G(\mathbf{x}) = \nabla F(\mathbf{x})$ şeklinde yaparsak; $G(\mathbf{x})$ fonksiyonunun kökleri $F(\mathbf{x})$ fonksiyonunun kritik noktaları olacaktır.
 
 Bu durumda Taylor serisi kullanılarak;
 

@@ -57,7 +57,7 @@ Bu kısa örnek üzerinde temel kavramları anladıktan sonra pekiştirmeli öğ
 
 Pekiştirmeli öğrenmede amaç herhangi bir durumda hangi hareketi yapmamız gerektiğini öğrenmektir. Bunu öğrenmek için de önce herhangi bir durumda alınan $a$ kararının kalitesini hesaplamak gereklidir. Bir $s$ durumunda alınan $a$ kararının kalitesi o durumdan itibaren $\pi$ karar alma fonksiyonu olasılıkları çerçevesinde hareket edildiğinde alınması beklenen toplam ödül olarak tanımlanmıştır. Bu ifade matematiksel olarak şu şekilde gösterilir.
 
-$$Q^\pi (s,a) = \mathbb{E}^\pi\left [ R_t \lvert s_t=s, a_t = a \right ] \label{quality} \tag{1}$$
+$$Q^\pi (s,a) = \mathbb{E}^\pi\left [ R_t \lvert s_t=s, a_t = a \right ]  \tag{1}$$
 
 Bu ifade $s_t=s$ durumunda, $a_t=a$ kararını verdiğimizde bu aşamadan sonra elde edilmesi beklenen geliri ifade etmektedir. Burada $R_t$, $t$ anından itibaren elde edilebilecek tüm ödüllerin toplamı olmalıdır.
 
@@ -65,13 +65,13 @@ $$R_t = \sum_{k=0}^{\infty} r_{t+k}$$
 
 Ancak toplam sonsuz uzunlukta olduğundan $R_t$ toplamının sonsuza gitme olasılığı söz konusu olacaktır. Böyle bir durumda hangi durumda ne karar alınırsa alınsın ödüllerin toplamı $R_t = \infty$ olacağından hangi kararın daha doğru olduğu öğrenilemeyecektir. Bunun önünde geçmek için denklemin aşağıdaki şekilde değiştirilmesi gerekmektedir.
 
-$$R_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k} \label{return} \tag{2}$$
+$$R_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k}  \tag{2}$$
 
 Burada $\gamma$ azaltma (discount) katsayısı olarak bilinir ve $0 \leq \gamma < 1$ seçilmesi durumunda $R_t$ ifadesini $\frac{R_{max}}{1-\gamma}$ ile üstten sınırlı yapmaktadır. $\gamma$ değerinin azaltma katsayısı olarak isimlendirilmesinin nedeni, $k$ küçük seçildiğinde durum geçişinden elde edilen ödüller tam olarak büyük oranda toplama eklenebilirken, durumlar ilerledikçe $k$ nin etkisi ile $\gamma^k$ sıfıra yaklaşmakta ve elde edilen ödüllerin toplama etkisini azaltmasıdır. $\gamma=0$ seçildiğinde her adımda sadece o adımda elde edilen ödül düşünülerek karar verilirken, $\gamma>0$ olması durumunda sadece o anki duruma değil, bu karar ile geçilecek durumunda elde edilecek ödüllere de bakılarak getiri hesaplanır.
 
-Denklem \ref{return} ile verilen ifadeyi Denklem \ref{quality} de yerine koyarsak;
+Denklem $\eqref{2}$ ile verilen ifadeyi Denklem $\eqref{1}$ de yerine koyarsak;
 
-$$Q^\pi (s,a) = \mathbb{E}^\pi\left [  \sum_{k=0}^{\infty} \gamma^k r_{t+k} \lvert s_t=s, a_t = a \right ] \label{qualityExp} \tag{3}$$
+$$Q^\pi (s,a) = \mathbb{E}^\pi\left [  \sum_{k=0}^{\infty} \gamma^k r_{t+k} \lvert s_t=s, a_t = a \right ]  \tag{3}$$
 
 elde edilir. Burada $k=0$ toplam formulünün dışına alınırsa;
 
@@ -83,9 +83,9 @@ $$Q^\pi (s,a) = \mathbb{E}^\pi\left [r_{t} + \gamma^1 r_{t+1} + \gamma^2 r_{t+2}
 
 elde edilir. Bu denklem $\gamma$ parantezine alınır, $s^\prime_{t} = s_{t+1}$ ve $a^\prime_{t} = a_{t+1}$ değişken dönüşümü yapılırsa aşağıdaki biçime dönüşür.
 
-$$Q^\pi (s, a) = \mathbb{E}^\pi\left [r_{t} + \gamma \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} \lvert s_{t+1}=s^\prime, a_{t+1}=a^\prime) \right ] \label{qualityRec} \tag{4}$$
+$$Q^\pi (s, a) = \mathbb{E}^\pi\left [r_{t} + \gamma \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} \lvert s_{t+1}=s^\prime, a_{t+1}=a^\prime) \right ]  \tag{4}$$
 
-Denklemi çözmeye başlamadan önce biraz beklenen değer kavramına değinelim. Beklenen değer $\mathbb{E}[X] = \sum_i x_iP(X=x_i)$, bir olayın olma olasılığı ile o olay olduğunda elde edilecek değerin çarpımlarının, tüm olasılıklar üzerinden toplamıdır. Denklemden de görüldüğü üzere beklenen değer işleci doğrusal bir fonksiyondur. Doğrusal fonksiyonların dağılma özelliği kullanılarak Denklem \ref{qualityRec} ile verilen ifade; $\mathbb{E_1}^\pi = \mathbb{E}^\pi\left [r_{t} \right ]$, $\mathbb{E_2}^\pi = \mathbb{E}^\pi\left [r_{t+k+1} \lvert s_{t+1}=s^\prime, a_{t+1}=a^\prime) \right ]$ olmak üzere aşağıdaki biçimde yazılabilir.
+Denklemi çözmeye başlamadan önce biraz beklenen değer kavramına değinelim. Beklenen değer $\mathbb{E}[X] = \sum_i x_iP(X=x_i)$, bir olayın olma olasılığı ile o olay olduğunda elde edilecek değerin çarpımlarının, tüm olasılıklar üzerinden toplamıdır. Denklemden de görüldüğü üzere beklenen değer işleci doğrusal bir fonksiyondur. Doğrusal fonksiyonların dağılma özelliği kullanılarak Denklem $\eqref{4}$ ile verilen ifade; $\mathbb{E_1}^\pi = \mathbb{E}^\pi\left [r_{t} \right ]$, $\mathbb{E_2}^\pi = \mathbb{E}^\pi\left [r_{t+k+1} \lvert s_{t+1}=s^\prime, a_{t+1}=a^\prime) \right ]$ olmak üzere aşağıdaki biçimde yazılabilir.
 
 $$Q^\pi (s, a) = \mathbb{E_1}^\pi + \sum_{k=0}^{\infty} \gamma^k \mathbb{E_2}^\pi$$
 
@@ -105,11 +105,11 @@ $$Q^\pi (s,a) = \sum_{s^\prime} P(s^\prime \lvert s, a) \left ( r(s, a, s^\prime
 
 elde edilir.
 
-Burada $\gamma^k$ ile çarpım durumunda bulunan toplam ile Denklem \ref{qualityExp} incelendiğinde bu ifadenin $Q^\pi (s^\prime, a^\prime)$ olduğu görülür. Yukarıdaki denkleme bu son değişken dönüşümü de uygulanırsa aşağıdaki önemli formül elde edilir.
+Burada $\gamma^k$ ile çarpım durumunda bulunan toplam ile Denklem $\eqref{3}$ incelendiğinde bu ifadenin $Q^\pi (s^\prime, a^\prime)$ olduğu görülür. Yukarıdaki denkleme bu son değişken dönüşümü de uygulanırsa aşağıdaki önemli formül elde edilir.
 
-$$Q^\pi (s,a) = \sum_{s^\prime} T(s, a, s^\prime) \left ( r(s, a, s^\prime) + \gamma \sum_{a^\prime}\pi(s^\prime,a^\prime) Q^\pi (s^\prime, a^\prime) \right ) \label{bellmanQuality} \tag{5}$$
+$$Q^\pi (s,a) = \sum_{s^\prime} T(s, a, s^\prime) \left ( r(s, a, s^\prime) + \gamma \sum_{a^\prime}\pi(s^\prime,a^\prime) Q^\pi (s^\prime, a^\prime) \right )  \tag{5}$$
 
-Denklem \ref{bellmanQuality} ile verilen denklem Bellman Eşitliği olarak bilinir ve pekiştirmeli öğrenme yöntemlerinin temelini oluşturmaktadır. 
+Denklem $\eqref{5}$ ile verilen denklem Bellman Eşitliği olarak bilinir ve pekiştirmeli öğrenme yöntemlerinin temelini oluşturmaktadır. 
 
 [Bir sonraki yazımızda]({% post_url 2020-01-05-q-ogrenme %}) öğreneceğimiz Q öğrenme algoritması, özel bir karar verme fonksiyonu için, $Q^\pi (s,a) $ fonksiyonunu bulmayı amaçlamaktadır. Bu yazımızın devamında Q öğrenme algoritmasının çözmeye çalıştığı problem denklemlerle ifade edilecek, bir sonraki yazıda ise bu denklemlerin çözümü ve kodlması verilecektir.
 
@@ -119,17 +119,17 @@ $$\pi^\ast (s) = \arg\max_{a} Q^\pi (s,a)$$
 
 kuralına göre tercihler yapılarak elde edilecektir. Bu aç gözlü kural fonksiyonu her durumda, o durum için en kaliteli hareketi seçecektir. Böyle bir karar fonksiyonunda, $a_t=\arg\max_{a} Q^\pi (s,a)$ için $\pi^\ast(s,a) = 1$ iken, diğer tüm durumlar için  $\pi^\ast(s,a) = 0$ olacaktır. 
 
-Bu durumda Denklem \ref{bellmanQuality} de yer alan olası tüm $a^\prime \in A$ toplama işleminin sadece $a_t=\arg\max_{a} Q^\pi (s,a)$ için yapılması yeterli olacaktır. Bu çıkarım sonucu Denklem \ref{bellmanQuality} de yerine yazılırsa;
+Bu durumda Denklem $\eqref{5}$ de yer alan olası tüm $a^\prime \in A$ toplama işleminin sadece $a_t=\arg\max_{a} Q^\pi (s,a)$ için yapılması yeterli olacaktır. Bu çıkarım sonucu Denklem $\eqref{5}$ de yerine yazılırsa;
 
-$$Q^{\pi^\ast} (s,a) = \sum_{s^\prime} T(s, a, s^\prime) \left ( r(s, a, s^\prime) + \gamma \max_{a^\prime} Q^{\pi^\ast} (s^\prime, a^\prime) \right ) \label{bellmanOptimality} \tag{6}$$
+$$Q^{\pi^\ast} (s,a) = \sum_{s^\prime} T(s, a, s^\prime) \left ( r(s, a, s^\prime) + \gamma \max_{a^\prime} Q^{\pi^\ast} (s^\prime, a^\prime) \right )  \tag{6}$$
 
 literatürde *Bellman en iyi çözüm eşitliği* olarak bilinen denklem elde edilir. Bu denklemin çözümü ile elde edilen $Q^{\pi^\ast} (s,a)$, her durumda en büyük $Q$ değerli kararı seçen bir ajan için en ideal göstergeyi üretecektir.
 
-Bu verilen denklem $T(s, a, s^\prime)$ olasılığını da hesaba katarak en iyi kararı verdiği için, ajan için stokastik anlamda en iyi göstergeyi üretecektir. Ancak bu durum pek çok hesaplamayı oldukça karmaşık hale getirdiğinde, deterministik sistemler için de bu eşitlik tanımlanmıştır. Deterministik bir sistemde $s_t = s$ durumunda alınan $a_t=a$ kararının bizi her zaman $s^\prime$ durumuna götürdüğü varsayılır. Bu durumda Denklem \ref{bellmanOptimality} aşağıdaki şekilde sadeleştirilebilir.
+Bu verilen denklem $T(s, a, s^\prime)$ olasılığını da hesaba katarak en iyi kararı verdiği için, ajan için stokastik anlamda en iyi göstergeyi üretecektir. Ancak bu durum pek çok hesaplamayı oldukça karmaşık hale getirdiğinde, deterministik sistemler için de bu eşitlik tanımlanmıştır. Deterministik bir sistemde $s_t = s$ durumunda alınan $a_t=a$ kararının bizi her zaman $s^\prime$ durumuna götürdüğü varsayılır. Bu durumda Denklem $\eqref{6}$ aşağıdaki şekilde sadeleştirilebilir.
 
-$$Q^{\pi^\ast} (s,a) = r(s, a, s^\prime) + \gamma \max_{a^\prime} Q^{\pi^\ast} (s^\prime, a^\prime) \label{bellmanOptimalityDeterministic} \tag{7}$$
+$$Q^{\pi^\ast} (s,a) = r(s, a, s^\prime) + \gamma \max_{a^\prime} Q^{\pi^\ast} (s^\prime, a^\prime)  \tag{7}$$
 
-Denklem \ref{bellmanOptimalityDeterministic} ile verilen denklemin çözümü literatürde Q Öğrenmesi olarak bilinen bir yöntem ile yapılmaktadır. Bu yöntemin detayları ve c kodlaması [bir sonraki yazımızda]({% post_url 2020-01-05-q-ogrenme %}) paylaşılmıştır.
+Denklem $\eqref{7}$ ile verilen denklemin çözümü literatürde Q Öğrenmesi olarak bilinen bir yöntem ile yapılmaktadır. Bu yöntemin detayları ve c kodlaması [bir sonraki yazımızda]({% post_url 2020-01-05-q-ogrenme %}) paylaşılmıştır.
 
 
 **Referanslar**

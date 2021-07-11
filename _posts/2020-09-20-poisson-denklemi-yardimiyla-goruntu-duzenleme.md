@@ -20,10 +20,10 @@ $$
 \min_{I(x,y) \in \Omega} \sum_{\Omega} \lVert\nabla I(x,y)-\nabla S(x,y)\rVert \\
 \text{subject to} \quad I(x,y)=T(x,y) \text{ on } \partial \Omega
 \end{aligned}
-\label{cost} \tag{1}
+\tag{1}
 $$
 
-Denklem \ref{cost} dan da görüldüğü üzere yöntem hata değeri olarak $\Omega$ bölgesi içerisinde çıktının imgesinin gradyanını kaynak imgenin gradyanına olabildiğince yakın olmaya zorlamaktadır. Tek başına bu maliyet fonksiyonu $I(x,y) = S(x,y),\; \forall x,y \in \Omega$ olmayı zorlasa da denklemde yer alan $I(x,y)=T(x,y), \; \forall x,y \in \partial \Omega$ kısıtı kaynak imgenin izsiz (seamless) bir şekilde hedef imgeye yerleştirilmesini sağlamaktadır. Yöntemin anlaşılması için matematiksel detaylarına devam etmeden önce şu ana kadar verdiğimiz matematiksel ifadeleri bir örnek üzerinde inceleyelim.
+Denklem $\eqref{1}$ dan da görüldüğü üzere yöntem hata değeri olarak $\Omega$ bölgesi içerisinde çıktının imgesinin gradyanını kaynak imgenin gradyanına olabildiğince yakın olmaya zorlamaktadır. Tek başına bu maliyet fonksiyonu $I(x,y) = S(x,y),\; \forall x,y \in \Omega$ olmayı zorlasa da denklemde yer alan $I(x,y)=T(x,y), \; \forall x,y \in \partial \Omega$ kısıtı kaynak imgenin izsiz (seamless) bir şekilde hedef imgeye yerleştirilmesini sağlamaktadır. Yöntemin anlaşılması için matematiksel detaylarına devam etmeden önce şu ana kadar verdiğimiz matematiksel ifadeleri bir örnek üzerinde inceleyelim.
 
 | $\mathbf{T}$: Hedef İmge |  $\mathbf{S}$: Kaynak İmge | $\Omega$: Kaynak Maskesi | $\partial \Omega$: Kaynak Maskesi Sınırları | $\mathbf{I}$: Birleştirilmiş İmge
 :-------:|:----:|:----:|:---:|:---:|
@@ -31,7 +31,7 @@ Denklem \ref{cost} dan da görüldüğü üzere yöntem hata değeri olarak $\Om
 
 Yukarıda verilen imgelerde ilk imge formüllerde $\mathbf{T}$ ile ifade edilen ve kopyalamanın yapılacağı arka plan imgesini göstermektedir. $\mathbf{S}$ kaynak imgesi $\mathbf{T}$ imgesi üzerine yerleştirilmek istenen ön plan imgesini göstermektedir. $\Omega$ ile verilen imgede yer alan beyaz bölgeler ise $\mathbf{S}$ imgesinin hangi piksellerinin $\mathbf{T}$ imgesine yerleştirileceğini gösteren maskedir. $\partial \Omega$ ile verilen imge $\Omega$ maskensinin sınır bölgesini göstermektedir. Son olarak $\mathbf{I}$; $\mathbf{T}$ ve $\mathbf{S}$ imgelerinin $\Omega$ maskesi kullanılarak izsiz bir şekilde birleştirilmesi sonucu elde edilen imgeyi göstermektedir.
 
-Denklem \ref{cost} ile verilen maliyet fonksiyonun en küçüklenmesi için ifadeninin gradyanı bulunup sıfıra eşitlenirse; $\nabla \cdot \nabla \mathbf{I} = \nabla \cdot \nabla \mathbf{S}$ olması gerektiği bulunur. Burada $\Delta F = \nabla \cdot \nabla F$, Laplace operatörü olarak bilinmektedir ve iki boyutlu imgeler için 
+Denklem $\eqref{1}$ ile verilen maliyet fonksiyonun en küçüklenmesi için ifadeninin gradyanı bulunup sıfıra eşitlenirse; $\nabla \cdot \nabla \mathbf{I} = \nabla \cdot \nabla \mathbf{S}$ olması gerektiği bulunur. Burada $\Delta F = \nabla \cdot \nabla F$, Laplace operatörü olarak bilinmektedir ve iki boyutlu imgeler için 
 
 $$\Delta = \begin{bmatrix}\phantom{+}0 & \phantom{+}1 & \phantom{+}0\\\phantom{+}1 &-4 & \phantom{+}1\\\phantom{+}0 & \phantom{+}1 & \phantom{+}0\end{bmatrix}$$ 
 
@@ -44,7 +44,6 @@ $$
 4I(x,y)-I(x-1,y)-I(x,y-1)-I(x+1,y)-I(x,y+1)=& \Delta S(x,y) & \text{in} \quad \Omega\\
 I(x,y)=&T(x,y) & \text{on} \quad \partial \Omega
 \end{aligned}
-\label{solution}
 \tag{2}
 $$
 
@@ -90,7 +89,7 @@ Yukarıda yer alan $\Delta \mathbf{S(\Omega)} = \mathbf{P} \mathbf{I(\Omega)}$ m
 
 ![Poisson Image Editing Border Conditions][poisson_image_editing_border]
 
-Verilen imgede gri bölgeler $\Omega$ imgesindeki siyah (hedef imgeden seçilecek) pikselleri, beyaz (kaynak imgeden seçilecek) pikselleri göstermektedir. Örnek olarak imgede $x,y$ ile işaretlenen piksel için Denklem \ref{solution} ile verilen eşitliği yazarsak;
+Verilen imgede gri bölgeler $\Omega$ imgesindeki siyah (hedef imgeden seçilecek) pikselleri, beyaz (kaynak imgeden seçilecek) pikselleri göstermektedir. Örnek olarak imgede $x,y$ ile işaretlenen piksel için Denklem $\eqref{2}$ ile verilen eşitliği yazarsak;
 
 $$
 \begin{aligned}

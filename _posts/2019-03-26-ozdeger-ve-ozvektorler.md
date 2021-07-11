@@ -71,11 +71,15 @@ $$A=\left[\begin{array}{rr}0&&1\\-2&&-3\end{array}\right], \left[\begin{array}{r
 
 Herhangi bir $A$ matrisi için, $\vec{y}=A\vec{x}=\lambda \vec{x}$ şartını sağlayan tüm $\lambda$ değerlerine $A$ matrisinin özdeğeri, $\vec{x}$ vektörlerine ise $A$ matrisinin özvektörleri denir. Dikkat edilirse $\vec{x}$, $A$ matrisinin bir özvektörü olduğunda, $A\vec{x}$ çarpımında $A$ matrisi, $A=\lambda$ olan bir sabit gibi davranmaktadır.
 
-Peki herhangi bir $A$ matrisi için, bu şartı yerine getiren $\vec{x}$ vektörleri ve $\lambda$ değerleri nasıl bulunur. Aslıdan çözüm oldukça basit. $A\vec{x}=\lambda \vec{x}$ eşitliğinde sağ tarafı sola atıp $\vec{x}$ parantezine alırsak: $$(A-\lambda I)\vec{x}=\vec{0} \label{1}\tag{1}$$ buluruz. $\vec{v}\neq\vec{0}$ olması durumunda, eşitliğin sağlanması için $A-\lambda I$ ifadesinin $\vec{x}$ vektörünü $\vec{0}$ noktasına götürmesi gereklidir. $A-\lambda I$ ifadesinin tersi olduğunu varsayarak, yukarıda verilen eşitliğin her iki tarafını da $(A-\lambda I)^{-1}$ ile çarparsak: $$(A-\lambda I)^{-1}(A-\lambda I)\vec{x}=(A-\lambda I)^{-1}\vec{0} \equiv \vec{x}=\vec{0}$$ olduğunu görürüz. Yani $(A-\lambda I)$ matrisinin tersi bulunabilir ise; denklemin tek çözümü $\vec{x}=\vec{0}$ dır. Aradığımız özvektörlerin $\vec{0}$ dan farklı olmasını istediğimizden $(A-\lambda I)$ ifadesinin tersinin **bulunamaması** gerekmektedir. Bu da determinant yazımızdan hatırlayacağımız üzere; $$\det(A-\lambda I)=0$$ olması durumunda mümkündür. Bu ifadeye $A$ matrisinin karakteristik denklemi denir. Karakteristik denklemin çözümü ile önce özdeğerler, bu özdeğerlerin $(\ref{1})$ denkleminde yerine yazılması sonucunda çıkan ifade çözülerek de özvektörler bulunur. 
+Peki herhangi bir $A$ matrisi için, bu şartı yerine getiren $\vec{x}$ vektörleri ve $\lambda$ değerleri nasıl bulunur. Aslıdan çözüm oldukça basit. $A\vec{x}=\lambda \vec{x}$ eşitliğinde sağ tarafı sola atıp $\vec{x}$ parantezine alırsak: 
 
-**<span style="color: red;">NOT: </span>Burada; $\vec{x_1}$, $A$ matrisinin bir özvektörü ise $\alpha \vec{x_1}$ de $(\ref{1})$ eşitliğini sağlayacağından, $\alpha \vec{x_1}$'in de $A$' nın bir öz vektörü olduğuna dikkat edilmelidir.**
+$$(A-\lambda I)\vec{x}=\vec{0} \tag{1}$$ 
 
-Örnek bir $$A=\left[ \begin{smallmatrix}0 & 1\\-2 & -3\end{smallmatrix} \right]$$ matrisini ele alarak özdeğer ve özvektör bulma işlemini tekrar açıklayalım. $A$ matrisinin karakteristik denklemi: $$\det(A-\lambda I) =\bigl \lvert \begin{smallmatrix}0-\lambda&&1\\-2&&-3-\lambda\end{smallmatrix} \bigl \lvert=0$$ şeklinde yazılır. Özdeğerleri bulmak için determinant ifadesi polinom şeklinde yazılarak elde edilen $\lambda^2+3\lambda+2 = 0$ ikinci dereceden denklem çözülürse; özdeğerler $\lambda_1=-1$, $\lambda_2=-2$ olarak bulunur. Bu özdeğerlerden ilki ($\lambda_1$)' nin $(\ref{1})$ de yerine yazılması ile; 
+buluruz. $\vec{v}\neq\vec{0}$ olması durumunda, eşitliğin sağlanması için $A-\lambda I$ ifadesinin $\vec{x}$ vektörünü $\vec{0}$ noktasına götürmesi gereklidir. $A-\lambda I$ ifadesinin tersi olduğunu varsayarak, yukarıda verilen eşitliğin her iki tarafını da $(A-\lambda I)^{-1}$ ile çarparsak: $$(A-\lambda I)^{-1}(A-\lambda I)\vec{x}=(A-\lambda I)^{-1}\vec{0} \equiv \vec{x}=\vec{0}$$ olduğunu görürüz. Yani $(A-\lambda I)$ matrisinin tersi bulunabilir ise; denklemin tek çözümü $\vec{x}=\vec{0}$ dır. Aradığımız özvektörlerin $\vec{0}$ dan farklı olmasını istediğimizden $(A-\lambda I)$ ifadesinin tersinin **bulunamaması** gerekmektedir. Bu da determinant yazımızdan hatırlayacağımız üzere; $$\det(A-\lambda I)=0$$ olması durumunda mümkündür. Bu ifadeye $A$ matrisinin karakteristik denklemi denir. Karakteristik denklemin çözümü ile önce özdeğerler, bu özdeğerlerin $\eqref{1}$ denkleminde yerine yazılması sonucunda çıkan ifade çözülerek de özvektörler bulunur. 
+
+**<span style="color: red;">NOT: </span>Burada; $\vec{x_1}$, $A$ matrisinin bir özvektörü ise $\alpha \vec{x_1}$ de $\eqref{1}$ eşitliğini sağlayacağından, $\alpha \vec{x_1}$'in de $A$' nın bir öz vektörü olduğuna dikkat edilmelidir.**
+
+Örnek bir $$A=\left[ \begin{smallmatrix}0 & 1\\-2 & -3\end{smallmatrix} \right]$$ matrisini ele alarak özdeğer ve özvektör bulma işlemini tekrar açıklayalım. $A$ matrisinin karakteristik denklemi: $$\det(A-\lambda I) =\bigl \lvert \begin{smallmatrix}0-\lambda&&1\\-2&&-3-\lambda\end{smallmatrix} \bigl \lvert=0$$ şeklinde yazılır. Özdeğerleri bulmak için determinant ifadesi polinom şeklinde yazılarak elde edilen $\lambda^2+3\lambda+2 = 0$ ikinci dereceden denklem çözülürse; özdeğerler $\lambda_1=-1$, $\lambda_2=-2$ olarak bulunur. Bu özdeğerlerden ilki ($\lambda_1$)' nin $\eqref{1}$ de yerine yazılması ile; 
 
 $$
 \left[\begin{array}{rr}
@@ -86,7 +90,7 @@ $$
 = \vec{0}
 $$
 
-bulunur. İfadenin çözümü sonucunda da $$\vec{x_1}=\alpha\left[ \begin{smallmatrix} 1\\-1 \end{smallmatrix} \right ]$$ bulunur. $\lambda_2$ nin $(\ref{1})$ de yerine yazılması ile de; 
+bulunur. İfadenin çözümü sonucunda da $$\vec{x_1}=\alpha\left[ \begin{smallmatrix} 1\\-1 \end{smallmatrix} \right ]$$ bulunur. $\lambda_2$ nin $\eqref{1}$ de yerine yazılması ile de; 
 
 $$
 \left[\begin{array}{rr}
@@ -190,7 +194,7 @@ Bu özdeğerlere karşı gelen özvektörler ise $\vec{v_1}=\left[\begin{array}{
 <div id="clickToRevealAnalticalSolution" style="display: none;"><hr align="center" color="black" size="2" width="100%" />
 
 Verilen girdi matrisinin karakteristik denklemi:
-$$\det(A-\lambda I) =\begin{vmatrix}2-\lambda & 1.2\\1.2 & 1-\lambda\end{vmatrix}=0$$şeklinde yazılır. Özdeğerleri bulmak için determinant ifadesi polinom şeklinde yazılır ise $\lambda^2-3\lambda+0.56=0$ elde edilir. Bu denklemin kökleri $\lambda_1=0.2$ ve $\lambda_2=2.8$ dir. Bu özdeğerlerden ilki ($\lambda_1$)' nin $(\ref{1})$ de yerine yazılması ile; 
+$$\det(A-\lambda I) =\begin{vmatrix}2-\lambda & 1.2\\1.2 & 1-\lambda\end{vmatrix}=0$$şeklinde yazılır. Özdeğerleri bulmak için determinant ifadesi polinom şeklinde yazılır ise $\lambda^2-3\lambda+0.56=0$ elde edilir. Bu denklemin kökleri $\lambda_1=0.2$ ve $\lambda_2=2.8$ dir. Bu özdeğerlerden ilki ($\lambda_1$)' nin $\eqref{1}$ de yerine yazılması ile; 
 $$
 \left[\begin{array}{rr}
 2- (0.2) & 1.2\\
@@ -199,7 +203,7 @@ $$
 \vec{x}
 = \vec{0}
 $$
-bulunur. İfadenin çözümü sonucunda da $\vec{x_1}=\alpha\left[\begin{array}{r}0.55470 \\ -0.83205\end{array}\right]$ bulunur. $\lambda_2$ nin $(\ref{1})$ de yerine yazılması ile de; 
+bulunur. İfadenin çözümü sonucunda da $\vec{x_1}=\alpha\left[\begin{array}{r}0.55470 \\ -0.83205\end{array}\right]$ bulunur. $\lambda_2$ nin $\eqref{1}$ de yerine yazılması ile de; 
 $$
 \left[\begin{array}{rr}
 2- (2.8) & 1.2\\

@@ -18,13 +18,13 @@ Lagrange Çarpanları (Lagrange Multipliers), Joseph Louis Lagrange tarafından 
 
 Kısıtlı optimizasyon, hemen hemen tüm mühendislik çalışmalarında karşımıza çıkan bir en iyileme çalışmasıdır. Örnek olarak bir aracın bir litre yakı ile ne kadar yol alabileceğini matematiksel olarak ifade etmeye çalışalım. Bir aracın ne kadar yol alabileceği; aracın ağırlığı ($a$), motor verimliliği ($v$) ve yüzlerce başka değişkene bağlıdır. Basit olması açısından mesafenin sadece $(a,v)$ değişkenlerine bağlı olduğunu düşünelim. Bu durumda aracın bir litre yakıt ile katedebileceği mesafe $D$ kilometre aşağıdaki şekilde hesaplanabildiğini düşünelim.
 
-$$D(a,v)=30v - a^2 \label{sampleEQ1} \tag{1}$$
+$$D(a,v)=30v - a^2  \tag{1}$$
 
-Denklem \ref{sampleEQ1} ile verilen eşitlik kullanılarak $a=1.2$ ton bir aracın $v=0.6$ verimlilik ile $D=16.56$ kilometre yol alabileceğini hesaplayabiliriz. Aracın ağırlığı $a=1.8$ ton olması durumunda da mesafe $D=14.76$ kilometreye düşecektir. 
+Denklem $\eqref{1}$ ile verilen eşitlik kullanılarak $a=1.2$ ton bir aracın $v=0.6$ verimlilik ile $D=16.56$ kilometre yol alabileceğini hesaplayabiliriz. Aracın ağırlığı $a=1.8$ ton olması durumunda da mesafe $D=14.76$ kilometreye düşecektir. 
 
-Şimdi Denklem \ref{sampleEQ1}' in verildiği bir çalışmada aracın alabileceği en uzun mesafe soruluyor olsun. Denkleme bakıldığında aracın ağırlığının $a=0$ seçilmesi durumunda mesafenin $D(v)=30v$ olduğu görülür. Bu durumda verimlilikte sonsuza çıkarılırsa $D=\infty$ kilometre bulunur. Yani aracımızı sıfır ağırlıklı ve sonsuz verimlilikte yaparsak, bir litre benzin ile aracımızın $D=\infty$ kilometre mesafe yol alabileceğini hesaplarız. 
+Şimdi Denklem $\eqref{1}$' in verildiği bir çalışmada aracın alabileceği en uzun mesafe soruluyor olsun. Denkleme bakıldığında aracın ağırlığının $a=0$ seçilmesi durumunda mesafenin $D(v)=30v$ olduğu görülür. Bu durumda verimlilikte sonsuza çıkarılırsa $D=\infty$ kilometre bulunur. Yani aracımızı sıfır ağırlıklı ve sonsuz verimlilikte yaparsak, bir litre benzin ile aracımızın $D=\infty$ kilometre mesafe yol alabileceğini hesaplarız. 
 
-Bu sonuç verilen matematiksel olarak doğru olsa da, mühendislik anlamında gereksiz ve saçma bir çözümdür. Çünkü enerjinin korunumu yasası gereği verimlilik $v \leq 1$ olmak zorundadır. Benzer şekilde aracı oluşturan bileşenler düşünüldüğünde ağırlığının $a \ge 0$ olması gerektiği de barizdir. Matematiksel olarak Denklem \ref{sampleEQ1}' in anlamlı bir şekilde çözülebilmesi için $v \leq 1$ ve $a \gt 0$ koşullarının denkleme kısıt (constraint) olarak eklenmesi gerekmektedir. Bu durumda Denklem \ref{sampleEQ1} ifadesinin en büyükleme probleminin aşağıdaki şekilde yazılması gerekmektedir.
+Bu sonuç verilen matematiksel olarak doğru olsa da, mühendislik anlamında gereksiz ve saçma bir çözümdür. Çünkü enerjinin korunumu yasası gereği verimlilik $v \leq 1$ olmak zorundadır. Benzer şekilde aracı oluşturan bileşenler düşünüldüğünde ağırlığının $a \ge 0$ olması gerektiği de barizdir. Matematiksel olarak Denklem $\eqref{1}$' in anlamlı bir şekilde çözülebilmesi için $v \leq 1$ ve $a \gt 0$ koşullarının denkleme kısıt (constraint) olarak eklenmesi gerekmektedir. Bu durumda Denklem $\eqref{1}$ ifadesinin en büyükleme probleminin aşağıdaki şekilde yazılması gerekmektedir.
 
 $$
 \begin{array}{ll}
@@ -32,14 +32,14 @@ $$
 \text{subject to}& v \leq 1 \\
 &a \gt 0
 \end{array}
-\label{sampleEQ1Corrected} \tag{2}
+\tag{2}
 $$
 
 Bu yazımla optimizasyon problemi, kısıtlı optimizasyon problemi olarak doğru bir şekilde ifade edilmiş olur. Bu kısıtlar altında problemin çözülmesi durumunda $v=1$ ve $a = \epsilon$ seçilmesi durumunda alınacak en uzun mesafe $D \simeq 30$ kilometre bulunur. Burada $\epsilon$ sonsuz küçüklükte bir sayıyı göstermektedir.
 
 ### Lagrange Çarpanları Yöntemi
 
-Lagrange Çarpanları, Denklem \ref{sampleEQ1Corrected} şeklinde verilen kısıtlı optimizasyon problemlerinin yardımcı değişkenler kullanılarak kısıtsız optimizasyon problemine dönüştürülerek çözülmesini sağlayan değişkenlerdir. Yöntemin nasıl çalıştığını anlamak için tek kısıtlı basit bir problemi ele alalım. 
+Lagrange Çarpanları, Denklem $\eqref{2}$ şeklinde verilen kısıtlı optimizasyon problemlerinin yardımcı değişkenler kullanılarak kısıtsız optimizasyon problemine dönüştürülerek çözülmesini sağlayan değişkenlerdir. Yöntemin nasıl çalıştığını anlamak için tek kısıtlı basit bir problemi ele alalım. 
 
 Elimizde bulunan $L=100$ metre uzunluğundaki bir tel örgü ile çevirebileceğimiz dikdörtgen bir bahçenin en büyük alanını bulmaya çalışalım. Bu problem kısıtlı optimizasyon problemi olarak aşağıdaki şekilde ifade edilir.
 
@@ -48,14 +48,14 @@ $$
 \text{maximize}  & A(x,y)=xy \\
 \text{subject to}& 2x+2y=100 
 \end{array}
-\label{sampleEQ2} \tag{3}
+\tag{3}
 $$
 
-Yukarıda verilen denklemde $A$ bahçenin alanını, $x$ ve $y$ dikdörtgenin kenar uzunluklarını göstermektedir. $2x+2y=100$ kısıtı ise oluşturulacak dikdörtgenin çevresinin uzunluğunu göstermektedir. Lagrange çarpanları kullanılarak Denklem \ref{sampleEQ2} ile verilen ifade aşağıdaki şekilde yazılır.
+Yukarıda verilen denklemde $A$ bahçenin alanını, $x$ ve $y$ dikdörtgenin kenar uzunluklarını göstermektedir. $2x+2y=100$ kısıtı ise oluşturulacak dikdörtgenin çevresinin uzunluğunu göstermektedir. Lagrange çarpanları kullanılarak Denklem $\eqref{3}$ ile verilen ifade aşağıdaki şekilde yazılır.
 
-$$\text{maximize} \quad L(x,y,\lambda) = xy - \lambda (2x+2y-100) \label{sampleEQ2Lagrange} \tag{4}$$
+$$\text{maximize} \quad L(x,y,\lambda) = xy - \lambda (2x+2y-100) \tag{4}$$
 
-Burada $\lambda$ Lagrange çarpanı olarak bilinir ve Denklem \ref{sampleEQ2}' de verilen kısıtlı optimizasyon probleminin, Denklem \ref{sampleEQ2Lagrange} ile verilen kısıtsız optimizasyon yöntemine dönüştürülmesinde kullanılır. Bu problemin çözülmesi için $L$ fonksiyonunun $x$,$y$ ve $\lambda$ değişkenlerine göre türevi alınıp sıfıra eşitlenirse;
+Burada $\lambda$ Lagrange çarpanı olarak bilinir ve Denklem $\eqref{3}$' de verilen kısıtlı optimizasyon probleminin, Denklem $\eqref{4}$ ile verilen kısıtsız optimizasyon yöntemine dönüştürülmesinde kullanılır. Bu problemin çözülmesi için $L$ fonksiyonunun $x$,$y$ ve $\lambda$ değişkenlerine göre türevi alınıp sıfıra eşitlenirse;
 
 $$
 \begin{array}{lll}
@@ -63,14 +63,14 @@ $$
 \frac{\partial L(x,y,\lambda)}{\partial y} & = x - 2\lambda & = 0 \\
 \frac{\partial L(x,y,\lambda)}{\partial \lambda} & = 2x+2y-100 & = 0
 \end{array}
-\label{sampleEQ2LagrangePartials} \tag{5}
+\tag{5}
 $$
 
-bulunur. Burada ilk denklemin çözümünden $y = 2\lambda$, ikinci denklemin çözümünden $x=2\lambda$ bulunur. Bu denklemler son denklemde yerine yazılırsa; $2(2\lambda)+2(2\lambda)-100$ elde edilir. Buradan da $\lambda=12.5$ sonucuna varılır. Bu sonuç ile de bahçenin kenarları $x=25$ metre ve $y=25$ metre olarak hesaplanır. Bulunan sonuçların Denklem \ref{sampleEQ2}' de yerine yazılması ile de $A=625$ metrekare elde edilir.
+bulunur. Burada ilk denklemin çözümünden $y = 2\lambda$, ikinci denklemin çözümünden $x=2\lambda$ bulunur. Bu denklemler son denklemde yerine yazılırsa; $2(2\lambda)+2(2\lambda)-100$ elde edilir. Buradan da $\lambda=12.5$ sonucuna varılır. Bu sonuç ile de bahçenin kenarları $x=25$ metre ve $y=25$ metre olarak hesaplanır. Bulunan sonuçların Denklem $\eqref{3}$' de yerine yazılması ile de $A=625$ metrekare elde edilir.
 
 Bu örnek üzerinden Lagrange teoremini genelleştirmek istersek, $f(x,y)$ şeklinde verilen fonksiyonun $g(x,y)=c$ kısıtı altında en küçük veya en büyük değeri bulunmak istenirse aşağıdaki Lagrange denkleminin en küçük veya en büyük noktalarının bulunması gerekmektedir.
 
-$$L(x,y,\lambda) = f(x,y) - \lambda (g(x,y)-c) \label{genericLagrange} \tag{6}$$
+$$L(x,y,\lambda) = f(x,y) - \lambda (g(x,y)-c) \tag{6}$$
 
 Bu genel ifadenin çözümü için de $L$ fonksiyonunun türevi alınıp sıfıra eşitlenirse, $\nabla L=0$, aşağıdaki denklem takımları elde edilir.
 
@@ -80,7 +80,7 @@ $$
 \frac{\partial f}{\partial y} &= \lambda \frac{\partial g}{\partial y}\\ 
 g(x,y) & = c
 \end{array}
-\label{genericLagrangePartials} \tag{7}
+\tag{7}
 $$
 
 Elde edilen üç denklem takımı, birbirinden bağımsız ise, bilinmeyen üç ($x,y,\lambda)$ değişkenin çözülmesi için yeterlidir. Burada belirtilen bağımsızlık ifadesi Lagrange yöntemlerinin kullanılıp kullanılamayacağını belirleyen en önemli koşuldur. 
@@ -100,7 +100,7 @@ $$
 \text{maximize}  & D(x,y) = (x-1)^2+(y-0.5)^2 \\
 \text{subject to}& x^2+y^2=5
 \end{array}
-\label{example0} \tag{8}
+\tag{8}
 $$
 
 Burada $D$, çember üzerinde seçilen bir $x,y$ noktasının, $P(1,0.5)$ noktasına olan Öklid uzaklığıdır (aslında karesi ama en küçük ve en büyük işlemini etkilemediğinden kolaylık olması adına bu şekilde yazılmıştır).
@@ -117,10 +117,10 @@ $$
 \frac{\partial L(x,y,\lambda)}{\partial y} & = 2y -1 - 2\lambda y & = 0\\ 
 \frac{\partial L(x,y,\lambda)}{\partial \lambda} & = x^2+y^2-5 & = 0
 \end{array}
-\label{example0LagrangePartials} \tag{9}
+\tag{9}
 $$
 
-Denklem \ref{example0LagrangePartials} da verilen ilk denklemden $x=\frac{1}{1-\lambda}$, ikinci denklemden ise $y=\frac{0.5}{1-\lambda}$ elde edilir. Bu bulgular üçüncü denklemde yerine yazılırsa;
+Denklem $\eqref{9}$ da verilen ilk denklemden $x=\frac{1}{1-\lambda}$, ikinci denklemden ise $y=\frac{0.5}{1-\lambda}$ elde edilir. Bu bulgular üçüncü denklemde yerine yazılırsa;
 
 $$\frac{1}{(1-\lambda)^2}+\frac{0.25}{(1-\lambda)^2} = 5$$ 
 
@@ -138,19 +138,19 @@ Grafikten de görüldüğü üzere bulunan $P_1$ ve $P_2$ noktaları, hem $x^2+y
 
 ### Örnek Problem: 
 
-$$\text{maximize} \quad xAx^\intercal \quad \text{s.t} \quad \left \lVert x \right \lVert ^2=1 \label{example2} \tag{10}$$
+$$\text{maximize} \quad xAx^\intercal \quad \text{s.t} \quad \left \lVert x \right \lVert ^2=1 \tag{10}$$
 
-Denklem $\ref{example2}$ ile verilen optimizasyon problemi makine öğrenmesi alanında sıklıkla karşımıza çıkan bir problemdir. Denklemin çözümü için Lagrange çarpanı kullanılarak Denklem $\ref{example2}$ ile verilen fonksiyon aşağıdaki şekilde ifade edilir: 
+Denklem $\eqref{10}$ ile verilen optimizasyon problemi makine öğrenmesi alanında sıklıkla karşımıza çıkan bir problemdir. Denklemin çözümü için Lagrange çarpanı kullanılarak Denklem $\eqref{10}$ ile verilen fonksiyon aşağıdaki şekilde ifade edilir: 
 
-$$L\left (x,\lambda \right ) = x^\intercal A x - \lambda \left ( x^\intercal x - 1 \right ) \label{example2Lagrange}  \tag{11} $$ 
+$$L\left (x,\lambda \right ) = x^\intercal A x - \lambda \left ( x^\intercal x - 1 \right ) \tag{11}$$ 
 
-Denklem $\ref{example2Lagrange}$ ile verilen maliyet fonksiyonun çözümü için $L$ fonksiyonunun $\lambda$ değişkenine göre türevi alınıp sıfıra eşitlenirse $x^\intercal x=1$ bulunur.
+Denklem $\eqref{11}$ ile verilen maliyet fonksiyonun çözümü için $L$ fonksiyonunun $\lambda$ değişkenine göre türevi alınıp sıfıra eşitlenirse $x^\intercal x=1$ bulunur.
 
 $L$ fonksiyonunun $x$ değişkenine göre türevi alınıp sıfıra eşitlenirse de $$\frac{\partial{L\left (x,\lambda \right ) }}{\partial{x}}=2Ax-2\lambda x = 0$$ elde edilir. Bu denklem düzenlenerek
 
-$$Ax = \lambda x \label{example2LagrangeResult} \tag{12} $$
+$$Ax = \lambda x \tag{12}$$
 
-sonucuna ulaşılır. Bu eşitlik [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\ref{example2LagrangeResult}$ şeklinde verilen bir problemin çözümünü sağlayan $x$ vektörleri $A$ matrisinin özvektörleri, $\lambda$ değerleri ise $A$ matrisinin özdeğerleri olarak bilinir.
+sonucuna ulaşılır. Bu eşitlik [Özdeğer ve Özvektörler]({% post_url 2019-03-26-ozdeger-ve-ozvektorler %}) yazımızı hatırlayanlar için tanıdık bir ifadedir. Denklem $\eqref{12}$ şeklinde verilen bir problemin çözümünü sağlayan $x$ vektörleri $A$ matrisinin özvektörleri, $\lambda$ değerleri ise $A$ matrisinin özdeğerleri olarak bilinir.
 
 
 ### Örnek Problem: Doğrusal En Küçük Kareler Yöntemi
@@ -176,13 +176,13 @@ $$
 
 eşitliği elde edilir. Bu eşitliğin çözümü için her iki taraf $x^\intercal x$ değerine bölünürse $A$ matrisi aşağıdaki şekilde bulunur.
 
-$$A= \left( x^\intercal x \right )^{-1} x^\intercal y \label{example1} \tag{13}$$
+$$A= \left( x^\intercal x \right )^{-1} x^\intercal y \tag{13}$$
 
-Denklem \ref{example1} ile verilen eşitlik doğrusal en küçük kareler kestirimi olarak bilinir. Ancak pek çok uygulamada bulunan sonucun belirli şartları da sağlaması beklenmektedir. Örnek olarak burada bulunan $A$ matrisinin normunun verilen bir $C$ sabitinden küçük olması gerektiği koşulunu eklemeye çalışalım.
+Denklem \eqref{13} ile verilen eşitlik doğrusal en küçük kareler kestirimi olarak bilinir. Ancak pek çok uygulamada bulunan sonucun belirli şartları da sağlaması beklenmektedir. Örnek olarak burada bulunan $A$ matrisinin normunun verilen bir $C$ sabitinden küçük olması gerektiği koşulunu eklemeye çalışalım.
 
-$$\text{minimize} \quad J(A) \quad \text{s.t} \quad A^\intercal A \lt C \label{example1constrained} \tag{14}$$
+$$\text{minimize} \quad J(A) \quad \text{s.t} \quad A^\intercal A \lt C \tag{14}$$
 
-Bu durumda Denklem \ref{example1constrained} ile verilen problemin, kısıtlı optimizasyon denklemi Lagrange çarpanı kullanılarak aşağıdaki şekilde yazılır.
+Bu durumda Denklem \eqref{14} ile verilen problemin, kısıtlı optimizasyon denklemi Lagrange çarpanı kullanılarak aşağıdaki şekilde yazılır.
 
 $$
 \begin{array}{ll}
@@ -197,16 +197,16 @@ $$
 \frac{\partial J}{\partial A} &= 2 \left( x^\intercal y - x^\intercal x A \right ) - 2\lambda \left( A \right) = 0\\ 
 y & = xA
 \end{array}
-\label{example1LagrangePartials} \tag{15}
+\tag{15}
 $$
 
 eşitliklikleri elde edilir. Bu eşitliğin çözümü için ortak terim $A$ yalnız bırakılacak şekilde denklem düzenlenirse $A$ matrisi aşağıdaki şekilde bulunur.
 
-$$A= \left( \lambda I + x^\intercal x \right )^{-1} x^\intercal y \label{example1result} \tag{16}$$
+$$A= \left( \lambda I + x^\intercal x \right )^{-1} x^\intercal y \tag{16}$$
 
-Denklem \ref{example1result} ile verilen bu sonuç literatürde regülarize doğrusal en küçük kareler yöntemi (regularized linear least squares) veya çok daha yaygın adı ile Ridge Regresyonu (Ridge Regression) olarak bilinir. 
+Denklem \eqref{16} ile verilen bu sonuç literatürde regülarize doğrusal en küçük kareler yöntemi (regularized linear least squares) veya çok daha yaygın adı ile Ridge Regresyonu (Ridge Regression) olarak bilinir. 
 
-Denklem \ref{example1constrained} ile sunulan kısıt ise regülarizasyon olarak bilinmektedir ve makine öğrenmesinde makinenin veriye aşırı uyum (overfit) sağlamasını engellemek için sıklıkla kullanılmaktadır. Bu kısıt eklendiğinde makinenin öğrendiği $A$ katsayılarının küçük olması zorlanmakta (gereksiz yere büyümesi engellenir) ve makinenin bulacağı çözümün veri setinde olmayan örnekler için de genelleştirilmesi sağlanmaktadır.
+Denklem \eqref{14} ile sunulan kısıt ise regülarizasyon olarak bilinmektedir ve makine öğrenmesinde makinenin veriye aşırı uyum (overfit) sağlamasını engellemek için sıklıkla kullanılmaktadır. Bu kısıt eklendiğinde makinenin öğrendiği $A$ katsayılarının küçük olması zorlanmakta (gereksiz yere büyümesi engellenir) ve makinenin bulacağı çözümün veri setinde olmayan örnekler için de genelleştirilmesi sağlanmaktadır.
 
 **Referanslar**
 * [Joseph Louis Lagrange hakkında yazılan wikiwand sayfası](https://www.wikiwand.com/tr/Joseph-Louis_Lagrange)

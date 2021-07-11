@@ -36,7 +36,7 @@ Yukarıda sayılan nedenlerden ötürü $f(\mathbf{x})$ fonksiyonunun en küçü
 
 Burada $\eta_k$ adım boyunu, $d_k$ ise iniş doğrultusunu göstermektedir. Herhangi bir $d \neq 0 \in \mathbb{R}^n$ vektörünün iniş doğrultusu olabilmesi için 
 
-$$\nabla^\intercal f(\mathbf{x}) d \lt 0 \label{descentCondition} \tag{1}$$ 
+$$\nabla^\intercal f(\mathbf{x}) d \lt 0 \tag{1}$$ 
 
 şartını sağlaması gerekmektedir.
 
@@ -99,7 +99,7 @@ Gradyan iniş yöntemi iniş doğrultusu $d_k$ vektörünü, gradyanın tam ters
 
 $$\nabla^\intercal f d = - \nabla^\intercal f \nabla f = -\lVert \nabla f) \lVert^2 \lt 0$$ 
 
-olduğundan Denklem \ref{descentCondition} ile verilen iniş doğrultusu olma şartı sağlanmış olur. Gradyan İniş yöntemi iniş adım boyutu $\eta$ nın seçimi için bir yöntem önermemektedir. 
+olduğundan Denklem $\eqref{1}$ ile verilen iniş doğrultusu olma şartı sağlanmış olur. Gradyan İniş yöntemi iniş adım boyutu $\eta$ nın seçimi için bir yöntem önermemektedir. 
 
 Verilen örnek problemin *Gradyan İniş Yöntemi* ile çözümü için $\eta_k=0.25$ gibi sabit bir sayı olduğunu varsayalım. Bu durumda problem şu şekilde çözülecektir.
 
@@ -143,7 +143,7 @@ Grafiklerden de görüldüğü üzere, küçük $\eta$ değerleri için yöntemi
 Gradyan İniş yönteminde karşımıza çıkan $\eta$ adım boyutunun belirlenemesi problemine karşı önerilen bir yöntemdir. Yöntem her iterasyon adımında seçilen bir $d_k$ doğrultusu için en uygun $\eta_k$ adım boyunu bulmaya yönelik ikinci bir optimizasyon problemi tanımlar. Bu problem;
 
 $$
-\eta_k = \arg \min_{\eta \geq 0} f(\mathbf{x_k} + \eta d_k) \label{exactLS} \tag{2}
+\eta_k = \arg \min_{\eta \geq 0} f(\mathbf{x_k} + \eta d_k) \tag{2}
 $$
 
 şeklinde tanımlanır. Bu optimizasyon problemi sonucunda yöntem $\mathbf{x_k}$ noktasından, $d_k$ doğrultusunda ne uzunlukta bir adım $\eta_k$ atması durumunda $f$ fonksiyonunun en küçük değerine ulaştığını çözmeyi amaçlar.
@@ -158,7 +158,7 @@ Burada işlem kolaylığı sağlaması açısından $\mathbf{x} = \left [x, y \r
 
 $$f(\mathbf{x}) = \frac{1}{2} \mathbf{x}^\intercal H \mathbf{x}$$
 
-fonksiyonu elde edilir. Bu fonksiyon Denklem \ref{exactLS} ile verilen *Kesin Doğru Araması* optimizasyon probleminde yerine yazılırsa
+fonksiyonu elde edilir. Bu fonksiyon Denklem $\eqref{2}$ ile verilen *Kesin Doğru Araması* optimizasyon probleminde yerine yazılırsa
 
 $$
 \eta_k = \arg \min_{\eta \geq 0} \frac{1}{2} \left ( \mathbf{x_k + \eta d_k} \right ) ^\intercal H \left ( \mathbf{x_k + \eta d_k} \right )
@@ -176,7 +176,7 @@ $$
 \end{aligned}
 $$
 
-Denklem \ref{exactLS} ten hatırlayacağımız üzere aranan $\eta$ değerinin pozitif olma şartı vardır. Yukarıda bulunan $\eta$ ifadesinde $H \mathbf{x_k} = \nabla f(\mathbf{x})$ olduğundan, eğer $d_k$ iniş doğrultusu ise ifadenin pay kısmı $-d_k^\intercal \nabla f(\mathbf{x}$) sıfırdan büyük olur. Payda kısmında bulunan $H$ Hessian matrisininde pozitif tanımlı olması durumunda $\eta \gt 0$ şartı sağlanmış olur.
+Denklem $\eqref{2}$ ten hatırlayacağımız üzere aranan $\eta$ değerinin pozitif olma şartı vardır. Yukarıda bulunan $\eta$ ifadesinde $H \mathbf{x_k} = \nabla f(\mathbf{x})$ olduğundan, eğer $d_k$ iniş doğrultusu ise ifadenin pay kısmı $-d_k^\intercal \nabla f(\mathbf{x}$) sıfırdan büyük olur. Payda kısmında bulunan $H$ Hessian matrisininde pozitif tanımlı olması durumunda $\eta \gt 0$ şartı sağlanmış olur.
 
 Verilen örnek problemin *Kesin Doğru Araması Yöntemi* ile çözümü aşağıdaki şekilde olacaktır.
 

@@ -19,16 +19,15 @@ thumbnail: /assets/post_resources/image_smoothing/thumbnail.png
 $$
 E(S) = \lVert S - I \lVert^2 + \lambda C(S)
 \tag{1}
-\label{objective}
 $$
 
-Denklem \ref{objective} de tanımlanan ifadede ilk kısım çıktı imgesi $S$ nin $I$ ile benzerliğini kontrol ederken, ikinci kısım ise çıktı imgesindeki gradyanların sayısını kontrol altında tutmaktadır. Yapılacak fonksiyonun amacı $E(S)$ ile verilen fonksiyonun $S$ üzerinden en küçükleyen $S^\ast$ imgesini bulmaktadır.
+Denklem $\eqref{1}$ de tanımlanan ifadede ilk kısım çıktı imgesi $S$ nin $I$ ile benzerliğini kontrol ederken, ikinci kısım ise çıktı imgesindeki gradyanların sayısını kontrol altında tutmaktadır. Yapılacak fonksiyonun amacı $E(S)$ ile verilen fonksiyonun $S$ üzerinden en küçükleyen $S^\ast$ imgesini bulmaktadır.
 
-Yazılan optimizasyon fonksiyonu oldukça basit görünse de $C(S)$ fonksiyonunun yapısı nedeniyle [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) veya diğer gradyan temelli optimizasyon yöntemleri ile doğrudan çözülebilir bir biçimde değildir. Bu nedenle yazarlar 2008 yılında "A new  alternating minimization algorithm for total variation image reconstruction" makalesinde önerilen dönüşümlü optimizasyon stratejisini Denklem \ref{objective} ile verilen probleme uygulayarak sonuca ulşmaya çalışmışlardır. Kullanılan dönüşümlü optimizasyon stratejisinin en önemli özelliği Denklem \ref{objective} ile verilen optimizasyon problemini yardımcı bir alt problem tanımlayarak çözmeye çalışmasıdır. 
+Yazılan optimizasyon fonksiyonu oldukça basit görünse de $C(S)$ fonksiyonunun yapısı nedeniyle [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) veya diğer gradyan temelli optimizasyon yöntemleri ile doğrudan çözülebilir bir biçimde değildir. Bu nedenle yazarlar 2008 yılında "A new  alternating minimization algorithm for total variation image reconstruction" makalesinde önerilen dönüşümlü optimizasyon stratejisini Denklem $\eqref{1}$ ile verilen probleme uygulayarak sonuca ulşmaya çalışmışlardır. Kullanılan dönüşümlü optimizasyon stratejisinin en önemli özelliği Denklem $\eqref{1}$ ile verilen optimizasyon problemini yardımcı bir alt problem tanımlayarak çözmeye çalışmasıdır. 
 
-Tanımlanan problem $C(S)$ fonksiyonunu $S$ değişkeni yerine sabit kabul edilecek bir yardımcı değişkene bağlı yeniden yazabilmeyi hedeflemektedir. $C(S)$ in, $S$ değişkenine bağlı olmadan yeniden yazılması durumunda Denklem \ref{objective} ifadesi dışbükey olacağından basit bir çözüme sahip olacaktır.
+Tanımlanan problem $C(S)$ fonksiyonunu $S$ değişkeni yerine sabit kabul edilecek bir yardımcı değişkene bağlı yeniden yazabilmeyi hedeflemektedir. $C(S)$ in, $S$ değişkenine bağlı olmadan yeniden yazılması durumunda Denklem $\eqref{1}$ ifadesi dışbükey olacağından basit bir çözüme sahip olacaktır.
 
-Dönüşümlü optimizasyon stratejisini kullanabilmek için $h=\nabla_x S$ ve $v=\nabla_y S$ tanımlamalarını yaparak Denklem \ref{objective} ile verilen optimizasyon problemini yeniden yazalım.
+Dönüşümlü optimizasyon stratejisini kullanabilmek için $h=\nabla_x S$ ve $v=\nabla_y S$ tanımlamalarını yaparak Denklem $\eqref{1}$ ile verilen optimizasyon problemini yeniden yazalım.
 
 $$
 \begin{aligned}
@@ -36,16 +35,15 @@ S^\ast &= \arg \min_{S,h,v} \; E(S,h,v)\\
 E(S,h,v) &= \lVert S - I \lVert^2 + \lambda C(h,v) +  \beta \left( \lVert \nabla_x S - h \lVert^2 + \lVert \nabla_y S - v \lVert^2 \right)
 \end{aligned}
 \tag{2}
-\label{objective_aux}
 $$
 
-Yazılan ifadede $C(h,v) = \lVert h^2 + v^2 \lVert_0$ gradyan sayma fonksiyonunu göstermektedir ve $\beta$ kullanılan yardımcı değişkenlerin orjinal değişkenlere yakın olmasını zorlamaktadır. Denklem \ref{objective_aux} incelendiğinde $\beta$ katsayısının çok büyük seçilmesi durumunda $h=\nabla_x S$ ve $v=\nabla_y S$ şartı sağlanacak ve Denklem \ref{objective} ile verilen orjinal probleme yakınsayacaktır. 
+Yazılan ifadede $C(h,v) = \lVert h^2 + v^2 \lVert_0$ gradyan sayma fonksiyonunu göstermektedir ve $\beta$ kullanılan yardımcı değişkenlerin orjinal değişkenlere yakın olmasını zorlamaktadır. Denklem $\eqref{2}$ incelendiğinde $\beta$ katsayısının çok büyük seçilmesi durumunda $h=\nabla_x S$ ve $v=\nabla_y S$ şartı sağlanacak ve Denklem $\eqref{1}$ ile verilen orjinal probleme yakınsayacaktır. 
 
-Denklem \ref{objective_aux} ile yazılan optimizasyon probleminin Denklem \ref{objective} den en önemli farkı, $C$ fonskiyonunu $S$ değişkeninden bağımsız bir şekilde yeniden yazması ve $S$ üzerinden optimizizasyonu oldukça kolaylaştırmasıdır. Ancak bunu yaparken denkleme eklediği iki yeni değişken $(h,v)$ üzerinden de yeni bir optimizasyon problemi ortaya çıkmaktadır. Denklem \ref{objective_aux} ile verilen problemin çözümü için $(h,v)$ üzerinden optimizasyon problemiyle $S$ üzerinden optimizasyon problemi dönüşümlü olarak çözülmelidir.
+Denklem $\eqref{2}$ ile yazılan optimizasyon probleminin Denklem $\eqref{1}$ den en önemli farkı, $C$ fonskiyonunu $S$ değişkeninden bağımsız bir şekilde yeniden yazması ve $S$ üzerinden optimizizasyonu oldukça kolaylaştırmasıdır. Ancak bunu yaparken denkleme eklediği iki yeni değişken $(h,v)$ üzerinden de yeni bir optimizasyon problemi ortaya çıkmaktadır. Denklem $\eqref{2}$ ile verilen problemin çözümü için $(h,v)$ üzerinden optimizasyon problemiyle $S$ üzerinden optimizasyon problemi dönüşümlü olarak çözülmelidir.
 
 ### Alt Problem 1: $h,v$ bilinmesi durumunda $S^\ast$
 
-Denklem \ref{objective_aux} ile verilen $E(S,h,v)$ ifadesinin $S$ e bağlı en küçük değeri, $S$ değişkenine göre türev alınarak bulunabilir. Bu ifadede $h,v$ değerleri $S$ değerine bağlı olmadığından türev işlemi sırasında skalar olarak ele alınacağından, aşağıdaki çözüm elde edilir.
+Denklem $\eqref{2}$ ile verilen $E(S,h,v)$ ifadesinin $S$ e bağlı en küçük değeri, $S$ değişkenine göre türev alınarak bulunabilir. Bu ifadede $h,v$ değerleri $S$ değerine bağlı olmadığından türev işlemi sırasında skalar olarak ele alınacağından, aşağıdaki çözüm elde edilir.
 
 $$
 \begin{aligned}
@@ -95,7 +93,6 @@ S(x-1,y) \\ S(x,y) \\ S(x+1,y)\\
 \dots \\S(x,y+1) \\ \dots
 \end{bmatrix}
 \tag{3}
-\label{s_solution}
 $$
 
 Elde edilen $B=PS$ ifadesinde $P$ Poisson matrisi olarak bilinmektedir. Denklem doğrusal bir denklem takımı olduğundan imgedeki tüm pikseller için $B=PS$ denklemleri yazılarak $S^\ast=B^{-1} P$ işlemi ile $S^\ast$ imgesi çözülebilir. $P$ matrisinin oldukça seyrek bir matris olması özelliği göz önüne alındığında işlemler  [Successive Over-Relaxation]({% post_url 2020-09-20-poisson-denklemi-yardimiyla-goruntu-duzenleme %}) yöntemi kullanılarak oldukça hızlı bir şekilde çözülebilir.
@@ -103,7 +100,7 @@ Elde edilen $B=PS$ ifadesinde $P$ Poisson matrisi olarak bilinmektedir. Denklem 
 
 ### Alt Problem 2: $S^\ast$ bilinmesi durumunda $h,v$
 
-Yazımızın ilk kısmında da değindiğimiz üzere Denklem \ref{objective_aux} ile yazılan problem $S$ üzerinden en küçükleme işlemini oldukça kolaylaştırmaktadır. Ancak $S^\ast$ sabit kabul edilmesi durumunda yazılacak olan
+Yazımızın ilk kısmında da değindiğimiz üzere Denklem $\eqref{2}$ ile yazılan problem $S$ üzerinden en küçükleme işlemini oldukça kolaylaştırmaktadır. Ancak $S^\ast$ sabit kabul edilmesi durumunda yazılacak olan
 
 $$
 E(S^\ast,h,v) = \lambda C(h,v) + \beta \left( \lVert \nabla_x S - h \lVert^2 + \lVert \nabla_y S - v \lVert^2 \right)
@@ -114,10 +111,9 @@ ifadesinin çözümü dış bükey veya türevlenebilir olmadığından problemi
 $$
 E_p(S^\ast,h_p,v_p) = \frac{\lambda}{\beta} C(h_p,v_p) +  \left( \lVert \nabla_x S_p - h_p \lVert^2 + \lVert \nabla_y S_p - v_p \lVert^2 \right)
 \tag{4}
-\label{hv_solution}
 $$
 
-Eşitliği elde edilir. Denklem \ref{hv_solution} te tanımlanan ifadede $C(h_p,v_p)$ fonksiyonu da parçalı fonksiyon kullanılarak aşağıdaki şekilde yazılabilir.
+Eşitliği elde edilir. Denklem $\eqref{4}$ te tanımlanan ifadede $C(h_p,v_p)$ fonksiyonu da parçalı fonksiyon kullanılarak aşağıdaki şekilde yazılabilir.
 
 $$
 C(h_p,v_p) = 
@@ -127,7 +123,7 @@ C(h_p,v_p) =
 \end{cases}
 $$
 
-Denklem \ref{hv_solution} ile verilen ifade ve $C$ fonksiyonu birlikte ele alındığında $h_p=0$ ve $v_p=0$ seçilmesi durumunda $E(S^\ast, 0,0) = (\nabla_x S_p)^2 + (\nabla_y S_p)^2$ şeklinde hesaplanacaktır. $h_p,v_p$ değerlerinin sıfırdan farklı seçilmesi durumunda da en mantıklı seçim ikinci terimleri sıfır yapacak olan $h_p=\nabla_x S_p$ ve $v_p=\nabla_y S_p$ seçilmesi olacaktır. Bu drumumda ise toplam hata $E(S^\ast, \nabla_x S_p,\nabla_y S_p) = \frac{lambda}{\beta}$ şeklinde bulunacaktır.
+Denklem $\eqref{4}$ ile verilen ifade ve $C$ fonksiyonu birlikte ele alındığında $h_p=0$ ve $v_p=0$ seçilmesi durumunda $E(S^\ast, 0,0) = (\nabla_x S_p)^2 + (\nabla_y S_p)^2$ şeklinde hesaplanacaktır. $h_p,v_p$ değerlerinin sıfırdan farklı seçilmesi durumunda da en mantıklı seçim ikinci terimleri sıfır yapacak olan $h_p=\nabla_x S_p$ ve $v_p=\nabla_y S_p$ seçilmesi olacaktır. Bu drumumda ise toplam hata $E(S^\ast, \nabla_x S_p,\nabla_y S_p) = \frac{lambda}{\beta}$ şeklinde bulunacaktır.
 
 Bu durumda $(\nabla_x S_p)^2 + (\nabla_y S_p)^2$ gradyan toplamı $\frac{lambda}{\beta}$ değerinden büyük olması durumunda $h_p=\nabla_x S_p, \; v_p=\nabla_y S_p$ seçilmesi mantıklıyken, diğer durumda $h_p=0, \; v_p=0$ en iyi seçim olacaktır. Bu seçim stratejisi aşağıdaki parçalı fonskiyon ile gösterilebilir.
 
@@ -138,10 +134,9 @@ $$
 (\nabla_x S_p, \nabla_y S_p), & \text{ diğer}
 \end{cases}
 \tag{5}
-\label{hp_solution_partial}
 $$
 
-Yukarıda elde edilen iki alt problem ve çözümü birlikte ele alındığında Denklem \ref{objective_aux} ile tanımlanan problemin çözümü aşağıdaki algoritma yardımıyla hesaplanır.
+Yukarıda elde edilen iki alt problem ve çözümü birlikte ele alındığında Denklem $\eqref{2}$ ile tanımlanan problemin çözümü aşağıdaki algoritma yardımıyla hesaplanır.
 
 > - **GİRDİLER**
 >   - $I$: imge
@@ -156,13 +151,13 @@ Yukarıda elde edilen iki alt problem ve çözümü birlikte ele alındığında
 > - $S$ = $I$
 > - $\beta = \beta_0$
 > - **while** $\beta < \beta_\text{max}$
->   - Denklem \ref{hp_solution_partial} ve $S$ yi kullanarak $h,v$ değerlerini hesapla
+>   - Denklem $\eqref{5}$ ve $S$ yi kullanarak $h,v$ değerlerini hesapla
 >   - Bulunan $h,v$ değerlerini kullanarak $B=I + \beta \left( \nabla^\intercal_x h + \nabla^\intercal_y v \right)$ matrisini hesapla
->   - $B$ ve Denklem \ref{s_solution} ü kullanarak yeni $S$ yi hesapla
+>   - $B$ ve Denklem $\eqref{3}$ ü kullanarak yeni $S$ yi hesapla
 >   - $\beta = \kappa \beta$ ile $\beta$ değerini artır
 > - **return** $S$
 
-Verilen algoritmadan görüldüğü üzere ilk olarak girdi imgesi $S$ imgesine atanarak ilklendirme yapılmakta ve bu $S$ değeri kullanılarak $h,v$ gradyanları bulunmakta. Ardından bu değerler kullanılarak bilinenler matrisi $B$ hesaplanmaktadır. $B$ bulunduktan sonra Denklem \ref{s_solution} ile yazılan Poisson eşitliği çözülerek $S$ imgesi bulunmaktadır. Her iterasyonda bir önceki iterasyonda kullanılan $\beta$ değeri $\kappa=2.0$ gibi sabit bir sayı ile çarpılarak ertırılmakta ve $\beta$ değerinin olması gerektiği gibi çok yüksek bir sayıya ulaşması sağlanmaktadır.
+Verilen algoritmadan görüldüğü üzere ilk olarak girdi imgesi $S$ imgesine atanarak ilklendirme yapılmakta ve bu $S$ değeri kullanılarak $h,v$ gradyanları bulunmakta. Ardından bu değerler kullanılarak bilinenler matrisi $B$ hesaplanmaktadır. $B$ bulunduktan sonra Denklem $\eqref{3}$ ile yazılan Poisson eşitliği çözülerek $S$ imgesi bulunmaktadır. Her iterasyonda bir önceki iterasyonda kullanılan $\beta$ değeri $\kappa=2.0$ gibi sabit bir sayı ile çarpılarak ertırılmakta ve $\beta$ değerinin olması gerektiği gibi çok yüksek bir sayıya ulaşması sağlanmaktadır.
 
 Yukarıda verilen algoritma IMLAB görüntü işleme kütüphanesi kullanılarak `L0Minimize(matrix_t *input, float lambda, float beta0, float betaMax, float kappa, matrix_t *output)` fonskiyonu şeklinde yazılmıştır. Yazılan fonksiyon makalede de önerilen parametreler kullanılarak aşağıdaki şekilde kullanılmıştır.
 

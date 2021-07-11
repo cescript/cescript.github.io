@@ -54,9 +54,9 @@ $$\hat{y}_{n} = \mathcal{f}\left( \sum_{i=0}^{L_1-1} {w_{i,0}^{(1)} x_{i}^{(1)} 
 
 ### Çok Katmanlı Algılayıcı Eğitimi {#multilayer_perceptron_learning}
 
-Tek katmanlı algılayıcıların eğitiminde olduğu gibi, çok katmanlı algılayıcıların eğitimi için de [Doğrusal En Küçük Kareler Yöntemi](#perceptron_learning) ve [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) kullanılmaktadır. Çok katmanlı algılayıcı eğitimi için en küçüklenmeye çalışılan hata Denklem \ref{perceptron_learning} ile yazılabilir.
+Tek katmanlı algılayıcıların eğitiminde olduğu gibi, çok katmanlı algılayıcıların eğitimi için de [Doğrusal En Küçük Kareler Yöntemi](#perceptron_learning) ve [Gradyan İniş Yöntemleri]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) kullanılmaktadır. Çok katmanlı algılayıcı eğitimi için en küçüklenmeye çalışılan hata Denklem $\eqref{2}$ ile yazılabilir.
 
-$$ E_n(\mathbf{w},b) = \frac{1}{2} (y_n - \hat{y}_n)^2 \label{perceptron_learning} \tag{2}$$
+$$ E_n(\mathbf{w},b) = \frac{1}{2} (y_n - \hat{y}_n)^2 \tag{2}$$
 
 Yazılan hata fonksiyonunda yer alan $\hat{y}_n$, $\mathbf{w}$ ve $b$ değişkenlerine bağlı olduğundan, fonksiyonu en küçükleyen $\mathbf{w}$ ve $b$ değerleri sırasıyla $\frac{\partial E_n(\mathbf{w},b)}{\partial \mathbf{w}} = 0$ ve $\frac{\partial E_n(\mathbf{w},b)}{\partial b} = 0$ eşitlikleri çözülerek bulunabilir.
 
@@ -78,7 +78,7 @@ Elde edilen gradyan vektörü [Gradyan İniş Yönteminde]({% post_url 2020-04-0
 
 $$\mathbf{w}^{(1)}_{k+1}=\mathbf{w}^{(1)}_k-\eta \nabla E(\mathbf{w}^{(1)},b^{(1)})$$
 
-Ancak tek katmanlı algılayıcılardan farklı olarak ağın ara katmanları için hedef çıktılar bilinmediğinden, ara katmanın ağrılıklarını hesaplamada kullanılacak, Denklem \ref{perceptron_learning} ile verilen hata fonksiyonu yazılamayacaktır. Bu durumda her bir algılayıcıdan kaynaklanan hata miktarı belirlenemeyeceği için ağırlık güncellemesinde kullanılacak olan $\nabla E(\mathbf{w}^{(0)},b^{(0)})$ vektörü bulunamayacak ve dolayısıyla $\mathbf{w}^{(0)}$ ağırlık vektörü hesaplanamayacaktır.
+Ancak tek katmanlı algılayıcılardan farklı olarak ağın ara katmanları için hedef çıktılar bilinmediğinden, ara katmanın ağrılıklarını hesaplamada kullanılacak, Denklem $\eqref{2}$ ile verilen hata fonksiyonu yazılamayacaktır. Bu durumda her bir algılayıcıdan kaynaklanan hata miktarı belirlenemeyeceği için ağırlık güncellemesinde kullanılacak olan $\nabla E(\mathbf{w}^{(0)},b^{(0)})$ vektörü bulunamayacak ve dolayısıyla $\mathbf{w}^{(0)}$ ağırlık vektörü hesaplanamayacaktır.
 
 Burada devreye Geri Yayılım (Back Propagation) algoritması girmektedir. Geri yayılım algoritması ile en son katmanda hesaplanan hata önceki katmanlara yansıtılır. Bu yansıtılma işlemi bir katmanın çıkışında görülen toplam hatanın o katmanın girişlerine, giriş ağırlıkları oranında, pay edilmesi ile yapılır. Bu sayede herhangi bir ara katmanın çıktıya olan etkisi (ağırlığı) düşükse, çıkışta meydana gelen hatadan daha küçük pay alırken, çıktıya olan etkisi (ağırlığı) yüksekse, çıkışta meydana gelen hatadan daha büyük bir pay alması sağlanır.
 
@@ -86,7 +86,7 @@ Geri Yayılım algoritmasını türetebilmek için ilk yazımızda tanımladığ
 
 $$
 \delta_{n}^{(0)} = \frac{\partial E_n(\mathbf{w},b)}{\partial a_n^{(0)}} = \sum_{j=0}^{L_l-1} \left(\frac{\partial E_n(\mathbf{w},b)}{\partial a_j^{(1)}} \right) \left(\frac{\partial a_j^{(1)}}{\partial \mathbf{x}_n^{(1)}} \right) \left(\frac{\partial \mathbf{x}_n^{(1)}}{\partial a_j^{(0)}} \right)
-\label{backpropagation} \tag{3}
+\tag{3}
 $$
 
 Yazılan ifadede yer alan birinci kısım ilk kısımda yazdığımız $\delta_{n}^{(1)}$ değerine eşittir. $l$. katmanın girdisi $a_j^{(l)} = {\mathbf{w}_{j}^{(l)}}^\intercal \mathbf{x}_n^{(l)} + b_j^{(l)}$ şeklinde tanımlandığından, ikinci kısmın türevinden ise 
@@ -101,7 +101,7 @@ $$
 \frac{\partial \mathbf{x}_n^{(1)}}{\partial a_j^{(0)}} = \mathcal{f}^\prime (a_j^{(0)})
 $$
 
-şeklinde hesaplanır. Bulunan değerler Denklem \ref{backpropagation} de yerine yazılırsa;
+şeklinde hesaplanır. Bulunan değerler Denklem $\eqref{3}$ de yerine yazılırsa;
 
 $$\delta_{n}^{(0)} = \sum_{j=0}^{L_l-1} \delta_{n}^{(1)} \mathbf{w}_{j}^{(1)} \mathcal{f}^\prime (a_j^{(0)}) $$ elde edilir.
 
