@@ -146,7 +146,11 @@ $$L\left (x,\lambda \right ) = x^\intercal A x - \lambda \left ( x^\intercal x -
 
 Denklem $\eqref{11}$ ile verilen maliyet fonksiyonun çözümü için $L$ fonksiyonunun $\lambda$ değişkenine göre türevi alınıp sıfıra eşitlenirse $x^\intercal x=1$ bulunur.
 
-$L$ fonksiyonunun $x$ değişkenine göre türevi alınıp sıfıra eşitlenirse de $$\frac{\partial{L\left (x,\lambda \right ) }}{\partial{x}}=2Ax-2\lambda x = 0$$ elde edilir. Bu denklem düzenlenerek
+$L$ fonksiyonunun $x$ değişkenine göre türevi alınıp sıfıra eşitlenirse de 
+
+$$\frac{\partial{L\left (x,\lambda \right ) }}{\partial{x}}=2Ax-2\lambda x = 0$$ 
+
+elde edilir. Bu denklem düzenlenerek
 
 $$Ax = \lambda x \tag{12}$$
 
@@ -178,11 +182,11 @@ eşitliği elde edilir. Bu eşitliğin çözümü için her iki taraf $x^\interc
 
 $$A= \left( x^\intercal x \right )^{-1} x^\intercal y \tag{13}$$
 
-Denklem \eqref{13} ile verilen eşitlik doğrusal en küçük kareler kestirimi olarak bilinir. Ancak pek çok uygulamada bulunan sonucun belirli şartları da sağlaması beklenmektedir. Örnek olarak burada bulunan $A$ matrisinin normunun verilen bir $C$ sabitinden küçük olması gerektiği koşulunu eklemeye çalışalım.
+Denklem $\eqref{13}$ ile verilen eşitlik doğrusal en küçük kareler kestirimi olarak bilinir. Ancak pek çok uygulamada bulunan sonucun belirli şartları da sağlaması beklenmektedir. Örnek olarak burada bulunan $A$ matrisinin normunun verilen bir $C$ sabitinden küçük olması gerektiği koşulunu eklemeye çalışalım.
 
 $$\text{minimize} \quad J(A) \quad \text{s.t} \quad A^\intercal A \lt C \tag{14}$$
 
-Bu durumda Denklem \eqref{14} ile verilen problemin, kısıtlı optimizasyon denklemi Lagrange çarpanı kullanılarak aşağıdaki şekilde yazılır.
+Bu durumda Denklem $\eqref{14}$ ile verilen problemin, kısıtlı optimizasyon denklemi Lagrange çarpanı kullanılarak aşağıdaki şekilde yazılır.
 
 $$
 \begin{array}{ll}
@@ -204,9 +208,9 @@ eşitliklikleri elde edilir. Bu eşitliğin çözümü için ortak terim $A$ yal
 
 $$A= \left( \lambda I + x^\intercal x \right )^{-1} x^\intercal y \tag{16}$$
 
-Denklem \eqref{16} ile verilen bu sonuç literatürde regülarize doğrusal en küçük kareler yöntemi (regularized linear least squares) veya çok daha yaygın adı ile Ridge Regresyonu (Ridge Regression) olarak bilinir. 
+Denklem $\eqref{16}$ ile verilen bu sonuç literatürde regülarize doğrusal en küçük kareler yöntemi (regularized linear least squares) veya çok daha yaygın adı ile Ridge Regresyonu (Ridge Regression) olarak bilinir. 
 
-Denklem \eqref{14} ile sunulan kısıt ise regülarizasyon olarak bilinmektedir ve makine öğrenmesinde makinenin veriye aşırı uyum (overfit) sağlamasını engellemek için sıklıkla kullanılmaktadır. Bu kısıt eklendiğinde makinenin öğrendiği $A$ katsayılarının küçük olması zorlanmakta (gereksiz yere büyümesi engellenir) ve makinenin bulacağı çözümün veri setinde olmayan örnekler için de genelleştirilmesi sağlanmaktadır.
+Denklem $\eqref{14}$ ile sunulan kısıt ise regülarizasyon olarak bilinmektedir ve makine öğrenmesinde makinenin veriye aşırı uyum (overfit) sağlamasını engellemek için sıklıkla kullanılmaktadır. Bu kısıt eklendiğinde makinenin öğrendiği $A$ katsayılarının küçük olması zorlanmakta (gereksiz yere büyümesi engellenir) ve makinenin bulacağı çözümün veri setinde olmayan örnekler için de genelleştirilmesi sağlanmaktadır.
 
 **Referanslar**
 * [Joseph Louis Lagrange hakkında yazılan wikiwand sayfası](https://www.wikiwand.com/tr/Joseph-Louis_Lagrange)
