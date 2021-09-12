@@ -26,9 +26,9 @@ Aşağıda Tesla tarafından tanıtımı yapılan bilgisyarlı görü sisteminin
 
 ![Tesla Derin Öğrenme Ağı][tesla_backbone]
 
-Verilen görselde, RegNet ve BiFPN bloklarından oluşan yapı birimin omurgasını oluşturmaktadır.
+Verilen görselde, RegNet ve BiFPN bloklarından oluşan yapı birimin omurgasını oluşturmaktadır. RegNet; 2020 yılında düzenlenen CVPR konferansında, Facebook Yapay Zeka Araştırma grubu (FAIR) tarafından duyurulan bir ağ tasarım modelidir. Bu modelin en önemli avantajı basit ve hızlı ağ yapıları oluşturmasıdır. BiFPN ise RegNet ile aynı konferansta, Google Araştırma grubu tarafından yayınlanan *"EfficientDet: Scalable and Efficient Object Detection"* bildirisi ile duyrulmuştur. Bu ağların en önemli özelliği, ağın bir kez çalışması ile farklı boyutlardaki nesnelerin tespitine imkan sağlayan Çok Ölçekli Özniteliklerin (Multi-scale Features) hesaplanabilmesidir.
 
-Kameradan elde edilen ham veriler, omurga ağından geçerek çok ölçekli özniteliklere dönüştürülmektedir. Ardından bu öznitelikler farklı öğrenme sistemlerine girdi olarak kullanılmakta ve göreve özel ağların öğrenilmesi sağlanmaktadır. 
+Şekilde verilen sistemin yapısı incelenirse; kameradan elde edilen ham veriler, omurga ağından geçerek çok ölçekli özniteliklere dönüştürülmektedir. Ardından bu öznitelikler farklı öğrenme sistemlerine girdi olarak kullanılmakta ve göreve özel ağların öğrenilmesi sağlanmaktadır. 
 
 Tesla göreve özel ağların öğrenimi sırasında omurga ağının parametreleri dondurmakta ve her görev ağının kendi içerisinde parametre optimizasyonunu yapmaktadır. Bu sayede milyonlarca parametreden oluşan omurga ağının eğitimi ile vakit kaybedilmeden, göreve özel ağların parametreleri en iyi noktaya taşınabilmektedir. Göreve özel ağların parametre optimizasyonu tamamlandıktan sonra, omurga ağının eğitimi tekrar yapılmaktadır. 
 
@@ -66,6 +66,10 @@ Tesla, eğitim için ihtiyaç duyduğu verileri halihazırda yollarda bulunan 1 
 Tesla verilerin doğru bir şekilde etiketlendiğinden emin olmak için, etiketleme işini şirket içine aldığını ve bu kapsamda 1000'den fazla kişiden oluşan bir çalışma ekibi bulunduğunu açıklamıştır. İşaretleme ekibi şirketin çalışanları olduğundan, mühendislik ekibi ile daha yakın çalışabilmekte ve hata görülen etiketlemeler hızlı bir şekilde düzeltilebilmektedir.
 
 İşaretlemelerin hızlı ve doğru bir şekilde yapılabilmesi için, etiketlemelerin imge uzayı yerine doğrudan üç boyutlu vektör uzayında yapılabilmesini sağlayan bir işaretleme yöntemi geliştirilmiştir. Üç boyutlu uzayda yapılan işaretlemeler, 8 kameradan gelen imge üzerine de yansıtılarak imgelerin hızlı bir şekilde etiketlenmesi sağlanmıştır.
+
+Ancak bu hızlanma dahi bu seviyedeki bir ağın eğitilmesi için yeterli veriyi üretmekte yavaş kalabilmektedir. Bu nedenle Tesla, istenilen verilerin hızlı bir şekilde üretilebilmesi için bir simülasyon motoru kullanmıştır. Simülasyon dünyasında tüm nesnelerin konumu, oryantasyonu ve görünümü modellenebildiğinden, etiketlemeye ihtiyaç kalmadan istenilen veriler üretilmektedir. Bu tip bir veri toplamada temel sorun, sahnelerin gerçekçi bir şekilde oluşturulabilmesidir. 
+
+Tesla gerçeğe yakın bir görüntü oluşturabilmek için; sensör gürültüsü, güneş ve gökyüzünün yaydığı enerji,  ışık yansımaları, hareket bulanıklığı gibi onlarca parametreyi ayarlayarak, oluşturulan sahnelerin kameralarda algılandığına benzer görünmesini sağlamıştır.
 
 ---
 
