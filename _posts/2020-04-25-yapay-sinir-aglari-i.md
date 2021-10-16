@@ -35,43 +35,48 @@ Algılayıcılar; yapay sinir ağlarının girdi ve çıktıya sahip en küçük
 
 Örnek modeli verilen algılayıcı, girişine uygulanan $\mathbf{x_n}$ girdi vektörünü, çeşitli matematiksel operasyonlardan geçirerek $\hat{y}_n$ çıktısını üretmektedir. Algılayıcının matematiksel ifadesi Denklem $\eqref{1}$ ile verilmiştir.
 
-$$ \hat{y}_n = \mathcal{f}\left( \sum_{d=0}^{D-1} {w_{d} x_d} + b \right) \tag{1}$$
+$$ \hat{y}_n = f\left( \sum_{d=0}^{D-1} {w_{d} x_d} + b \right) = f \left( \mathbf{w}^\intercal \mathbf{x}_n + b \right) \tag{1}$$
 
-Verilen ifadedenin $\mathbf{x_n}$ girdi vektörünü; ilki doğrusal $a_n=\sum_{d} {w_d x_d} + b$, ikincisi doğrusal olmayan $\hat{y}_n=\mathcal{f}(a_n)$ iki dönüşümden geçirerek çıktı değerini ürettiği görülmektedir. YSA öğrenmesinde amaç, verilen girdi vektörlerine ve hedef çıktılara en küçük hata ile yakınsamamızı sağlayacak $[\mathbf{w}, b]$ ağırlık vektörünün öğrenilmesidir.
+Verilen ifadedenin $\mathbf{x_n}$ girdi vektörünü; ilki doğrusal $a_n=\sum_{d} {w_d x_d} + b = \mathbf{w}^\intercal \mathbf{x}_n + b$, ikincisi doğrusal olmayan $\hat{y}_n=f(a_n)$ iki dönüşümden geçirerek çıktı değerini ürettiği görülmektedir. YSA öğrenmesinde amaç, verilen girdi vektörlerine ve hedef çıktılara en küçük hata ile yakınsamamızı sağlayacak $[\mathbf{w}, b]$ ağırlık vektörünün öğrenilmesidir.
 
-Denklem $\eqref{1}$ incelendiğinde parantez içerisinde kalan kısmın [Doğrusal Regresyon]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %})' a benzer bir şekilde girdi vektörünü doğrusal bir dönüşüme tabi tuttuğu görülmektedir. YSA öğrenmesini farklı kılan önemli nokta denklemde kullanılan $\mathcal{f}(a)$ aktivasyon fonksiyonu dönüşümüdür. Bu dönüşümde doğrusal olmayan bir $\mathcal{f}$ fonksiyonunun seçilmesi durumunda algılayıcı çıktılarının doğrusal olmayan (non-linear) yapıda olması sağlanmaktadır. Bu sayede birden fazla sayıda nöronun birbirlerine bağlanarak oluşturduğu yapay sinir ağı ile doğrusal olmayan problemlerinde öğrenebilmesi mümkün olmaktadır.
+Denklem $\eqref{1}$ incelendiğinde parantez içerisinde kalan kısmın [Doğrusal Regresyon]({% post_url 2020-01-13-lagrange-carpanlari-yontemi %})' a benzer bir şekilde girdi vektörünü doğrusal bir dönüşüme tabi tuttuğu görülmektedir. YSA öğrenmesini farklı kılan önemli nokta denklemde kullanılan $f(a)$ aktivasyon fonksiyonu dönüşümüdür. Bu dönüşümde doğrusal olmayan bir $f$ fonksiyonunun seçilmesi durumunda algılayıcı çıktılarının doğrusal olmayan (non-linear) yapıda olması sağlanmaktadır. Bu sayede birden fazla sayıda nöronun birbirlerine bağlanarak oluşturduğu yapay sinir ağı ile doğrusal olmayan problemlerin de öğrenebilmesi mümkün olmaktadır.
 
 ### Tek Katmanlı Algılayıcı Eğitimi {#perceptron_learning}
 
-YSA öğrenmesinde başlangıç noktası algılayıcı eğitimi aşamasıdır. Bu aşamada verilen $\mathbf{X}=[\mathbf{x_1}, \mathbf{x_2}, \dots, \mathbf{x_N}]$ girdi vektörlerine ve $\mathbf{y}=[y_1, y_2, \dots, y_N]$ hedef çıktılara en küçük hata (burada hata etiketlere olan ortalama karesel hata olabileceği gibi farklı bir ölçüt de olabilir) ile yakınsamamızı sağlayacak $[\mathbf{w}, b]$ ağırlık vektörünün öğrenilmesi amaçlanmaktadır. Tek bir $\mathbf{x_n}, y_n$ çifti için  _karesel hata_ aşağıdaki şekilde yazılabilir.
+YSA öğrenmesinde başlangıç noktası algılayıcı eğitimi aşamasıdır. Bu aşamada verilen $\mathbf{X}=[\mathbf{x_1}, \mathbf{x_2}, \dots, \mathbf{x_N}]$ girdi vektörlerine ve $\mathbf{y}=[y_1, y_2, \dots, y_N]$ hedef çıktılara en küçük hata (burada hata etiketlere olan ortalama karesel hata olabileceği gibi farklı bir ölçüt de olabilir) ile yakınsamamızı sağlayacak $[\mathbf{w}, b]$ ağırlık vektörünün öğrenilmesi amaçlanmaktadır. Burada $N$ eğitim kümesindeki eleman sayısıdır.
 
-$$ E_n(\mathbf{w},b) = \frac{1}{2} (y_n - \hat{y}_n)^2 \tag{2}$$
+Seçilen tek bir örnek için $\mathbf{x_n}, y_n$ çifti için  _karesel hata_ aşağıdaki şekilde yazılabilir.
 
-Yazılan hata fonksiyonunda yer alan $\hat{y}_n$, Denklem $\eqref{1}$ eşitliği göz önüne alındığında, $\mathbf{w}$ ve $b$ değişkenlerine bağlıdır. Bu hata fonksiyonun en küçükleyen $\mathbf{w}$ ve $b$ değerleri sırasıyla $\frac{\partial E_n(\mathbf{w},b)}{\partial \mathbf{w}} = 0$ ve $\frac{\partial E_n(\mathbf{w},b)}{\partial b} = 0$ eşitlikleri çözülerek bulunabilir.
+$$ E_n(\mathbf{w},b) = \frac{1}{2} (y_n - \hat{y}_n)^2$$
+
+Yazılan hata fonksiyonunda yer alan $\hat{y}_n$, Denklem $\eqref{1}$ eşitliği göz önüne alındığında, $\mathbf{w}$ ve $b$ değişkenlerine bağlıdır. 
+
+$$ E_n(\mathbf{w},b) = \frac{1}{2} (y_n - f\left( \mathbf{w}^\intercal \mathbf{x}_n + b \right))^2 \tag{2}$$
+
+
+Bu hata fonksiyonun en küçükleyen $\mathbf{w}$ ve $b$ değerleri sırasıyla $\frac{\partial E_n(\mathbf{w},b)}{\partial \mathbf{w}} = 0$ ve $\frac{\partial E_n(\mathbf{w},b)}{\partial b} = 0$ eşitlikleri çözülerek bulunabilir.
 
 Denklem $\eqref{2}$ ile verilen eşitliğin $\mathbf{w}$ değerine göre kısmi türevi zincir kuralı kullanılarak aşağıdaki şekilde yazılabilir.
 
-$$\frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}} = \frac{1}{2} \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right) \left( \frac{\partial a_n}{\partial\mathbf{w}} \right) \tag{3}$$
-
-<span style="color: yellow;">NOT: </span> Burada ileride kolaylık sağlaması açısından önemli bir tanımlama yapmamız gerekir. Denklem $\eqref{3}$ ile verilen eşitlikte $\frac{\partial E_n(\mathbf{w},b)}{\partial a_n} = \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right)$ çarpımına kısaca $\delta_n$ adı verilir.
+$$\frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}} =  \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right) \left( \frac{\partial a_n}{\partial\mathbf{w}} \right) \tag{3}$$
 
 Denklem $\eqref{3}$ ile verilen üç kısmi türev ifadesinde ilk ifade, hata fonksiyonun $\hat{y}$ kestirilen çıktıya bağlı değişimini ölçmektedir. Bu değer _karesel hata_ ölçütü kullanıldığı için;
 
-$$\frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} = \frac{\partial}{\partial \hat{y_n}} \frac{1}{2} \left( y_n - \hat{y}_n \right )^2 = \hat{y}_n-y_n$$
+$$\frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} = \frac{\partial}{\partial \hat{y_n}} \frac{1}{2} \left( y_n - \hat{y}_n \right )^2 = \hat{y}_n-y_n \tag{3.1}$$
 
-bulunur. İkinci kısmi türev ise $\hat{y}_n$ çıktısının $a_n$ girişine bağlı değişimi ölçmektedir. Tanım gereği $\hat{y}=\mathcal{f}(a)$ olduğundan bu ifade;
+bulunur. İkinci kısmi türev ise $\hat{y}_n$ çıktısının $a_n$ girişine bağlı değişimi ölçmektedir. Tanım gereği $\hat{y}=f(a)$ olduğundan bu ifade;
 
-$$\frac{\partial \hat{y}_n}{\partial a_n} =  \frac{\partial \mathcal{f}(a_n)}{\partial a_n} = \mathcal{f}^\prime (a_n)$$
+$$\frac{\partial \hat{y}_n}{\partial a_n} =  \frac{\partial f(a_n)}{\partial a_n} = f^\prime (a_n) \tag{3.2}$$
 
-şeklinde yazılır. Üçüncü kısmi türev ise $a_n$ ara çıktısının $\mathbf{x}\_{n}$ girişine bağlı değişimini ölçmektedir. Bu ifadede $a_n=\mathbf{w}^\intercal \mathbf{x}_{n} + b$ tanımı gereği aşağıdaki şekilde hesaplanabilir.
+şeklinde yazılır. Üçüncü kısmi türev ise $a_n$ ara çıktısının $\mathbf{x}_{n}$ girişine bağlı değişimini ölçmektedir. Bu ifadede $a_n=\mathbf{w}^\intercal \mathbf{x}_{n} + b$ tanımı gereği aşağıdaki şekilde hesaplanabilir.
 
-$$\frac{\partial a_n}{\partial\mathbf{w}} =  \frac{\partial \left( \mathbf{w}^\intercal\mathbf{x}_{n} + b \right) }{\mathbf{w}} = \mathbf{x}_{n}$$
+$$\frac{\partial a_n}{\partial\mathbf{w}} =  \frac{\partial \left( \mathbf{w}^\intercal\mathbf{x}_{n} + b \right) }{\mathbf{w}} = \mathbf{x}_{n} \tag{3.3}$$
 
-Hesaplanan ilk iki türev ifadesi kullanılarak $\delta_n$ aşağıdaki şekilde tanımlanır.
+Burada ileride kolaylık sağlaması açısından önemli bir tanımlama yapmamız gerekir. Denklem $\eqref{3}$ ile verilen eşitlikte $\frac{\partial E_n(\mathbf{w},b)}{\partial a_n} = \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right)$ çarpımını kısaca $\delta_n$ olarak isimlendirelim. Bu durumda, Denklem $\eqref{3.1}$ ve $\eqref{3.2}$ ifadeleri kullanılarak $\delta_n$ aşağıdaki şekilde tanımlanır.
 
-$$\delta_n = \left(y_n-\hat{y}_n \right) \mathcal{f}^\prime (a_n)\tag{4}$$
+$$\delta_n = \left(y_n-\hat{y}_n \right) f^\prime (a_n)\tag{4}$$
 
-Hesaplanan $\delta_n$ ve $\frac{\partial a_n}{\partial\mathbf{w}}$ değerleri Denklem $\eqref{3}$ de yerine yazılırsa Denklem $\eqref{5}$ ile verilen eşitlik elde edilir.
+Hesaplanan $\delta_n$ ve $\frac{\partial a_n}{\partial\mathbf{w}}$ değerleri Denklem $\eqref{3}$ de yerine yazılırsa hesaplanmaya çalışılan kısmi türev ifadesi aşağıdaki şekilde ifade edilir.
 
 $$\frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}} = {\delta_n \mathbf{x}_{n}} \tag{5}$$
 
@@ -79,21 +84,28 @@ Benzer şekilde Denklem $\eqref{2}$ ile verilen eşitliğin $b$ değişkenine g�
 
 $$\frac{\partial E_n(\mathbf{w},b)}{\partial b} = {\delta_n} \tag{6}$$
 
-Elde edilen bu iki eşitlik [Gradyan İniş Yönteminde]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) kullanılarak denklemleri sağlayan $\mathbf{w},b$ çifti bulunabilir. Bu yöntem herhangi bir fonksiyonun yerel en küçük noktasının o fonksiyonun o noktadaki gradyanı tersi yönüne hareket edilerek bulunacağı fikrine dayanmaktadır. Matematiksel olarak gradyan iniş yöntemi;
+Elde edilen bu iki eşitlik [Gradyan İniş Yönteminde]({% post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon %}) kullanılarak hatayı en küçükleyecek olan $\mathbf{w},b$ çifti bulunabilir. 
 
-$$\mathbf{w}_{k+1}=\mathbf{w}_k-\eta \nabla E(\mathbf{w},b)$$
+Hatırlayacak olursak, *Gradyan İniş Yöntemi* yöntemi herhangi bir fonksiyonun yerel en küçük/büyük noktasının; fonksiyonun herhangi bir noktasındaki gradyanının tersi yönüne hareket edilerek bulunacağı fikrine dayanmaktadır. Yukarıda tanımlanan problem için gradyan iniş yöntemi;
 
-$\mathbf{w}_k=0$ (veya rasgele) ilk değerinden başlayarak iteratif bir şekilde fonksiyonu en küçükleyecek ağırlıkları bulmaya çalışan bir yöntemdir. Burada $\eta$ gradyan inişinin hızının ayarlanması için kullanılan sabit bir terimdir. Özellikle iterasyonun başlarında en küçük noktaya hızlı varmak için büyük bir $\eta$ değeri seçilirken, iterasyonun ilerleyen adımlarında kritik noktayı geçmemek için kısılır. $\nabla = \left[  \frac{\partial E_n(\mathbf{w},b)}{\partial\mathbf{w}}, \frac{\partial E_n(\mathbf{w},b)}{\partial b} \right]$ ise gradyan operatörüdür.
+$$
+\begin{aligned}
+\mathbf{w}_{k+1} &=\mathbf{w}_k-\eta \nabla_w E(\mathbf{w},b) &&= \mathbf{w}_k - \eta {\delta_n \mathbf{x}_{n}}\\
+b_{k+1} & =b_k-\eta \nabla_b E(\mathbf{w},b) & &= b_k - \eta \delta_n\\
+\end{aligned}
+$$
+
+şeklinde yazılır. Verilen ifadede $\mathbf{w}_0, b_0$ rastgele seçilen ilk değerlerden başlayarak iteratif bir şekilde fonksiyonu en küçükleyecek ağırlıklar hesaplanır. Burada $\eta$ gradyan inişinin hızının ayarlanması için kullanılan sabit bir terimdir. Özellikle iterasyonun başlarında en küçük noktaya hızlı varmak için büyük bir $\eta$ değeri seçilirken, iterasyonun ilerleyen adımlarında kritik noktayı geçmemek için kısılır.
 
 ### Aktivasyon Fonksiyonları
 
-Denklem $\eqref{1}$ ile verilen ifadede yer alan $\mathcal{f}$ fonksiyonu literatürde __aktivasyon fonksiyonu__ olarak bilinmektedir. Yazımızın ilk başlarında değindiğimiz gibi doğrusal olmayan problemlerin öğrenilebilmesi için aktivasyon fonksiyonunun doğrusal olmaması gerekmektedir. [Tek Katmanlı Algılayıcı Eğitimi](#perceptron_learning) başlığında da hesapladığımız üzere seçilen aktivasyon fonksiyonunun türevlenebilir de olması gerekmektedir. Bu iki temel özellik göz önünde bulundurularak literatürde farklı aktivasyon fonksiyonları önerilmiştir.
+Denklem $\eqref{1}$ ile verilen ifadede yer alan $f$ fonksiyonu literatürde **aktivasyon fonksiyonu** olarak bilinmektedir. Yazımızın ilk başlarında değindiğimiz gibi doğrusal olmayan problemlerin öğrenilebilmesi için aktivasyon fonksiyonunun doğrusal olmaması gerekmektedir. [Tek Katmanlı Algılayıcı Eğitimi](#perceptron_learning) başlığında da hesapladığımız üzere seçilen aktivasyon fonksiyonunun türevlenebilir de olması gerekmektedir. Bu iki temel özellik göz önünde bulundurularak literatürde farklı aktivasyon fonksiyonları önerilmiştir.
 
-* __Adım Aktivasyon Fonksiyonu:__ 
+* **Adım Aktivasyon Fonksiyonu:** 
 
     Adım Aktivasyon Fonksiyonu'nun en önemli özeliği tüm girdi değerlerine karşılık sadece iki farklı çıktı üretmesidir. McCulloch-Pitts nöronu olarak da bilinen bu aktivasyon fonksiyonu, Warren MuCulloch ve Walter Pitts tarafından 1943 yılında önerilen ilk yapay sinir modelidir. Önerilen modelin matematiksel ifadesi aşağıda verilmiştir.
 
-    $$\mathcal{f}(a) = 
+    $$f(a) = 
     \begin{cases}
     0 & a < 0 \\
     1 & a \geq 0
@@ -102,25 +114,25 @@ Denklem $\eqref{1}$ ile verilen ifadede yer alan $\mathcal{f}$ fonksiyonu litera
 
     Bu modelde algılayıcı çıktaları sıfır yada bir şeklinde sadece iki çıkış verebildiğinden genellikle sınıflandırma problemlerinde tercih edilmektedir.
 
-* __Lojistik Aktivasyon Fonksiyonu__
+* **Lojistik Aktivasyon Fonksiyonu**
 
     [Lojistik Regresyon Analizi]({% post_url 2015-07-23-lojistik-regresyon-analizi %}) yazımızda incelenen lojistik (sigmoid) aktivasyon fonksiyonu sürekli ve türevi alınabilir bir fonksiyondur. Doğrusal olmayan ve kolay türevlenebilen bir fonskiyon olması nedeniyle yapay sinir ağı uygulamalarında en sık kullanılan aktivasyon fonksiyondur. Fonksyionun matematiksel ifadesi aşağıdaki denklemde verilmiştir.
     
-    $$\mathcal{f}(a) = \frac{1}{1+e^{-a}}$$
+    $$f(a) = \frac{1}{1+e^{-a}}$$
 
     Bu fonksiyon girdi değerlerinin her biri için sıfır ile bir aralığında bir değer üretmektedir.
 
-* __Tanjant Hiperbolik Aktivasyon Fonksiyonu__
+* **Tanjant Hiperbolik Aktivasyon Fonksiyonu**
 
-    Tanjant hiperbolik fonksiyonu, sigmoid fonksiyonuna benzer bir fonksiyondur. Sigmoid fonksiyonunda çıkış değerleri $[0,1]$ aralığında değişirken hiperbolik tanjant fonksiyonunun çıkış değerleri$[-1,1]$ aralığında değişmektedir. Fonksyionun matematiksel ifadesi aşağıdaki denklemde verilmiştir.
+    Tanjant hiperbolik fonksiyonu, sigmoid fonksiyonuna benzer bir fonksiyondur. Sigmoid fonksiyonunda çıkış değerleri $[0,1]$ aralığında değişirken hiperbolik tanjant fonksiyonunun çıkış değerleri $[-1,1]$ aralığında değişmektedir. Fonksyionun matematiksel ifadesi aşağıdaki denklemde verilmiştir.
 
-    $$\mathcal{f}(a) = \frac{e^{a}-e^{-a}}{e^{a}+e^{-a}}$$
+    $$f(a) = \frac{e^{a}-e^{-a}}{e^{a}+e^{-a}}$$
 
-* __Rampa (ReLu) Aktivasyon Fonksiyonu__
+* **Rampa (ReLu) Aktivasyon Fonksiyonu**
 
     Literatürde Rectified Linear Unit (ReLu) olarak da bilinen rampa aktivasyon fonksiyonu parçalı bir aktivasyon fonksiyonudur. Yukarıda verilen aktivasyon fonksiyonlarından farklı olarak rampa aktivasyon fonksiyonunun çıkışında bir sınır bulunmamaktadır. Fonksyionun matematiksel ifadesi aşağıdaki denklemde verilmiştir.
     
-    $$\mathcal{f}(a) = 
+    $$f(a) = 
     \begin{cases}
     0 & a < 0 \\
     a & a \geq 0
@@ -129,11 +141,16 @@ Denklem $\eqref{1}$ ile verilen ifadede yer alan $\mathcal{f}$ fonksiyonu litera
 
 ### Yapay Sinir Ağlarının Eğitilmesi
  
-Her makine öğrenmesi yönteminde olduğu gibi YSA' nın da bir öğrenme sürecinden geçmesi gerekmektedir. [Tek Katmanlı Algılayıcı Eğitimi](#perceptron_learning) başlığında tek bir algılayıcının hatasının nasıl en küçükleneceğine dair matematiksel çıkarımları yapmıştık. Burada bahsedilen [Gradyan İniş Yöntemi]({post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon}) iteratif bir algoritma olduğundan YSA eğitiminin _epoch_ adı verilen belirli bir iterasyon süresince devam etmesi gerekmektedir.
+Her makine öğrenmesi yönteminde olduğu gibi YSA' nın da bir öğrenme sürecinden geçmesi gerekmektedir. [Tek Katmanlı Algılayıcı Eğitimi](#perceptron_learning) başlığında tek bir algılayıcının hatasının nasıl en küçükleneceğine dair matematiksel çıkarımları yapmıştık. Burada bahsedilen [Gradyan İniş Yöntemi]({post_url 2020-04-08-gradyan-yontemleri-ile-optimizasyon}) iteratif bir algoritma olduğundan YSA eğitiminin *epoch* adı verilen belirli bir iterasyon süresince devam etmesi gerekmektedir.
 
-Her _epoch_ kendi içerisinde iki ana adımdan oluşmaktadır. Bunlardan ilki İleri Besleme (Feed Forward), ikincisi Geri Yayılım (Back Propagation) adımlarıdır. İleri Besleme adımında bir önceki iterasyondan bulunan $\mathcal{w},b$ ağrılıkları ve Denklem $\eqref{1}$ kullanılarak ağın çıktısı hesaplanır. Geri Yayılım adımında Denklem $\eqref{5}$ ve Denklem $\eqref{6}$ denklemleri kullanılarak bulunan ağırlık değişimi güncel ağırlıklara eklenerek ağırlıkların güncellenir. Veri setindeki tüm örnekler için İleri Besleme ve Geri Yayılım adımları tamamlandığında bir _epoch_ tamamlanmış olur. Öğrenmenin iyileştirilmesi için belirli bir başarı kriteri sağlanana veya sabit bir _epoch_ sayısına ulaşana kadar eğitim adımları devam ettirilir.
+Her *epoch* kendi içerisinde iki ana adımdan oluşmaktadır. Bunlardan ilki İleri Besleme (Feed Forward), ikincisi Geri Yayılım (Back Propagation) adımlarıdır. 
 
-Çok Katlı Yapay Sinir Ağlarının matematiksel ifadeleri ve Geri Yayılım Algoritması'nın anlatıldığı serinin ikinci yazısına [Yapay bağlantıdan]({%post_url 2020-04-25-yapay-sinir-aglari-ii %}) ulaşabilirsiniz.
+**İleri Besleme** adımında bir önceki iterasyondan bulunan $\mathbf{w},b$ ağrılıkları ve Denklem $\eqref{1}$ kullanılarak ağın çıktısı hesaplanır. 
+
+**Geri Yayılım** adımında Denklem $\eqref{5}$ ve Denklem $\eqref{6}$ denklemleri kullanılarak bulunan ağırlık değişimi güncel ağırlıklara eklenerek ağırlıklar güncellenir. Veri setindeki tüm örnekler için İleri Besleme ve Geri Yayılım adımları tamamlandığında bir *epoch* tamamlanmış olur. Öğrenmenin iyileştirilmesi için belirli bir başarı kriteri sağlanana veya sabit bir *epoch* sayısına ulaşana kadar eğitim adımları devam ettirilir.
+
+---
+Çok Katlı Yapay Sinir Ağlarının matematiksel ifadeleri ve Geri Yayılım Algoritması'nın anlatıldığı serinin ikinci yazısına [Yapay Sinir Ağları II]({%post_url 2020-04-25-yapay-sinir-aglari-ii %}) bağlantısından ulaşabilirsiniz.
 
 Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [artificial_neural_networks](https://github.com/cescript/artificial_neural_networks) GitHub sayfası üzerinden erişilebilirsiniz.
 
