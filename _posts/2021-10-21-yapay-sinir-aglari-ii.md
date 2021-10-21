@@ -8,10 +8,9 @@ categories:
 - Nümerik Yöntemler
 - Veri Analizi
 references: ""
-published: false
 thumbnail: /assets/post_resources/artificial_neural_networks/thumbnail_2.png
 ---
-Yapay Sinir Ağları serisinin [ilk kısmında]({%post_url 2020-04-25-yapay-sinir-aglari-i %}) incelenen tek katmanlı algılayıcı yapısı doğrusal olmayan sınıflandırma problemlerini çözme yeteneğine sahip değildir. Bu kısıt 1969 yılında yazılan *"Perceptrons: An Introduction to Computational Geometry"* kitabında ele alınmakta ve algılayıcı yapılarının XOR gibi basit bir problemi dahi öğrenemediği gösterilmektedir. Bu gösterim sonrasında doğrusal olmayan yapıların oluşturulabilmesi için çok katmanlı algılayıcı yapıları önerilmiş ancak bu yapıların eğitimi konusunda bir yöntem önerilmediği için sinir ağlarının kullanım alanı 1980' li yıllara kadar ciddi oranda kısıtlı kalmıştır. Yapay sinir ağlarının kullanımına ivme kazandıran ve problemleri çözme yeteneğini keşfettiren en önemli katkı, 1986 yılında Geoffrey E. Hinton ve arkadaşları tarafından önerilen "Geri Yayılım" algoritması ile yapılmıştır. Bu yazımızda tek katmanlı sinir ağlarından başlayarak, çok katmanlı yapay sinir ağlarının matematiksel ifadeleri oluşturulacak ve geri yayılım algoritmasının çalışmasına dair gerekli çıkarımlar yapılacaktır.
+Yapay Sinir Ağları serisinin [ilk kısmında]({%post_url 2021-10-21-yapay-sinir-aglari-i %}) incelenen tek katmanlı algılayıcı yapısı doğrusal olmayan sınıflandırma problemlerini çözme yeteneğine sahip değildir. Bu kısıt 1969 yılında yazılan *"Perceptrons: An Introduction to Computational Geometry"* kitabında ele alınmakta ve algılayıcı yapılarının XOR gibi basit bir problemi dahi öğrenemediği gösterilmektedir. Bu gösterim sonrasında doğrusal olmayan yapıların oluşturulabilmesi için çok katmanlı algılayıcı yapıları önerilmiş ancak bu yapıların eğitimi konusunda bir yöntem önerilmediği için sinir ağlarının kullanım alanı 1980' li yıllara kadar ciddi oranda kısıtlı kalmıştır. Yapay sinir ağlarının kullanımına ivme kazandıran ve problemleri çözme yeteneğini keşfettiren en önemli katkı, 1986 yılında Geoffrey E. Hinton ve arkadaşları tarafından önerilen "Geri Yayılım" algoritması ile yapılmıştır. Bu yazımızda tek katmanlı sinir ağlarından başlayarak, çok katmanlı yapay sinir ağlarının matematiksel ifadeleri oluşturulacak ve geri yayılım algoritmasının çalışmasına dair gerekli çıkarımlar yapılacaktır.
 
 <!--more-->
 
@@ -23,7 +22,7 @@ Aşağıdaki grafikte, iki tek katmanlı algılayıcının kaskat bağlanması i
 |:-------:|:----:|
 ![tek katmanlı algılayıcı][singlelayerperceptron] | ![çok katmanlı algılayıcı][multilayerperceptron]
 
-Grafikten de görüldüğü üzere ilk katmanda girdi vektörlerinden ara bir çıktı ($\mathbf{x}^{(1)}$) elde edilmiş, ikinci katmanda ise bu ara çıktılar kullanılarak ağın çıktısı oluşturulmuştur. [Yapay Sinir Ağları I]({%post_url 2020-04-25-yapay-sinir-aglari-i %}) yazısında incelediğimiz algılayıcı yapısından farklı olarak katman ve nöron sayıları da bir değişken olduğundan, ilk yazımızda kullanılan notasyona bazı eklemeler yapmak gerekmektedir. Aşağıdaki tabloda şekilde verilen matematiksel değişkenlerin tanımı listelenmiştir.
+Grafikten de görüldüğü üzere ilk katmanda girdi vektörlerinden ara bir çıktı ($\mathbf{x}^{(1)}$) elde edilmiş, ikinci katmanda ise bu ara çıktılar kullanılarak ağın çıktısı oluşturulmuştur. [Yapay Sinir Ağları I]({%post_url 2021-10-21-yapay-sinir-aglari-i %}) yazısında incelediğimiz algılayıcı yapısından farklı olarak katman ve nöron sayıları da bir değişken olduğundan, ilk yazımızda kullanılan notasyona bazı eklemeler yapmak gerekmektedir. Aşağıdaki tabloda şekilde verilen matematiksel değişkenlerin tanımı listelenmiştir.
 
 | Sembol | İçerik | Boyut | Açıklama |
 :-------:|:------:|:-----:|:--------|
@@ -41,7 +40,7 @@ Grafikten de görüldüğü üzere ilk katmanda girdi vektörlerinden ara bir ç
 | $\hat{y}_n$ | | $1 \times 1$ | $\mathbf{x}_n$ girdi vektörü için üretilen etiket çıktısı |
 
 
-> Yazının devamında verilen eşitliklerin türetilmesi [Yapay Sinir Ağları I]({%post_url 2020-04-25-yapay-sinir-aglari-i %}) yazısında paylaşıldığından burada eşitlikler doğrudan kullanılacaktır. Bu nedenle öncelikle [ilk yazının]({%post_url 2020-04-25-yapay-sinir-aglari-i %}) okunması önemlidir.
+**!!** Yazının devamında verilen eşitliklerin türetilmesi [Yapay Sinir Ağları I]({%post_url 2021-10-21-yapay-sinir-aglari-i %}) yazısında paylaşıldığından burada eşitlikler doğrudan kullanılacaktır. Bu nedenle öncelikle [ilk yazının]({%post_url 2021-10-21-yapay-sinir-aglari-i %}) okunması önemlidir.
 
 Tabloda verilen notasyon kullanılarak ilk katmanın birinci çıktısı aşağıdaki denklem ile yazılır.
 
@@ -79,19 +78,30 @@ $$ E_n(\mathbf{W},\mathbf{b}) = \frac{1}{2} (y_n - \hat{y}_n)^2 \tag{1}$$
 
 Yazılan hata fonksiyonunda yer alan $\hat{y}_n$, $\mathbf{W}^{(1)}$ ve $\mathbf{b}^{(1)}$ değişkenlerine bağlı olduğundan, fonksiyonu en küçükleyen $\mathbf{W}^{(1)}$ ve $\mathbf{b}^{(1)}$ değerleri sırasıyla $\frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{W}^{(1)}} = 0$ ve $\frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{b}^{(1)}} = 0$ eşitlikleri çözülerek bulunabilir.
 
-[Yapay Sinir Ağları yazısının ilk kısmında]({%post_url 2020-04-25-yapay-sinir-aglari-i %}) detaylı şekilde hesaplanan kısmi türev ifadeleri bu problem için aşağıdaki şekilde yazılabilir.
-
-$$\frac{\partial E_n(\mathbf{W},b)}{\partial\mathbf{W}^{(1)}} = \left( \frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(1)}} \right) \left( \frac{\partial \mathbf{a}_n^{(1)}}{\partial\mathbf{W}^{(1)}} \right) \tag{2}$$
-
-Denklem $\eqref{2}$ ile oluşturulan ifadedenin ilk kısmı önceki yazımızda tanımlanan $\delta$ vektörüdür. Bu vektör kısmi türevler kullanılarak aşağıdaki şekilde hesaplanır.
+[Yapay Sinir Ağları yazısının ilk kısmında]({%post_url 2021-10-21-yapay-sinir-aglari-i %}) detaylı şekilde hesaplanan kısmi türev ifadeleri bu problem için aşağıdaki şekilde yazılabilir.
 
 $$
-\mathbf{\delta}_n^{(1)} = \frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(1)}} = \left(y_n-\hat{y}_n \right) \mathbf{J}(f) (\mathbf{a}_n^{(1)}) \tag{2.1}
+\frac{\partial E_n(\mathbf{W},b)}{\partial\mathbf{W}^{(1)}} = 
+\left( \frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(1)}} \right) 
+\left( \frac{\partial \mathbf{a}_n^{(1)}}{\partial\mathbf{W}^{(1)}} \right) 
+\tag{2}
+$$
+
+Denklem $\eqref{2}$ ile oluşturulan ifadedenin ilk kısmı önceki yazımızda tanımlanan $\delta$ vektörüdür. Bu vektör aşağıdaki şekilde hesaplanır.
+
+$$
+\begin{aligned}
+\mathbf{\delta}_n^{(1)} &= \frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(1)}}\\
+&= \frac{\partial\frac{1}{2} (y_n - \hat{y}_n)^2}{\partial \mathbf{a}_n^{(1)}}\\
+&= \frac{\partial \hat{y}_n}{\partial \mathbf{a}_n^{(1)}}(y_n - \hat{y}_n)\\
+&= \mathbf{J}(f) (\mathbf{a}_n^{(1)})\left(\hat{y}_n - y_n\right)  
+\end{aligned}
+\tag{2.1}
 $$
 
 Burada dikkat edilmesi gereken önemli bir nokta, ilk yazımızdan farklı olarak, $f: \mathbb{R}^{L_l} \to \mathbb{R}^{L_l}$ çok boyutlu uzaydan bir başka çok boyutlu uzaya bir dönüşüm işlemi gerçekleştirmektedir. Bu nedenle $f^\prime(\mathbf{a}_n^{(1)})$ ifadesi yerine $f$ fonksiyonun Jacobain ifadesi $\mathbf{J}(f)$ kullanılmıştır. Bu problem için $\mathbf{a}_n^{(1)}$ vektörü $1 \times 1$ boyutlu bir skaler olduğundan; $\mathbf{J}(f) = f^\prime$ olacaktır.
 
-Denklem $\eqref{2}$ ifadesindeki ikinci kısmi trüev ise $\mathbf{a}_n^{(1)} = {\mathbf{W}^{(1)}}^\intercal \mathbf{x}_n^{(1)} + \mathbf{b}^{(1)}$ tanımı kullanılarak;
+Denklem $\eqref{2}$ ifadesindeki ikinci kısmi türev ise $\mathbf{a}_n^{(1)} = {\mathbf{W}^{(1)}}^\intercal \mathbf{x}_n^{(1)} + \mathbf{b}^{(1)}$ tanımı kullanılarak;
 
 $$
 \frac{\partial \mathbf{a}_n^{(1)}}{\partial\mathbf{W}^{(1)}} = \mathbf{x}_n^{(1)}\tag{2.2}
@@ -127,16 +137,16 @@ $$
 Yazılan ifadede ilk kısım tanım gereği $\delta_n^{(0)}$ dir. Bu vektör farklı kısmi türevlerin çarpımı ile aşağıdaki şekilde hesaplanır. 
 
 $$
-\mathbf{\delta}_{n}^{(0)} = \frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(0)}} = \left(\frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(1)}} \right) \left(\frac{\partial \mathbf{a}_n^{(1)}}{\partial \mathbf{x}_n^{(1)}} \right) \left(\frac{\partial \mathbf{x}_n^{(1)}}{\partial \mathbf{a}_n^{(0)}} \right)
+\mathbf{\delta}_{n}^{(0)} = \frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(0)}} = 
+\left(\frac{\partial \mathbf{x}_n^{(1)}}{\partial \mathbf{a}_n^{(0)}} \right)
+\left(\frac{\partial \mathbf{a}_n^{(1)}}{\partial \mathbf{x}_n^{(1)}} \right)
+\left(\frac{\partial E_n(\mathbf{W},\mathbf{b})}{\partial \mathbf{a}_n^{(1)}} \right) 
+\tag{3.1}
 $$
 
-Yazılan ifadede yer alan birinci kısım Denklem $\eqref{2.1}$'de hesapladığımız $\delta_{n}^{(1)}$ değerine eşittir. $l$. katmanın girdisi $\mathbf{a}_n^{(l)} = {\mathbf{W}^{(l)}}^\intercal \mathbf{x}_n^{(l)} + \mathbf{b}^{(l)}$ şeklinde tanımlandığından, ikinci kısmın türevinden ise 
+**!!** Burada kısmi türevlerin sıralaması Denklem $\eqref{2.1}$ de yapıldığı gibi türevlerin açık bir şekilde yazılmasıyla elde edilmiştir. İlk yazımızdan farklı olarak işlemler matrisler üzerinden yapıldığından çarpım sıralaması önemli olmaktadır.
 
-$$
-\frac{\partial \mathbf{a}_n^{(1)}}{\partial \mathbf{x}_n^{(1)}} = \mathbf{W}^{(1)}
-$$
-
-bulunur. Son olarak üçüncü kısmın türevi ise $\mathbf{x}_n^{(l)} = f(\mathbf{a}_n^{(l-1)})$ tanımı kullanılarak;
+Yazılan ifadede birinci kısmın türevi $\mathbf{x}_n^{(l)} = f(\mathbf{a}_n^{(l-1)})$ tanımı kullanılarak;
 
 $$
 \frac{\partial \mathbf{x}_n^{(1)}}{\partial \mathbf{a}_n^{(0)}} = \mathbf{J}(f) (\mathbf{a}_n^{(0)}) = 
@@ -146,13 +156,27 @@ f^\prime(a_0^{(0)}) & 0\\
 \end{bmatrix}
 $$
 
-şeklinde hesaplanır. Bulunan değerler Denklem $\eqref{3.1}$ de yerine yazılırsa;
+şeklinde hesaplanır. 
+
+$l$. katmanın girdisi $\mathbf{a}_n^{(l)} = {\mathbf{W}^{(l)}}^\intercal \mathbf{x}_n^{(l)} + \mathbf{b}^{(l)}$ şeklinde tanımlandığından, ikinci kısmın türevinden ise 
 
 $$
-\delta_{n}^{(0)} = \delta_{n}^{(1)} \mathbf{W}^{(1)} \begin{bmatrix} 
+\frac{\partial \mathbf{a}_n^{(1)}}{\partial \mathbf{x}_n^{(1)}} = \mathbf{W}^{(1)}
+$$
+
+bulunur.
+
+
+Son olarak üçüncü kısım Denklem $\eqref{2.1}$'de hesapladığımız $\delta_{n}^{(1)}$ değerine eşittir. Bulunan değerler Denklem $\eqref{3.1}$ de yerine yazılırsa;
+
+$$
+\delta_{n}^{(0)} = 
+\begin{bmatrix} 
 f^\prime(a_0^{(0)}) & 0\\
 0 & f^\prime(a_1^{(0)})
-\end{bmatrix} = \sum_{j=0}^{L_{l+1}-1} \delta_{n}^{(1)} \mathbf{w}_j^{(1)} f^\prime (\mathbf{a}_j^{(0)}) \tag{3.1}
+\end{bmatrix}
+\mathbf{W}^{(1)} 
+\delta_{n}^{(1)}
 $$ 
 
 denklemi elde edilir. 
@@ -178,9 +202,9 @@ iterasyonları elde edilir.
 
 Denklem $\eqref{3.1}$ ilk bakışta sıradan görünse de, $\delta_n^{(0)}$ değerini $\delta_n^{(1)}$ cinsinden hesaplamaya yaradığından, son katmandaki hatanın iteratif olarak önceki katmanlara yayılabilmesini sağlamaktadır. Bu sayede çok katmanlı bir ağın çıktısındaki hata, algoritmik olarak girdilerine yayılabilmektedir. Bu nedenle algoritma **Geri Yayılım** algoritması olarak isimlendirilmektedir.
 
-Çok Katlı Yapay Sinir Ağlarının Geri Yayılım Algoritması kullanılarak eğitiminin kodlandığı serinin üçüncü yazısına [Yapay Sinir Ağları III]({%post_url 2020-04-25-yapay-sinir-aglari-iii %}) bağlantısından ulaşabilirsiniz.
-
+<!--
 Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [artificial_neural_networks](https://github.com/cescript/artificial_neural_networks) GitHub sayfası üzerinden erişilebilirsiniz.
+-->
 
 **Referanslar**
 * Alpaydin, Ethem. [Introduction to machine learning](https://www.cmpe.boun.edu.tr/~ethem/i2ml3e/). MIT press, 2014.

@@ -8,7 +8,6 @@ categories:
 - Nümerik Yöntemler
 - Veri Analizi
 references: ""
-published: false
 thumbnail: /assets/post_resources/artificial_neural_networks/thumbnail_1.png
 ---
 Yapay Sinir Ağları, sinir hücrelerinin çalışma ilkelerinden ilham alınarak geliştirilmiş bir makine öğrenmesi ve veri analizi yöntemidir. Günümüzde elde ettikleri büyük başarılara bağlı olarak, oldukça büyük bir ivme kazanan Evrişimsel Sinir Ağları (Convolutional Neural Network), Özyinelemeli Sinir Ağları (Recurrent Neural Network) gibi çok katmanlı sinir ağları yöntemlerinin ilk örneği olan yapay sinir ağları günümüzde derin öğrenme yöntemlerinin son katmanında karar verici olarak veya derin öğrenmeye ihtiyaç duyulmayan, görece basit ve doğrusal olmayan problemlerin çözümünde sıklıkla kullanılmaktadır. Bu yazımızda sinir hücresi ve algılayıcı kavramlarından başlayarak tek katmanlı yapay sinir ağlarının matematiksel ifadelerine dair gerekli çıkarımlar yapılacaktır.
@@ -74,7 +73,7 @@ $$\frac{\partial a_n}{\partial\mathbf{w}} =  \frac{\partial \left( \mathbf{w}^\i
 
 Burada ileride kolaylık sağlaması açısından önemli bir tanımlama yapmamız gerekir. Denklem $\eqref{3}$ ile verilen eşitlikte $\frac{\partial E_n(\mathbf{w},b)}{\partial a_n} = \left( \frac{\partial E_n(\mathbf{w},b)}{\partial \hat{y_n}} \right) \left( \frac{\partial \hat{y_n}}{\partial a_n} \right)$ çarpımını kısaca $\delta_n$ olarak isimlendirelim. Bu durumda, Denklem $\eqref{3.1}$ ve $\eqref{3.2}$ ifadeleri kullanılarak $\delta_n$ aşağıdaki şekilde tanımlanır.
 
-$$\delta_n = \left(y_n-\hat{y}_n \right) f^\prime (a_n)\tag{4}$$
+$$\delta_n = \left(\hat{y}_n - y_n \right) f^\prime (a_n)\tag{4}$$
 
 Hesaplanan $\delta_n$ ve $\frac{\partial a_n}{\partial\mathbf{w}}$ değerleri Denklem $\eqref{3}$ de yerine yazılırsa hesaplanmaya çalışılan kısmi türev ifadesi aşağıdaki şekilde ifade edilir.
 
@@ -149,10 +148,13 @@ Her *epoch* kendi içerisinde iki ana adımdan oluşmaktadır. Bunlardan ilki İ
 
 **Geri Yayılım** adımında Denklem $\eqref{5}$ ve Denklem $\eqref{6}$ denklemleri kullanılarak bulunan ağırlık değişimi güncel ağırlıklara eklenerek ağırlıklar güncellenir. Veri setindeki tüm örnekler için İleri Besleme ve Geri Yayılım adımları tamamlandığında bir *epoch* tamamlanmış olur. Öğrenmenin iyileştirilmesi için belirli bir başarı kriteri sağlanana veya sabit bir *epoch* sayısına ulaşana kadar eğitim adımları devam ettirilir.
 
----
-Çok Katlı Yapay Sinir Ağlarının matematiksel ifadeleri ve Geri Yayılım Algoritması'nın anlatıldığı serinin ikinci yazısına [Yapay Sinir Ağları II]({%post_url 2020-04-25-yapay-sinir-aglari-ii %}) bağlantısından ulaşabilirsiniz.
+--- 
 
+Çok Katlı Yapay Sinir Ağlarının matematiksel ifadeleri ve Geri Yayılım Algoritması'nın anlatıldığı serinin ikinci yazısına [Yapay Sinir Ağları II]({%post_url 2021-10-21-yapay-sinir-aglari-ii %}) bağlantısından ulaşabilirsiniz.
+
+<!---
 Yazıda yer alan analizlerin yapıldığı kod parçaları, görseller ve kullanılan veri setlerine [artificial_neural_networks](https://github.com/cescript/artificial_neural_networks) GitHub sayfası üzerinden erişilebilirsiniz.
+-->
 
 **Referanslar**
 * Alpaydin, Ethem. [Introduction to machine learning](https://www.cmpe.boun.edu.tr/~ethem/i2ml3e/). MIT press, 2014.
